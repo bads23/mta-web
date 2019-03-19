@@ -1,0 +1,157 @@
+// Font Families
+.lato{
+  font-family: 'Lato', sans-serif;
+}
+
+.playfair{
+  font-family: 'Playfair Display', serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.fontawesome{
+  font-family: "Font Awesome 5 Free";
+}
+
+
+// Font Styles
+.mb{
+  font-weight: 500;
+}
+
+.b{
+  font-weight: 700;
+}
+
+.xb{
+ font-weight: 900;
+}
+
+.l{
+  font-weight: 200;
+}
+.i{
+  font-style: italic;
+}
+
+// Font Sizes
+
+.xsm-text{
+  font-size: 12px;
+}
+
+.sm-text{
+  font-size: 13px;
+}
+
+.medium-text{
+  font-size: 14px;
+}
+
+.lg-text{
+  font-size: 20px;
+}
+
+.xlg-text{
+  font-size: 28px;
+}
+
+.xxlg-text{
+  font-size: 38px;
+}
+
+// Main Classes
+.lato-xsm{
+  @extend .lato, .xsm-text ;
+ }
+
+ .lato-xsm-i{
+   @extend .lato-xsm, .i ;
+ }
+
+ .lato-xsm-mb{
+   @extend .lato-xsm, .mb ;
+ }
+
+.lato-xsm-b{
+  @extend .lato-xsm, .b ;
+}
+
+.lato-sm{
+ @extend .lato, .sm-text ;
+}
+
+.lato-sm-b{
+  @extend .lato, .sm-text, .b ;
+}
+
+.lato-m{
+  @extend .lato, .medium-text ;
+}
+
+.lato-lg{
+  @extend .lato, .lg-text ;
+}
+
+.lato-xlg{
+  @extend .lato, .xlg-text ;
+}
+
+.playfair-xsm{
+  @extend .playfair, .xsm-text ;
+}
+
+.playfair-sm{
+  @extend .playfair, .sm-text ;
+}
+
+.playfair-m{
+  @extend .playfair, .medium-text ;
+}
+
+.playfair-lg{
+  @extend .playfair, .lg-text ;
+}
+
+.playfair-xlg{
+  @extend .playfair, .xlg-text ;
+}
+
+.playfair-xxlg{
+  @extend .playfair, .xxlg-text ;
+}
+
+.text-links{
+  @extend .lato-m, .b ;
+  color: $color-gold;
+  margin: 5px;
+  &:hover{
+    text-decoration: underline;
+  }
+  
+}.playfair-links{
+  @extend .playfair-m ;
+  color: $color-black ;
+  margin: 5px;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+
+// Fontawesome icons
+.fas{
+  @extend .medium-text ;
+}
+
+.align-right{
+  text-align: right;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.align-center{
+  text-align: center;
+}

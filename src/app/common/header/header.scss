@@ -1,0 +1,36 @@
+#header{
+  position: absolute;
+  top: 50px;
+  @extend .h-center ;
+  z-index: 9999;
+  width: 90%;
+  max-width: 1400px;
+  height: 75px;
+  @extend .fl-btw ;
+  align-items: center;
+  .header-sides{
+      @extend .fl-col-btw ;
+      @extend .playfair-m ;
+      width: calc(50% - 100px);
+      div{
+          height: 20px;
+      }
+      hr{
+          width: 100%;
+          border: .75px solid $color-gold;
+          @extend .mg-v-5 ;
+      }
+  }
+  #right-header{
+      align-items: flex-end;
+  }
+  .logo-box{
+      text-align: center;
+      width: 75px;
+      height: 75px ;
+      .logo{
+          width: 100%;
+          
+      }
+  }
+}
