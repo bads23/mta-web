@@ -1,0 +1,12 @@
+.section{
+  width: 100%;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  margin: 0px auto;
+  position: relative;
+}
+
+.main-section{
+  @extend .section;
+  max-width: 1600px;
+}

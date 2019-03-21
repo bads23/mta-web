@@ -23,6 +23,11 @@
 .mg-b-10{
   @include margin-bottom(10px);
 }
+
+.mg-b-50{
+  @include margin-bottom(50px);
+}
+
 .mg-v-5{
   @include margin(5px 0px)
 }
@@ -57,7 +62,7 @@
 }
 
 .fl-wrap{
-  @extend .fl-wrap ;
+  @extend .flex ;
   flex-wrap: wrap ;
 }
 
@@ -90,4 +95,8 @@
 .h-center{
   left: 50%;
   transform: translateX(-50%);
+}
+.v-center{
+  top: 50%;
+  transform: translateY(-50%);
 }
