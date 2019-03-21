@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 // import Button from './app/common/buttons/buttons'
 import Header from './app/common/header/header'
 import { MyProvider } from './context'
+
+import Home from './app/common/index'
 
 class App extends Component {
 
@@ -57,9 +61,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <MyProvider value={this.state.time}>
-          <Header />
-        </MyProvider>
+        <Router>
+
+          <MyProvider value={this.state.time}>
+            <Header />
+          </MyProvider>
+          <Route exact path="/" component={Home} />
+
+        </Router>
       </>
     );
   }

@@ -5,6 +5,7 @@
 
 @import '../buttons/buttons.scss';
 @import '../header/header.scss';
+@import '../slider/styles.scss';
 
 
 
@@ -12,6 +13,7 @@
 
 body{
   width: 100%;
+  margin: 0px;
 }
 
 a{
