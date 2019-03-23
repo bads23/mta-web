@@ -10,3 +10,18 @@
   @extend .section;
   max-width: 1600px;
 }
+
+.middle-section{
+  @extend .section;
+  padding-top: 50px;
+  top: 165px;
+}
+
+#top-bar{
+  position: absolute;
+  background-color: $color-cream ;
+  width: 100%;
+  height: 165px;
+  z-index: 9998;
+  top: 0px
+}

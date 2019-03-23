@@ -7,6 +7,8 @@ import Footer from './app/common/header/footer'
 import { MyProvider } from './context'
 
 import Home from './app/common/index'
+import ProductDetails from './app/products/product'
+import Cart from './app/cart/cart'
 
 class App extends Component {
 
@@ -63,12 +65,19 @@ class App extends Component {
     return (
       <>
         <Router>
+          <div id="wrapper">
 
-          <MyProvider value={this.state.time}>
-            <Header />
+            <MyProvider value={this.state.time}>
+              <Header />
 
-          </MyProvider>
-          <Route exact path="/" component={Home} />
+            </MyProvider>
+
+            <Route exact path="/" component={Home} />
+            <Route exact path="/product/:id" component={ProductDetails} />
+            <Route path="/cart/" component={Cart} />
+
+            <div id="push"></div>
+          </div>
           <Footer />
         </Router>
       </>

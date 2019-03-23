@@ -1,3 +1,4 @@
+/* Item container */
 
 .item{
   width: 200px;
@@ -25,5 +26,22 @@
   &:hover{
     border: 0.1px solid $color-gold;
     color: $color-gold;
+  }
+}
+
+
+.product-container{
+  width: 100%;
+  max-width: 1400px;
+  margin: 0px auto;
+  @extend .fl-btw ;
+
+  .image-container{
+      width: 45%;
+      text-align: center;
+  }
+  .text-container{
+      width: 45%;
+      line-height: 24px;
   }
 }
