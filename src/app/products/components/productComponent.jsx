@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 const Product = (props) => {
   return (
-    <Link to="product/id">
+    <Link to="/product/id">
       <div class="item">
         <div class="pr-image">
-          <img src="img/ac.png" />
+          <img src="img/ac.png" alt="Image" />
         </div>
         <div class="pr-info">
           <p class="lato-m b">Music Instrument</p>

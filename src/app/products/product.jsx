@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Categories from './components/categoriesComponent'
+import { Link } from 'react-router-dom'
 
 class ProductDetails extends Component {
   render() {
@@ -12,7 +13,7 @@ class ProductDetails extends Component {
         <div className="middle-section">
           <div class="product-container">
             <div class="image-container">
-              <img src="./img/Drumx2.png" />
+              <img src="./img/Drumx2.png" alt="image" />
             </div>
 
             <div class="text-container">
@@ -34,11 +35,11 @@ class ProductDetails extends Component {
                 <span>Ksh </span>
                 53,213
               </p>
-              <a href="cart.html">
+              <Link to="/cart/">
                 <button class="btn-black mg-v-20">
                   Add to Cart
               </button>
-              </a>
+              </Link>
             </div>
           </div>
 

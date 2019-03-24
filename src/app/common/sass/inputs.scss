@@ -1,0 +1,47 @@
+.input1{
+  width: 100%;
+  @extend .mg-v-20 ;
+  label{
+      display: block;
+      @extend .lato-m, .b, .i ;
+      @extend .mg-v-10 ;
+  }
+  input{
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: none;
+      border: none;
+      border-bottom: 1px solid $light-grey ;
+      @extend .lato-m ;
+  }
+}
+
+.form{
+  padding: 20px;
+  .btn-1{
+      @extend .mg-v-20 ;
+  }
+  .btn-full{
+      @extend .btn-1 ;
+      width: 100%;
+  }
+}
+
+.radio-checked{
+  &::before{
+      content: '\f058' ;
+      @extend .fontawesome, .mg-h-10 ;
+      font-weight: normal;
+      margin-left: -22px;
+  }
+}
+
+.radio-unchecked{
+  &::before{
+      content: '\f111' ;
+      @extend .fontawesome, .mg-h-10 ;
+      font-weight: normal;
+      margin-left: -22px;
+  }
+}
