@@ -1,8 +1,27 @@
 import React, { Component } from 'react'
-import Categories from './components/categoriesComponent'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+
+import formatter from '../common/functions/formatter'
 
 class ProductDetails extends Component {
+
+  state = {
+    product: {}
+  }
+
+  componentDidMount() {
+    this.getProduct()
+  }
+
+  getProduct() {
+    axios.get(`http://localhost:8000/catalog/` + this.props.match.params.id + `/`)
+      .then(res => {
+        this.setState({ product: res.data })
+      })
+  }
+
+
   render() {
     return (
       <>
@@ -11,39 +30,38 @@ class ProductDetails extends Component {
         </div>
 
         <div className="middle-section">
-          <div class="product-container">
-            <div class="image-container">
-              <img src="./img/Drumx2.png" alt="image" />
+          <div className="product-container">
+            <div className="image-container">
+              <img src="./img/Drumx2.png" alt="drum" />
             </div>
 
-            <div class="text-container">
-              <h1 class="playfair-xlg mg-v-20">5 Piece Drum Set</h1>
-              <p class="lato-m">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-                  explicabo assumenda asperiores atque, quod ducimus dicta, at iusto unde adipisci,
-                  itaque qui molestiae maiores delectus! Magnam pariatur quibusdam nihil reiciendis.
-                </p>
+            <div className="text-container">
+              <h1 className="playfair-xlg mg-v-20">{this.state.product.name}</h1>
+              <p className="lato-m">{this.state.product.description}</p>
               &nbsp;
-            <h1 class="playfair-lg mg-v-10">Features</h1>
 
-              <ul class="lato-m">
+              {/* <h1 className="playfair-lg mg-v-10">Features</h1> */}
+
+              {/* <ul className="lato-m">
                 <li>Feature 1</li>
                 <li>Feature 2</li>
                 <li>Feature 3</li>
                 <li>Feature 4</li>
-              </ul>
+
+              </ul> */}
               <p className="playfair-xlg mg-v-50 gold">
                 <span>Ksh </span>
-                53,213
+                {this.state.product ? this.state.product.price : ''}
               </p>
               <Link to="/cart/">
-                <button class="btn-black mg-v-20">
+                <button className="btn-black mg-v-20">
                   Add to Cart
               </button>
               </Link>
             </div>
           </div>
 
-          <Categories />
+          {/* <Categories /> */}
         </div>
 
       </>

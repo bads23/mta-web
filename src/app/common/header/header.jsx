@@ -21,10 +21,10 @@ const Header = () => {
           </div>
           <div id="right-header" className="header-sides">
             <div className="top"><span className="playfair-links">
-              <Link to="/login">Sign in </Link>  </span> | <span className="playfair-links"><Link to="/register">Register </Link></span>
+              <Link to="/login">Sign in </Link>  </span> | <span className="playfair-links"><Link to="/register">Register</Link></span>
             </div>
             <hr />
-            <div className="bottom">Your Cart is empty</div>
+            <div className="bottom"><Link to="/cart/">Your Cart is empty</Link></div>
           </div>
         </div>
       )}

@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import formatter from '../../common/functions/formatter'
 
-const Product = (props) => {
+const Product = ({ item }) => {
   return (
-    <Link to="/product/id">
-      <div class="item">
-        <div class="pr-image">
-          <img src="img/ac.png" alt="Image" />
+    <Link to={`/product/`+item.id}>
+      <div className="item">
+        <div className="pr-image">
+          <img src="img/ac.png" alt="guitar" />
         </div>
-        <div class="pr-info">
-          <p class="lato-m b">Music Instrument</p>
-          <p class="playfair-sm">Ksh 4,989</p>
+        <div className="pr-info">
+          <p className="lato-m b">{item.name}</p>
+          <p className="playfair-sm">Ksh {formatter(item.price)}</p>
         </div>
       </div>
     </Link>

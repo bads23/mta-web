@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import CartItem from './components/cartItem'
 import Payment from './components/paymentComponent'
-import SignIn from './components/checkoutSignin'
+// import SignIn from './components/checkoutSignin'
 
 class Cart extends Component {
   render() {

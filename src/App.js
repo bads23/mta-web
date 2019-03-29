@@ -78,7 +78,7 @@ class App extends Component {
 
             <div id="push"></div>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </Router>
       </>
     );

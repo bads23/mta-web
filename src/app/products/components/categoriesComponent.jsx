@@ -3,26 +3,28 @@ import { Link } from 'react-router-dom'
 
 import Product from './productComponent'
 
-const Categories = () => {
+const Categories = ({ category }) => {
   return (
+
     <div className="mg-b-50" >
-      <h2 className="section-header">Music Instruments</h2>
+      <h2 className="section-header">{category.name}</h2>
       <div className="mg-b-10">
-        <Link to="categories/2">
+        <Link to={"categories/" + category.id}>
           <p className="lato-m align-center">
             View all &nbsp;
-            <span>
+              <span>
               <i className="fas fa-angle-right"></i>
             </span>
           </p>
         </Link>
       </div>
       <div className="fl-even fl-wrap">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {
+          category.items.map(item => (
+            <Product item={item} key={item.id} />
+          ))
+        }
+
       </div>
     </div>
   )
