@@ -27,6 +27,30 @@
   }
   .price-spans{
       display: inline-block;
-      width: 150px;
+      min-width: 200px;
   }
+}
+
+.addQty{
+    cursor: pointer;
+    &::before{
+        content:'\f105';
+        @extend .fontawesome, .mg-h-10 ;
+    }
+}
+
+.subQty{
+    cursor: pointer;
+    &::before{
+        content:'\f104';
+        @extend .fontawesome, .mg-h-10 ;
+    }
+}
+
+.delete{
+    cursor: pointer;
+    &::before{
+        content:'\f2ed';
+        @extend .fontawesome, .mg-h-10 ;
+    }
 }

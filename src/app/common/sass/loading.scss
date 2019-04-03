@@ -1,0 +1,73 @@
+#loadingScreen{
+  width: 100%;
+  height: 100vh;
+  background-color: $color-black;
+
+  #loadingWrap{
+    position: absolute;
+    @extend .v-h-center ;
+    
+    #loaderImgDiv{
+      width: 200px;
+      img{
+        width: 100%;
+        @extend .faster-rotation ;
+      }
+    }
+    #loaderImgDiv2{
+      position: absolute;
+      top: 0;
+      width: 200px;
+      img{
+        width: 100%;
+        @extend .faster-counter-rotation ;
+      }
+    }
+    #loaderText {
+      color : $color-gold;
+      text-align: center;
+      span{
+        display: block;
+      }
+      span#main{
+        @extend .playfair ;
+        font-size: 50px;
+      }
+      span#other{
+        @extend .lato ;
+        font-size: 13px;
+        letter-spacing: 8px;
+      }
+    }
+    #fakeLogo{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      top: 0px;
+      // background-color: white;
+      .sq-wraps{
+        position: absolute;
+        @extend .v-h-center ;
+        .sq{
+          width: 150px;
+          height: 150px;
+          border:4px solid $color-gold ;
+        }
+        #sq1{
+          transform: rotate(90deg);
+          @extend .rotation ;
+        }
+        #sq2{
+          @extend .counter-rotation ;
+        }
+        h1{
+          color: $color-gold ;
+          @extend .playfair ;
+          font-size: 80px;
+          font-weight: 100;
+        }
+      }
+      
+    }
+  }
+}

@@ -1,73 +1,49 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import ImageSlider from './components/imageslider'
+import ProductDetails from './components/productDetails'
 import axios from 'axios'
 
-import formatter from '../common/functions/formatter'
 
-class ProductDetails extends Component {
+class Product extends Component {
 
-  state = {
-    product: {}
-  }
+  state = {}
 
   componentDidMount() {
-    this.getProduct()
+    var id = this.props.match.params.id
+    this.getItem(id)
   }
 
-  getProduct() {
-    axios.get(`http://localhost:8000/catalog/` + this.props.match.params.id + `/`)
+  getItem = async id => {
+    await axios.get(`http://localhost:8000/catalog/${id}/`)
       .then(res => {
-        this.setState({ product: res.data })
+        this.setState({
+          item: { ...res.data }
+        })
       })
   }
-
 
   render() {
     return (
       <>
-        <div id="top-bar">
-
-        </div>
-
+        <div id="top-bar"></div>
         <div className="middle-section">
           <div className="product-container">
-            <div className="image-container">
-              <img src="./img/Drumx2.png" alt="drum" />
-            </div>
+            {
+              this.state.item ? (
+                <>
+                  <ImageSlider images={this.state.item.images} />
+                  <ProductDetails item={this.state.item} />
+                </>
+              ) : (
+                  <p>Loading</p>
+                )
+            }
 
-            <div className="text-container">
-              <h1 className="playfair-xlg mg-v-20">{this.state.product.name}</h1>
-              <p className="lato-m">{this.state.product.description}</p>
-              &nbsp;
-
-              {/* <h1 className="playfair-lg mg-v-10">Features</h1> */}
-
-              {/* <ul className="lato-m">
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-                <li>Feature 4</li>
-
-              </ul> */}
-              <p className="playfair-xlg mg-v-50 gold">
-                <span>Ksh </span>
-                {this.state.product ? this.state.product.price : ''}
-              </p>
-              <Link to="/cart/">
-                <button className="btn-black mg-v-20">
-                  Add to Cart
-              </button>
-              </Link>
-            </div>
           </div>
-
-          {/* <Categories /> */}
         </div>
-
       </>
     )
   }
 }
 
-
-export default ProductDetails
+export default Product
