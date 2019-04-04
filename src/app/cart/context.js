@@ -1,6 +1,31 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useContext } from 'react'
+import format from '../common/functions/formatter'
 
 export const CartContext = createContext()
+
+export const CartTotals = () => {
+
+  const context = useContext(CartContext)
+  var cart = [...context.cart]
+
+  var totals = {
+    subtotal: 0,
+    vat: 0,
+    total: 0
+  }
+
+  const update = () => {
+    if (cart.length > 0) {
+      cart.forEach(item => {
+        totals.subtotal += item.price * item.quantity
+        totals.vat = format(Math.round(totals.subtotal * .16))
+        totals.total = format(Math.round(totals.subtotal + (totals.subtotal * 0.16)))
+      })
+    }
+  }
+  update()
+  return totals
+}
 
 const CartProvider = (props) => {
   var cartExists = localStorage.getItem("Cart")
@@ -15,7 +40,7 @@ const CartProvider = (props) => {
 
   useEffect(() => {
     setCart(cartInfo)
-  }, cartInfo)
+  }, [cartInfo])
 
   return (
     <CartContext.Provider value={{ cart, setCart }}>

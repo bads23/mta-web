@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Route, Link } from 'react-router-dom'
 import CartItem from './components/cartItem'
 import Payment from './components/paymentComponent'
-// import SignIn from './components/checkoutSignin'
 import format from '../common/functions/formatter'
 
 import { CartContext } from './context'
@@ -45,20 +44,25 @@ const Cart = () => {
                 <p> <span className="lato">V.A.T(16%):</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().subtotal * .16))}</span></p>
 
                 <p><span className="lato">Total:</span><span className="subtotal playfair-xlg mg-v-20 gold price-spans">Ksh {format(Math.round(getTotals().subtotal + (getTotals().subtotal * .16)))}</span></p>
-                <Link to="checkout" className="mg-v-20"><button className="btn btn-black">Checkout</button> </Link>
-                <Link to="/">
-                  <span className="block mg-v-20 grey">
-                    <i className="fas fa-angle-left"></i>
-                    &nbsp;
-                    Keep Shopping
-            </span>
-                </Link>
+                <Route exact path="/cart" render={() => {
+                  return (
+                    <>
+                      <Link to="checkout" className="mg-v-20"><button className="btn btn-black">Checkout</button> </Link>
+                      <Link to="/">
+                        <span className="block mg-v-20 grey">
+                          <i className="fas fa-angle-left"></i>
+                          &nbsp;
+                          Keep Shopping
+                  </span>
+                      </Link>
+                    </>)
+                }} />
               </div>
 
               {/* <SignIn />
-        <Payment /> */}
+              <Payment /> */}
 
-              <Route exact path="/checkout" render={(props) => <Payment {...props} />} />
+              <Route path="/cart/checkout/" render={(props) => <Payment {...props} />} />
             </div>
           </>
         ) : (
