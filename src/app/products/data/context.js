@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
 import axios from 'axios'
+import SETTINGS from '../../config/settings'
 
 export const ProductContext = createContext()
 const fetcher = ({ resource }) => {
@@ -8,7 +9,7 @@ const fetcher = ({ resource }) => {
 
   const fetchProduct = async () => {
     const response = await axios.get(
-      `http://localhost:8000/catalog/${resource}/`
+      `${SETTINGS.SERVER_URL}/${resource}/`
     )
     setProduct(response.data)
   }

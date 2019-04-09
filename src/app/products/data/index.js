@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import SETTINGS from '../../config/settings'
 
 const CategoriesContext = React.createContext({})
 
@@ -12,7 +13,7 @@ const Counts = () => {
 
   const Fetchdata = async () => {
     const response = await axios.get(
-      'http://localhost:8000/categories/'
+      `${SETTINGS.SERVER_URLS}/categories/`
     )
     setCategories(response.data)
   }

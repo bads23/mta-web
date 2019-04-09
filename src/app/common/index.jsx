@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Slider from './slider/sliderComponent'
 import Categories from '../products/components/categoriesComponent'
 import axios from 'axios'
+import URLS from '../config/settings'
 
 class Home extends Component {
   state = {
@@ -13,7 +14,7 @@ class Home extends Component {
   }
 
   getCategories() {
-    axios.get('http://localhost:8000/categories/')
+    axios.get(`${URLS().CATEGORIES}`)
       .then(res => {
         this.setState({ Categories: res.data })
       })

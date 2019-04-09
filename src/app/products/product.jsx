@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ImageSlider from './components/imageslider'
 import ProductDetails from './components/productDetails'
 import axios from 'axios'
-
+import URLS from '../config/settings'
 
 class Product extends Component {
 
@@ -14,7 +14,7 @@ class Product extends Component {
   }
 
   getItem = async id => {
-    await axios.get(`http://localhost:8000/catalog/${id}/`)
+    await axios.get(`${URLS().CATALOG+id}/`)
       .then(res => {
         this.setState({
           item: { ...res.data }

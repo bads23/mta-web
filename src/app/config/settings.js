@@ -1,10 +1,13 @@
-const SETTINGS = () => {
+const URLS = () => {
+  // const BASE_URL = 'https://polar-coast-92082.herokuapp.com/'
+  const BASE_URL = 'http://localhost:8000/'
   return (
     {
-      "SERVER_URL": "https://localhost:8000/",
-      "CREDENTIALS": {}
+      "SERVER_URL": BASE_URL,
+      "CATEGORIES": BASE_URL+'categories/',
+      "CATALOG": BASE_URL+'catalog/'
     }
   )
 }
 
-export default SETTINGS
+export default URLS

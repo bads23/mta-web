@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Route, Link } from 'react-router-dom'
 import CartItem from './components/cartItem'
-import Payment from './components/paymentComponent'
+import PaymentMethod from './components/paymentMethod'
 import format from '../common/functions/formatter'
 
 import { CartContext } from './context'
@@ -62,7 +62,7 @@ const Cart = () => {
               {/* <SignIn />
               <Payment /> */}
 
-              <Route path="/cart/checkout/" render={(props) => <Payment {...props} />} />
+              <Route path="/cart/checkout/" render={(props) => <PaymentMethod {...props} />} />
             </div>
           </>
         ) : (
