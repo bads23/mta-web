@@ -1,25 +1,79 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import { CartTotals } from '../context'
+import URLS from '../../config/settings'
+import { ApiPost } from '../../config/axios'
 
+
+const makePayload = (payNumber, payMethod, total) => {
+  var payload = {
+    phone_number: payNumber,
+    amount: total,
+    payment_mode: 1,
+    currency_code: 'KES'
+  }
+  return payload
+}
 
 
 const Payment = () => {
 
+  var code = "+254"
+
   const [payMethod, setPayMethod] = useState()
-  const [payNumber, setPayNumber] = useState()
-  
-  const handlePayMethod = (method)=>setPayMethod(method)
-  const handlePayNumber = (e)=> setPayNumber(e.target.value)
+  const [payNumber, setPayNumber] = useState(code)
 
-  return(
-      <div className="checkout-form">
-        <h1 className="playfair-lg align-center">Confirm Payment</h1>
-        <p className="lato-m i align-center mg-v-20">Pick your preffered method of payment</p>
+  const handlePayMethod = method => {
+    if (method === 'MPESA') {
+      const div = document.getElementById('mpesaDiv')
+      div.classList.remove("radio-unchecked-div")
+      div.classList.add("radio-checked-div")
+      const div_ = document.getElementById('podDiv')
+      div_.classList.remove("radio-checked-div")
+      div_.classList.add("radio-unchecked-div")
+    } else {
+      const div_ = document.getElementById('podDiv')
+      div_.classList.remove("radio-unchecked-div")
+      div_.classList.add("radio-checked-div")
+      const div = document.getElementById('mpesaDiv')
+      div.classList.remove("radio-checked-div")
+      div.classList.add("radio-unchecked-div")
+    }
+    document.getElementById('payBtn').disabled = ''
+    setPayMethod(method)
+  }
+  const handlePayNumber = (e) => setPayNumber(e.target.value)
 
-        <form className="form">
+  const handlePayOrder = (e) => {
+    e.preventDefault()
+    document.getElementById('payBtn').disabled = 'disabled'
+    document.getElementById('payBtn').innerText = 'Confirming Payment...'
 
-        <div className="mg-v-20" onClick={() => handlePayMethod('MPESA')}>
-          <h2 className="lato-m b radio radio-checked mg-v-10">Mpesa</h2>
+    var payload = makePayload(payNumber, payMethod, CartTotals.total)
+
+    ApiPost(`${URLS().PAYMENTS}`, payload)
+      .then(res => {
+        console.log(res.data)
+        document.getElementById('payBtn').innerText = 'Payment Confirmed'
+      })
+      .catch(error => {
+        document.getElementById('payBtn').innerText = 'Payment Failed, Try again.'
+        setTimeout(() => {
+          document.getElementById('payBtn').innerText = 'Make Payment'
+          document.getElementById('payBtn').disabled = ''
+        }, 3000)
+        console.log(error)
+      })
+  }
+
+  return (
+    <div className="checkout-form">
+      <h1 className="playfair-lg align-center">Confirm Payment</h1>
+      <p className="lato-m i align-center mg-v-20">Pick your preffered method of payment</p>
+
+      <form className="form" onSubmit={handlePayOrder}>
+
+        <div className="mg-v-20" onClick={() => handlePayMethod('MPESA')} id="mpesaDiv">
+          <h2 className="lato-m b radio radio-unchecked mg-v-10">Mpesa</h2>
           <p className="lato-m">Pay Ksh {CartTotals().total} via Mpesa paybill. Enter your phone number to make the payment.</p>
 
           <div className="input1">
@@ -28,15 +82,15 @@ const Payment = () => {
           </div>
         </div>
 
-        <div className="grey" onClick={() => handlePayMethod('PAY_ON_DELIVERY')}>
+        <div className="" onClick={() => handlePayMethod('PAY_ON_DELIVERY')} id="podDiv">
           <h2 className="lato-m b radio radio-unchecked mg-v-10">Pay on Delivery</h2>
           <p className="lato-m">Pay Ksh {CartTotals().total} upon delivery.</p>
         </div>
 
-        <button className="btn btn-full mg-v-50">Make Payment</button>
+        <button className="btn btn-full mg-v-50" disabled="disabled" id="payBtn">Make Payment</button>
 
-        </form>
-      </div>
+      </form>
+    </div>
   )
 }
 

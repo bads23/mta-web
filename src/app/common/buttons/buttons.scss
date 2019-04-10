@@ -54,6 +54,9 @@
   &:hover{
     cursor: pointer;
   }
+  &:disabled{
+    cursor: wait;
+  }
 }
 
 .btn-black{

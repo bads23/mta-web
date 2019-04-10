@@ -4,8 +4,9 @@ const URLS = () => {
   return (
     {
       "SERVER_URL": BASE_URL,
-      "CATEGORIES": BASE_URL+'categories/',
-      "CATALOG": BASE_URL+'catalog/'
+      "CATEGORIES": BASE_URL + 'categories/',
+      "CATALOG": BASE_URL + 'catalog/',
+      "PAYMENTS": BASE_URL + 'payments/payments/'
     }
   )
 }

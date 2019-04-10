@@ -20,6 +20,7 @@ export const CartTotals = () => {
         totals.subtotal += item.price * item.quantity
         totals.vat = format(Math.round(totals.subtotal * .16))
         totals.total = format(Math.round(totals.subtotal + (totals.subtotal * 0.16)))
+        totals.total_int = Math.round(totals.subtotal + (totals.subtotal * 0.16))
       })
     }
   }

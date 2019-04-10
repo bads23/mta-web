@@ -27,6 +27,9 @@
       width: 100%;
   }
 }
+.radio{
+  cursor: pointer;
+}
 
 .radio-checked{
   &::before{
@@ -43,5 +46,18 @@
       @extend .fontawesome, .mg-h-10 ;
       font-weight: normal;
       margin-left: -22px;
+  }
+}
+
+.radio-unchecked-div{
+  @extend .grey ;
+  h2{
+    @extend .radio-unchecked ;
+  }
+}
+
+.radio-checked-div{
+  h2{
+    @extend .radio-checked ;
   }
 }
