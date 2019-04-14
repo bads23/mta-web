@@ -7,7 +7,7 @@ import { ApiPost } from '../../config/axios'
 const makePayload = (payNumber, payMethod, total) => {
   var payload = {
     phone_number: payNumber,
-    amount: total,
+    amount: 25000,
     payment_mode: 1,
     currency_code: 'KES'
   }
