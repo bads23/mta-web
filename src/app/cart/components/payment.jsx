@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
 import { CartTotals } from '../context'
 import URLS from '../../config/settings'
-import { ApiPost } from '../../config/axios'
+import ApiGet, { ApiPost } from '../../config/axios'
 
 
 const makePayload = (payNumber, payMethod, total) => {
   var payload = {
-    phone_number: payNumber,
+    phone_number: '+254728753983',
     amount: 25000,
     payment_mode: 1,
     currency_code: 'KES'
   }
   return payload
 }
+
+// const Getter = (url) => {
+//   ApiGet(url)
+//     .then(res = {})
+// }
 
 
 const Payment = () => {
@@ -21,6 +26,18 @@ const Payment = () => {
 
   const [payMethod, setPayMethod] = useState()
   const [payNumber, setPayNumber] = useState(code)
+  const [payStatus, setPayStatus] = useState({})
+
+  const getStatus = (kyc) => {
+    ApiGet(`${URLS().PAYMENTS}?kyc=${kyc}`)
+      .then(res => {
+        var data = {
+          status: res.data[0].status
+        }
+        setPayStatus({ data })
+        console.log(payStatus)
+      })
+  }
 
   const handlePayMethod = method => {
     if (method === 'MPESA') {
@@ -41,19 +58,33 @@ const Payment = () => {
     document.getElementById('payBtn').disabled = ''
     setPayMethod(method)
   }
+
   const handlePayNumber = (e) => setPayNumber(e.target.value)
+
 
   const handlePayOrder = (e) => {
     e.preventDefault()
     document.getElementById('payBtn').disabled = 'disabled'
-    document.getElementById('payBtn').innerText = 'Confirming Payment...'
+    document.getElementById('payBtn').innerText = 'Sending Payment Request'
 
     var payload = makePayload(payNumber, payMethod, CartTotals.total)
 
     ApiPost(`${URLS().PAYMENTS}`, payload)
       .then(res => {
-        console.log(res.data)
-        document.getElementById('payBtn').innerText = 'Payment Confirmed'
+        var data = res.data
+        setPayStatus(data.status)
+        document.getElementById('payBtn').innerText = 'Confirming Payment...'
+
+        var checkPayStatus = setInterval(() => {
+          if (payStatus === "success") {
+            clearInterval(checkPayStatus)
+            console.log('cleared!')
+          } else {
+            getStatus(data.kyc)
+            console.log(payStatus)
+          }
+        }, 5000)
+
       })
       .catch(error => {
         document.getElementById('payBtn').innerText = 'Payment Failed, Try again.'
@@ -74,7 +105,7 @@ const Payment = () => {
 
         <div className="mg-v-20" onClick={() => handlePayMethod('MPESA')} id="mpesaDiv">
           <h2 className="lato-m b radio radio-unchecked mg-v-10">Mpesa</h2>
-          <p className="lato-m">Pay Ksh {CartTotals().total} via Mpesa paybill. Enter your phone number to make the payment.</p>
+          <p className="lato-m">Pay Ksh {CartTotals().total} via Mpesa paybill. Enter the phone number to make the payment.</p>
 
           <div className="input1">
             <label>Phone Number:</label>

@@ -1,16 +1,13 @@
 import axios from 'axios'
-import SETTINGS from './settings'
 
-const ApiGet = resource => {
+const ApiGet = url => {
 
-  const FetchResource = async resource => {
-    const response = await axios.get(SETTINGS`${resource}`);
+  const Get = async (url) => {
+    const response = await axios.get(url)
     return response
   }
-
-  return FetchResource()
+  return Get(url)
 }
-
 
 
 export const ApiPost = (url, payload) => {
@@ -20,7 +17,6 @@ export const ApiPost = (url, payload) => {
   }
   return Post(url, payload)
 }
-
 
 
 export default ApiGet
