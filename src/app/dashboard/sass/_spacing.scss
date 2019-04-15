@@ -1,0 +1,97 @@
+
+@mixin margin-top($v) {
+  margin-top: $v;
+}
+
+@mixin margin-bottom($v) {
+  margin-bottom: $v;
+}
+
+@mixin margin($v) {
+  margin: $v;
+}
+
+@mixin padding($v) {
+  padding: $v;
+  box-sizing: border-box;
+}
+
+
+.mg-t-10{
+  @include margin-top(10px);
+}
+.mg-b-10{
+  @include margin-bottom(10px);
+}
+.mg-v-5{
+  @include margin(5px 0px)
+}
+
+.mg-v-10{
+  @include margin(10px 0px)
+}
+
+.mg-v-20{
+  @include margin(20px 0px)
+}
+
+.mg-v-50{
+  @include margin(50px 0px)
+}
+
+.mg-h-5{
+  @include margin(0px 5px)
+}
+
+.mg-h-10{
+  @include margin(0px 10px)
+}
+
+.pd-20 {
+  @include padding(20px)
+}
+
+.pd-v-20{
+  @include padding(20px 0px)
+}
+/*  FLEX BOX STYLING */
+
+.flex{
+  display: flex;
+}
+
+.fl-wrap{
+  @extend .fl-wrap ;
+  flex-wrap: wrap ;
+}
+
+.fl-btw{
+  @extend .flex ;
+  justify-content: space-between;
+}
+
+.fl-even{
+  @extend .flex ;
+  justify-content: space-evenly;
+}
+
+.fl-col{
+  @extend .flex ;
+  flex-direction: column;
+}
+
+.fl-col-btw{
+  @extend .fl-col ;
+  align-self: auto;
+}
+
+.fl-start{
+  @extend .flex ;
+  justify-content: flex-start;
+}
+
+/* POSITIONING */
+.h-center{
+  left: 50%;
+  transform: translateX(-50%);
+}

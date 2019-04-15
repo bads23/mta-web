@@ -1,0 +1,57 @@
+/*Buttons*/
+
+.btn{
+  position: relative ;
+  width: 87px;
+  height: 34px;
+  border: 1px solid black;
+  @extend .playfair-m ;
+  background: none;
+  overflow: hidden;
+  transition: .2s ease all;
+  display: inline-block;
+  &::before{
+    content: " ";
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    z-index: -1;
+    top: -5px;
+    left: -5px;
+    transform: rotate(45deg);
+    transition: .2s ease all;
+  }
+
+  &::after{
+    content: " ";
+    background-color: black;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    z-index: -1;
+    bottom: -5px;
+    right: -5px;
+    transform: rotate(45deg);
+    transition: .2s ease all;
+  }
+
+  &:hover{
+    cursor: pointer;
+    &::before{
+      width: 20px;
+      height: 20px;
+      top: -10px;
+      left: -10px;
+    }
+    &::after{
+      width: 20px;
+      height: 20px;
+      bottom: -10px;
+      right: -10px;
+    }
+  }
+  &:active{
+    @extend .playfair-sm ;
+  }
+}

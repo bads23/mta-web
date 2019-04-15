@@ -8,6 +8,7 @@ import Product from './app/products/product'
 import Cart from './app/cart/cart'
 import Logo from './app/common/assets/svg/MTA-SPIN.svg'
 import CartProvider from './app/cart/context'
+import Dashboard from './app/dashboard/index'
 
 
 const Loading = () => {
@@ -50,20 +51,22 @@ class App extends Component {
   render() {
     return (
       <>{this.state.api ? (<Loading />) : (
-        <Router>
-          <div id="wrapper">
-            <CartProvider>
-              <Header />
 
+        <div id="wrapper">
+          <CartProvider>
+            <Router>
               <Route exact path="/" component={Home} />
               <Route exact path="/product/:id" component={Product} />
               <Route path="/cart/" component={Cart} />
+              {/* <div id="push"></div> */}
+            </Router >
+          </CartProvider>
 
-              <div id="push"></div>
-            </CartProvider>
-          </div >
-          {/* <Footer /> */}
-        </Router >
+          <Router>
+            <Route path="/dashboard/" component={Dashboard} />
+          </Router>
+        </div >
+
       )
       }
       </>

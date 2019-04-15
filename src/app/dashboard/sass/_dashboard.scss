@@ -1,0 +1,158 @@
+.sidebar{
+  position: fixed;
+  width: 230px;
+  height: 100vh;
+  background-color: $color-cream;
+  top: 0px;
+  left: 0px;
+  span{
+    display: block;
+  }
+}
+
+.logo-wrapper{
+  width: 85%;
+  margin: 0px auto 50px auto;
+  border-bottom: 1px solid $color-gold;
+}
+
+.nav{
+  width: 85%;
+  margin: 0px auto;
+  @extend .lato-m, .b ;
+  line-height: 50px;
+  li{
+    list-style: none;
+    padding-left: 10px;
+    &::before{
+      content: '\f0da';
+      @extend .fontawesome ;
+      opacity: 0;
+      margin-right: 5px;
+    }
+    &:hover{
+      &::before{
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.active{
+  @extend .lato-lg ;
+  &::before{
+    opacity: 1 !important;
+  }
+}
+
+
+.sidebar-right{
+  position: fixed;
+  right: 0px;
+  height: 100vh;
+  width: 235px;
+  border-left: 1px solid $light-grey;
+  @include padding(30px 0px 0px 0px);
+  .logs{
+    position: relative;
+    &::before{
+      content: '\f111';
+      @extend .fontawesome ;
+      font-weight: normal !important;
+      position: absolute;
+      left:-5px;
+      top: 25px;
+    }
+    span{
+      @extend .mg-v-5 ;
+    }
+  }
+}
+
+.middle{
+  position: absolute;
+  left: 230px;
+  width: calc(100% - 235px);
+  @include padding(30px 30px);
+}
+
+.midsection{
+  position: absolute;
+  left: 0px;
+  width: calc(100% - 235px);
+  @include padding(30px 30px);
+}
+
+.graph{
+  width: 100%;
+  height: 370px;
+  background-color: $light-grey;
+  @include margin(20px 0px 50px 0px);
+}
+
+.analytics{
+  width: 30%;
+  height: 164px;
+  background-color: $light-grey;
+}
+
+
+/*products page*/
+
+.midsection-products{
+  position: absolute;
+  left: 230px;
+  right: 397px;
+  @include padding(30px 30px);
+
+}
+
+.sidebar-right-products{
+  position: absolute;
+  right: 0px;
+  height: 100vh;
+  width: 397px;
+  border-left: 1px solid $light-grey;
+  @include padding(30px 0px 0px 0px);
+  .dash-prod-t{
+    text-align: center;
+    a:hover{
+      border-bottom: 1px solid $color-gold;
+      color: $color-gold;
+    }
+
+    a:active{
+      border-bottom: 1px solid $color-gold;
+      color: $color-gold;
+    }
+  }
+}
+
+/*Orders page*/
+
+table{
+  width: 100%;
+  height: 40vh;
+  margin-top: 5rem;
+}
+
+th{
+  text-align: left;
+}
+
+tr:nth-child(even){
+  background-color: $color-cream;
+}
+
+table, th, td {
+  border-collapse: collapse;
+}
+
+
+.sidebar-right-orders{
+  margin: 4rem;
+}
+.order-text{
+  display: block;
+}
+
