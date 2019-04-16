@@ -72,6 +72,7 @@
 .middle{
   position: absolute;
   left: 230px;
+  top: 0;
   width: calc(100% - 235px);
   @include padding(30px 30px);
 }
@@ -80,6 +81,13 @@
   position: absolute;
   left: 0px;
   width: calc(100% - 235px);
+  @include padding(30px 30px);
+}
+
+.midsection_sm{
+  position: absolute;
+  left: 0px;
+  width: calc(100% - 400px);
   @include padding(30px 30px);
 }
 
@@ -108,7 +116,7 @@
 }
 
 .sidebar-right-products{
-  position: absolute;
+  position: fixed;
   right: 0px;
   height: 100vh;
   width: 397px;
@@ -136,18 +144,22 @@ table{
   margin-top: 5rem;
 }
 
+
 th{
   text-align: left;
 }
 
-tr:nth-child(even){
-  background-color: $color-cream;
+tr{
+  height: 30px;
+  
+  &:nth-child(even){
+    background-color: $color-cream;
+  }
 }
 
 table, th, td {
   border-collapse: collapse;
 }
-
 
 .sidebar-right-orders{
   margin: 4rem;
