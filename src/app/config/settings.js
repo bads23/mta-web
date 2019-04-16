@@ -4,7 +4,7 @@ const URLS = () => {
   return (
     {
       "SERVER_URL": BASE_URL,
-      "AUTH": BASE_URL + 'api/login/',
+      "AUTH": BASE_URL + 'api/token/',
       "CATEGORIES": BASE_URL + 'categories/',
       "CATALOG": BASE_URL + 'catalog/',
       "PAYMENTS": BASE_URL + 'payments/payments/',

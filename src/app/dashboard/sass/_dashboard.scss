@@ -5,6 +5,7 @@
   background-color: $color-cream;
   top: 0px;
   left: 0px;
+  overflow: auto;
   span{
     display: block;
   }
@@ -39,7 +40,6 @@
 }
 
 .active{
-  @extend .lato-lg ;
   &::before{
     opacity: 1 !important;
   }

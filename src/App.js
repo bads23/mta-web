@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Login from './app/auth/login'
 import Header from './app/common/header/header'
 // import Footer from './app/common/header/footer'
 import Home from './app/common/index'
@@ -9,6 +10,7 @@ import Cart from './app/cart/cart'
 import Logo from './app/common/assets/svg/MTA-SPIN.svg'
 import CartProvider from './app/cart/context'
 import Dashboard from './app/dashboard/index'
+
 
 
 const Loading = () => {
@@ -58,6 +60,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route exact path="/product/:id" component={Product} />
               <Route path="/cart/" component={Cart} />
+              <Route path="/login" component={Login} />
               {/* <div id="push"></div> */}
             </Router >
           </CartProvider>

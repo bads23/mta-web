@@ -4,6 +4,8 @@ import ProductDetails from './components/productDetails'
 import axios from 'axios'
 import URLS from '../config/settings'
 
+import Header from '../common/header/header'
+
 class Product extends Component {
 
   state = {}
@@ -14,7 +16,7 @@ class Product extends Component {
   }
 
   getItem = async id => {
-    await axios.get(`${URLS().CATALOG+id}/`)
+    await axios.get(`${URLS().CATALOG + id}/`)
       .then(res => {
         this.setState({
           item: { ...res.data }
@@ -25,6 +27,7 @@ class Product extends Component {
   render() {
     return (
       <>
+        <Header />
         <div id="top-bar"></div>
         <div className="middle-section">
           <div className="product-container">

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import './sass/main.scss'
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Sidebar from './components/sidebar'
 
-import Stats from './components/middle/stats'
-import Products from './components/middle/products'
-import Orders from './components/middle/orders'
-import Users from './components/middle/users'
+import Stats from './components/stats'
+import Products from './components/products'
+import Orders from './components/orders'
+import Users from './components/users'
 
 class Dashboard extends Component {
   render() {
