@@ -2,8 +2,19 @@ import axios from 'axios'
 
 const ApiGet = url => {
 
+  var tokens = localStorage.getItem('tokens')
+  var header = {}
+
+  if (tokens) {
+    tokens = JSON.parse(tokens)
+
+    header = {
+      Authorization: `Bearer ${tokens.access}`
+    }
+  }
+
   const Get = async (url) => {
-    const response = await axios.get(url)
+    const response = await axios.get(url, { headers: header })
     return response
   }
   return Get(url)

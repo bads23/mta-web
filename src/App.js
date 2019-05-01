@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Login from './app/auth/login'
-import Header from './app/common/header/header'
+// import Header from './app/common/header/header'
 // import Footer from './app/common/header/footer'
 import Home from './app/common/index'
 import Product from './app/products/product'
 import Cart from './app/cart/cart'
 import Logo from './app/common/assets/svg/MTA-SPIN.svg'
 import CartProvider from './app/cart/context'
+import UserProvider from './app/auth/context'
 import Dashboard from './app/dashboard/index'
-
+import Register from './app/auth/register'
 
 
 const Loading = () => {
@@ -50,26 +51,30 @@ class App extends Component {
     api: false
   }
 
+
+
   render() {
     return (
       <>{this.state.api ? (<Loading />) : (
 
         <div id="wrapper">
-          <CartProvider>
+          <UserProvider>
+            <CartProvider>
+              <Router>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/product/:id" component={Product} />
+                <Route path="/cart/" component={Cart} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                {/* <div id="push"></div> */}
+              </Router >
+            </CartProvider>
+
             <Router>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/product/:id" component={Product} />
-              <Route path="/cart/" component={Cart} />
-              <Route path="/login" component={Login} />
-              {/* <div id="push"></div> */}
-            </Router >
-          </CartProvider>
-
-          <Router>
-            <Route path="/dashboard/" component={Dashboard} />
-          </Router>
+              <Route path="/dashboard/" component={Dashboard} />
+            </Router>
+          </UserProvider>
         </div >
-
       )
       }
       </>

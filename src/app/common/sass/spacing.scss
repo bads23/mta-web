@@ -76,6 +76,11 @@
   justify-content: space-evenly;
 }
 
+.fl-center{
+  @extend .flex ;
+  justify-content: center;
+}
+
 .fl-col{
   @extend .flex ;
   flex-direction: column;

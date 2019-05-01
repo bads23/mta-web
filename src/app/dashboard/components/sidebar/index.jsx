@@ -2,7 +2,33 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../../common/assets/svg/MTA.svg'
 
-const index = () => {
+const index = ({ props }) => {
+
+  // console.log(props.location.pathname)
+  // var path = props.location.pathname
+  // path = path.split("/");
+  // console.log(path)
+
+
+  // var dashlinks = document.getElementsByClassName("dashlinks");
+
+
+  // if (path[2] === "") {
+  //   dashlinks.classList.remove("active");
+  //   document.getElementById("dashboard-link").classList.add("active")
+  // } else if (path[2] === "products") {
+  //   dashlinks.classList.remove("active");
+  //   document.getElementById("products-link").classList.add("active")
+  // } else if (path[2] === "orders") {
+  //   dashlinks.classList.remove("active");
+  //   document.getElementById("orders-link").classList.add("active")
+  // } else if (path[2] === "users") {
+  //   console.log(dashlinks)
+  //   document.getElementById("users-link").classList.add("active")
+  // }
+
+
+
   return (
     <div className="sidebar">
 
@@ -19,16 +45,16 @@ const index = () => {
       <nav className="nav">
         <ul>
           <Link to="/dashboard/">
-            <li className="active">Dashboard</li>
+            <li className="active dashlinks" id="dashboard-link">Dashboard</li>
           </Link>
           <Link to="/dashboard/products/">
-            <li>Products</li>
+            <li className="dashlinks" id="products-link">Products</li>
           </Link>
           <Link to="/dashboard/orders/">
-            <li>Orders</li>
+            <li className="dashlinks" id="orders-link">Orders</li>
           </Link>
           <Link to="/dashboard/users/">
-            <li>Users</li>
+            <li className="dashlinks" id="users-link">Users</li>
           </Link>
         </ul>
       </nav>

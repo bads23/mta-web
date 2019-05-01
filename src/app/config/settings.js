@@ -8,7 +8,9 @@ const URLS = () => {
       "CATEGORIES": BASE_URL + 'categories/',
       "CATALOG": BASE_URL + 'catalog/',
       "PAYMENTS": BASE_URL + 'payments/payments/',
-      "NOTIFICATIONS": BASE_URL + 'payments/notifications/'
+      "NOTIFICATIONS": BASE_URL + 'payments/notifications/',
+      "ME": BASE_URL + 'users/usersList/me',
+      "USERS": BASE_URL + 'users/usersList/'
     }
   )
 }

@@ -6,14 +6,14 @@ const index = () => {
   return (
     <>
       <div className="midsection">
-        <h2 class="playfair-lg">Dashboard</h2>
+        <h2 className="playfair-lg">Dashboard</h2>
 
-        <div class="graph"> </div>
+        <div className="graph"> </div>
 
-        <div class="fl-btw">
-          <div class="analytics"></div>
-          <div class="analytics"></div>
-          <div class="analytics"></div>
+        <div className="fl-btw">
+          <div className="analytics"></div>
+          <div className="analytics"></div>
+          <div className="analytics"></div>
         </div>
       </div>
       <Right />

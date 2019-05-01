@@ -1,14 +1,14 @@
-import React from 'react'
-import SignIn from './checkoutSignin'
+import React, { useContext } from 'react'
 import Payment from './payment'
-
+import LoginForm from '../../auth/login'
+import { UserContext } from '../../auth/context'
 
 const PaymentMethod = () => {
-  const loggedIn = false
+  const context = useContext(UserContext)
   return (
     <>
-      {loggedIn ? (
-        <SignIn />
+      {!context.user.email ? (
+        <LoginForm />
       ) : (
           <Payment />
         )
