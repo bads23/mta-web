@@ -65,6 +65,7 @@ const Cart = () => {
               <Payment /> */}
 
               <Route path="/cart/checkout/" render={(props) => <PaymentMethod {...props} />} />
+              
             </div>
           </>
         ) : (
