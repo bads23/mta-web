@@ -16,7 +16,7 @@ export const Select = (props) => {
     <>
       <div className="input1">
         <label>{props.label}:</label>
-        <select value={props.value}>
+        <select value={props.value} onChange={props.onChange}>
           {
             props.options ?
               (

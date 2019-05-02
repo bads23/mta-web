@@ -9,7 +9,7 @@ const ApiGet = url => {
     tokens = JSON.parse(tokens)
 
     header = {
-      Authorization: `Bearer ${tokens.access}`
+      // Authorization: `Bearer ${tokens.access}`
     }
   }
 
@@ -27,6 +27,14 @@ export const ApiPost = (url, payload) => {
     return response
   }
   return Post(url, payload)
+}
+
+export const ApiPut = (url, payload) => {
+  const Put = async (url, payload) => {
+    const response = await axios.put(url, payload)
+    return response
+  }
+  return Put(url, payload)
 }
 
 

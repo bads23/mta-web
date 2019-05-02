@@ -34,6 +34,15 @@ const User = () => {
         <span className="playfair-links">
           <Link to="/myaccount">Hi {context.user.first_name} </Link>
         </span> |
+        {context.user.is_staff ? (
+          <>
+            <span className="playfair-links">
+              <a href="/dashboard/">Dashboard</a>
+            </span>
+            |
+          </>
+        ) : ('')
+        }
         <span className="playfair-links" onClick={() => Logout()}>
           <Link>Logout</Link>
         </span>

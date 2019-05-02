@@ -7,7 +7,7 @@ import Formart from '../../../common/functions/formatter'
 
 const Item = ({ props }) => {
   return (
-    <Link to={`/dashboard/products/edit/` + props.id}>
+    <a href={`/dashboard/products/edit/` + props.id}>
       <div className="item">
         <div className="pr-image"></div>
         <div className="pr-info">
@@ -15,7 +15,7 @@ const Item = ({ props }) => {
           <p className="playfair-sm">Ksh {Formart(props.price)}</p>
         </div>
       </div>
-    </Link>
+    </a>
   )
 }
 
