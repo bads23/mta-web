@@ -1,0 +1,49 @@
+.items{
+  width: 95%;
+  margin: 0px auto;
+  padding: 50px 0px 20px 0px;
+  text-align: center;
+  max-width: 1400px;
+  .con{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex: 1 0 30%;
+    padding: 50px 0px;
+    a{
+      width: 20%;
+    }
+  }
+}
+
+
+.item{
+  width: 20rem;
+  height: 30rem;
+  border: 0.1rem solid lightgray;
+  position: relative;
+  @extend .mg-v-20 ;
+  .pr-image{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    overflow: hidden;
+    img{
+      width: 80%; 
+      object-fit: contain;
+      padding-top: 2rem;
+    }
+  }
+  .pr-info{
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+  }
+  &:hover{
+    border: 0.1rem solid $color-gold;
+    color: $color-gold;
+  }
+}

@@ -3,6 +3,7 @@ import Slider from './slider/sliderComponent'
 import Categories from '../products/components/categoriesComponent'
 import axios from 'axios'
 import URLS from '../config/settings'
+import Header from './header/header'
 
 class Home extends Component {
   state = {
@@ -23,11 +24,12 @@ class Home extends Component {
   render() {
     return (
       <>
+        <Header />
         <Slider />
         <div className="main-section">
           {
             this.state.Categories.map(category => (
-              <Categories category={category} key={category.id}/>
+              <Categories category={category} key={category.id} />
             ))
           }
         </div>

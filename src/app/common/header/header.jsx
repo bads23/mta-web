@@ -4,6 +4,7 @@ import Logo from '../assets/svg/MTA.svg'
 
 import DateProvider, { DateContext } from './context'
 import { CartContext } from '../../cart/context'
+import { UserContext } from '../../auth/context'
 
 const LeftHeader = () => {
   const context = useContext(DateContext)
@@ -18,10 +19,43 @@ const LeftHeader = () => {
 }
 
 const User = () => {
+  const context = useContext(UserContext)
+
+  const Logout = () => {
+    localStorage.removeItem("user")
+    localStorage.removeItem("tokens")
+    context.setUser({})
+  }
+
+
   return (
-    <div className="top"><span className="playfair-links">
-      <Link to="/login">Sign in </Link>  </span> | <span className="playfair-links"><Link to="/register">Register</Link></span>
-    </div>
+    context.user.email ? (
+      <div className="top">
+        <span className="playfair-links">
+          <Link to="/myaccount">Hi {context.user.first_name} </Link>
+        </span> |
+        {context.user.is_staff ? (
+          <>
+            <span className="playfair-links">
+              <a href="/dashboard/">Dashboard</a>
+            </span>
+            |
+          </>
+        ) : ('')
+        }
+        <span className="playfair-links" onClick={() => Logout()}>
+          <a href="">Logout</a>
+        </span>
+      </div>
+    ) : (
+        <div className="top">
+          <span className="playfair-links">
+            <Link to="/login">Sign in</Link>  </span>
+          | <span className="playfair-links">
+            <Link to="/register">Register</Link>
+          </span>
+        </div>
+      )
   )
 }
 

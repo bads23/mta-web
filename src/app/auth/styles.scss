@@ -1,0 +1,23 @@
+#auth-wrapper{
+  width: 100%;
+  min-height: 100vh;
+}
+
+#logo{
+  position: absolute;
+  @extend .v-h-center ;
+  top: 200px;
+}
+
+#loginForm{
+  position: absolute;
+  width: 500px;
+  @extend .v-h-center ;
+  button{
+    width: 100%;
+  }
+
+  h1{
+    @extend .align-center ;
+  }
+}

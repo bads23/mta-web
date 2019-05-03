@@ -3,10 +3,11 @@ import { Route, Link } from 'react-router-dom'
 import CartItem from './components/cartItem'
 import PaymentMethod from './components/paymentMethod'
 import format from '../common/functions/formatter'
+import Header from '../common/header/header'
 
 import { CartContext } from './context'
 
-const getTotals = () => {
+export const getTotals = () => {
   const context = useContext(CartContext)
   var cart = [...context.cart]
   var totals = {
@@ -25,6 +26,7 @@ const Cart = () => {
   const context = useContext(CartContext)
   return (
     <>
+      <Header />
       {
         context.cart.length > 0 ? (
           <>
@@ -63,6 +65,7 @@ const Cart = () => {
               <Payment /> */}
 
               <Route path="/cart/checkout/" render={(props) => <PaymentMethod {...props} />} />
+              
             </div>
           </>
         ) : (

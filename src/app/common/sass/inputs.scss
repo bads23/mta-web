@@ -3,17 +3,24 @@
   @extend .mg-v-20 ;
   label{
       display: block;
-      @extend .lato-m, .b, .i ;
+      @extend .lato-m, .b ;
       @extend .mg-v-10 ;
   }
-  input{
+  input, select, textarea{
       width: 100%;
       padding: 10px;
       box-sizing: border-box;
-      background-color: none;
+      background: none;
       border: none;
       border-bottom: 1px solid $light-grey ;
       @extend .lato-m ;
+  }  
+  textarea{
+    max-width: 100%;
+    min-width: 100%;
+  }
+  #checkbox{
+    width: 20px;
   }
 }
 
