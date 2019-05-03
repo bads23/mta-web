@@ -41,7 +41,9 @@ const index = () => {
         <div className="fl-btw">
           <h2 className="playfair-lg"> Products </h2>
           <div>
-            <span className><i className="fas fa-plus"> New Product</i></span>
+            <Link to="new">
+              <span className="lato-m b"><i className="fas fa-plus "></i> New Product</span>
+            </Link>
           </div>
         </div>
         <div className="fl-btw fl-wrap">
