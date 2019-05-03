@@ -5,6 +5,7 @@ const URLS = () => {
     {
       "SERVER_URL": BASE_URL,
       "AUTH": BASE_URL + 'api/token/',
+      "REFRESH": BASE_URL + 'api/token/refresh/',
       "CATEGORIES": BASE_URL + 'categories/',
       "CATALOG": BASE_URL + 'catalog/',
       "PAYMENTS": BASE_URL + 'payments/payments/',

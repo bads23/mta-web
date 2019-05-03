@@ -44,7 +44,7 @@ const User = () => {
         ) : ('')
         }
         <span className="playfair-links" onClick={() => Logout()}>
-          <Link>Logout</Link>
+          <a href="">Logout</a>
         </span>
       </div>
     ) : (

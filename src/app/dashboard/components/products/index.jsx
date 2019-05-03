@@ -38,7 +38,12 @@ const index = () => {
   return (
     <>
       <div className="midsection_sm">
-        <h2 className="playfair-lg"> Products </h2>
+        <div className="fl-btw">
+          <h2 className="playfair-lg"> Products </h2>
+          <div>
+            <span className><i className="fas fa-plus"> New Product</i></span>
+          </div>
+        </div>
         <div className="fl-btw fl-wrap">
           {
             products ?
