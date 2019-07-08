@@ -7,6 +7,7 @@ import Stats from './components/stats'
 import Products from './components/products'
 import Orders from './components/orders'
 import Users from './components/users'
+import Clients from './components/clients'
 
 class Dashboard extends Component {
   render() {
@@ -19,6 +20,7 @@ class Dashboard extends Component {
           <Route path="/dashboard/products/" component={Products} />
           <Route path="/dashboard/orders/" component={Orders} />
           <Route path="/dashboard/users/" component={Users} />
+          <Route path="/dashboard/clients/" component={Clients} />
         </div>
       </>
     )

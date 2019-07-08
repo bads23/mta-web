@@ -8,6 +8,8 @@
 @import './instruments';
 @import './dashboard';
 
+@import '../components/clients/styles.scss';
+
 *,
 *::after,
 *::before {

@@ -56,6 +56,15 @@ const index = ({ props }) => {
           <Link to="/dashboard/users/">
             <li className="dashlinks" id="users-link">Users</li>
           </Link>
+          <Link to="/dashboard/clients/">
+            <li className="dashlinks" id="users-link">Clients</li>
+          </Link>
+          <Link to="/dashboard/users/">
+            <li className="dashlinks" id="users-link">Posts</li>
+          </Link>
+          <Link to="/dashboard/users/">
+            <li className="dashlinks" id="users-link">Events</li>
+          </Link>
         </ul>
       </nav>
 

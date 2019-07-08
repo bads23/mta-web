@@ -20,7 +20,7 @@ const Categories = ({ category }) => {
       </div>
       <div className="fl-even fl-wrap">
         {
-          category.items.map(item => (
+          category.items.slice(0,5).map(item => (
             <Product item={item} key={item.id} />
           ))
         }
