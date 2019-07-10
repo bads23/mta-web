@@ -15,6 +15,7 @@ const URLS = () => {
       "ME": BASE_URL + 'users/usersList/me',
       "USERS": BASE_URL + 'users/usersList/',
       "CLIENTS": BASE_URL + 'clients/clients/',
+      "CLIENTSCATS": BASE_URL + 'clients/clientsCategory' 
 
     }
   )

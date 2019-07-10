@@ -7,6 +7,7 @@ import URLS from '../../../config/settings'
 
 
 import Edit from './right/editClient'
+import New from './right/newClient'
 
 
 const Item = ({ props }) => {
@@ -45,7 +46,7 @@ const index = () => {
               <div className="fl-btw">
                 <h2 className="playfair-lg">Clientele</h2>
                 <div>
-                  <Link to="/dashboard/new">
+                  <Link to="/dashboard/clients/new">
                     <span className="lato-m b"><i className="fas fa-plus "></i> New Client</span>
                   </Link>
                 </div>
@@ -69,6 +70,8 @@ const index = () => {
         <Route exact path='/dashboard/clients/edit/:id' render={(props) => (
           <Edit props={props} />
         )} />
+
+        <Route exact path='/dashboard/clients/new' component={New} />
       </Router>
       {/* <Right /> */}
     </>
