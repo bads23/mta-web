@@ -1,6 +1,6 @@
 const URLS = () => {
-  // const BASE_URL = 'https://polar-coast-92082.herokuapp.com/'
-  const BASE_URL = 'http://localhost:8000/'
+  const BASE_URL = 'https://b23.pythonanywhere.com/'
+  // const BASE_URL = 'http://localhost:8000/'
   return (
     {
       "SERVER_URL": BASE_URL,

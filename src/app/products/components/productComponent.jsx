@@ -7,11 +7,11 @@ const Product = ({ item }) => {
     <Link to={`/product/`+item.id}>
       <div className="item">
         <div className="pr-image">
-          <img src="img/ac.png" alt="guitar" />
+          <img src={item.images[0].path} alt="guitar" />
         </div>
         <div className="pr-info">
-          <p className="lato-m b">{item.name}</p>
-          <p className="playfair-sm">Ksh {formatter(item.price)}</p>
+          <p className="lato-m b mg-0">{item.name}</p>
+          <p className="playfair-sm mg-0">Ksh {formatter(item.price)}</p>
         </div>
       </div>
     </Link>

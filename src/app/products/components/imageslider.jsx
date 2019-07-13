@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ImageSlider = () => {
+const ImageSlider = ({item}) => {
   return (
     <div className="image-container">
-      <img src="./img/Drumx2.png" alt="drum" />
+      <img src={item.images[0].path} alt="drum" />
     </div>
   )
 }

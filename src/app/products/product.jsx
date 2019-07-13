@@ -34,7 +34,7 @@ class Product extends Component {
             {
               this.state.item ? (
                 <>
-                  <ImageSlider images={this.state.item.images} />
+                  <ImageSlider item={this.state.item} />
                   <ProductDetails item={this.state.item} />
                 </>
               ) : (

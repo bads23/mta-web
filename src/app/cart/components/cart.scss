@@ -16,6 +16,10 @@
           .image-container{
               height: 130px;
               width: 130px;
+              overflow: hidden;
+              img{
+                  width: 100%;
+              }
           }
       }
   }
