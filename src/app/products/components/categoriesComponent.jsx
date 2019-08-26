@@ -7,17 +7,17 @@ const Categories = ({ category }) => {
   return (
 
     <div className="mg-b-50" >
+        <Link to={"categories/" + category.id}>
       <h2 className="section-header">{category.name}</h2>
       <div className="mg-b-10">
-        <Link to={"categories/" + category.id}>
           <p className="lato-m align-center">
             View all &nbsp;
               <span>
               <i className="fas fa-angle-right"></i>
             </span>
           </p>
-        </Link>
       </div>
+        </Link>
       <div className="fl-even fl-wrap">
         {
           category.items.slice(0,5).map(item => (

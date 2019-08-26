@@ -34,7 +34,7 @@
   width: 100%;
   max-width: 1400px;
   margin: 0px auto;
-  @extend .fl-btw ;
+  @extend .fl-btw, .fl-wrap ;
 
   .image-container{
       width: 45%;
@@ -46,5 +46,27 @@
   .text-container{
       width: 45%;
       line-height: 24px;
+  }
+}
+
+
+#filter-section{
+  width: 100%;
+  max-width: 1400px;
+  background-color: $color-cream;
+  border: 1px solid $color-gold;
+  .filterdivs{
+    margin: 0px 20px;
+  }  
+}
+
+@media only screen and (max-width: 600px) {
+  .product-container{
+    .image-container{
+      width: 100%;
+    }
+    .text-container{
+      width: 100%;
+    }
   }
 }

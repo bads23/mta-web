@@ -11,8 +11,8 @@ const Item = ({ props }) => {
       <div className="item">
         <div className="pr-image"></div>
         <div className="pr-info">
-          <p className="lato-m b">{props.name}</p>
-          <p className="playfair-sm">Ksh {Formart(props.price)}</p>
+          <p className="lato-m b mg-0">{props.name}</p>
+          <p className="playfair-sm mg-0">Ksh {Formart(props.price)}</p>
         </div>
       </div>
     </a>
@@ -33,7 +33,7 @@ const index = () => {
     getItems()
   }, [])
 
-  console.log(products)
+  // console.log(products)
 
   return (
     <>
@@ -41,7 +41,7 @@ const index = () => {
         <div className="fl-btw">
           <h2 className="playfair-lg"> Products </h2>
           <div>
-            <Link to="/dashboard/new">
+            <Link to="/dashboard/products/new">
               <span className="lato-m b"><i className="fas fa-plus "></i> New Product</span>
             </Link>
           </div>

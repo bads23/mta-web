@@ -7,9 +7,7 @@ import { UserContext } from '../context';
 
 const RegisterForm = () => {
   const context = useContext(UserContext)
-  var userInfo_ = {}
-
-  const [userInfo, setUserInfo] = useState(userInfo_)
+  const [userInfo, setUserInfo] = useState({})
 
 
   const errorMsg = (msg) => {

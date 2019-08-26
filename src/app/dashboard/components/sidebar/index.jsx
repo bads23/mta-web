@@ -1,40 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../../common/assets/svg/MTA.svg'
 
 const index = ({ props }) => {
 
-  // console.log(props.location.pathname)
-  // var path = props.location.pathname
-  // path = path.split("/");
-  // console.log(path)
+  const [menu, setMenu] = useState('')
 
+  const activeMenu = () => {
+    var path = props.location.pathname
+    path = path.split("/");
+    console.log(path[2])
+    setMenu({menu: path[2]})
+  }
 
-  // var dashlinks = document.getElementsByClassName("dashlinks");
-
-
-  // if (path[2] === "") {
-  //   dashlinks.classList.remove("active");
-  //   document.getElementById("dashboard-link").classList.add("active")
-  // } else if (path[2] === "products") {
-  //   dashlinks.classList.remove("active");
-  //   document.getElementById("products-link").classList.add("active")
-  // } else if (path[2] === "orders") {
-  //   dashlinks.classList.remove("active");
-  //   document.getElementById("orders-link").classList.add("active")
-  // } else if (path[2] === "users") {
-  //   console.log(dashlinks)
-  //   document.getElementById("users-link").classList.add("active")
-  // }
-
-
+  useEffect(() =>{
+    activeMenu()
+  },{})
 
   return (
     <div className="sidebar">
 
       <div className="logo-wrapper align-center pd-v-20">
         <div className="logo-img">
-          <img src={Logo} alt="mta-logo" />
+          <a href="/">
+            <img src={Logo} alt="mta-logo" />
+          </a>
+          
         </div>
         <div className="logo-text letter-spacing-5">
           <span className="playfair-xxlg">MOTION</span>
@@ -44,27 +35,27 @@ const index = ({ props }) => {
 
       <nav className="nav">
         <ul>
-          <Link to="/dashboard/">
-            <li className="active dashlinks" id="dashboard-link">Dashboard</li>
-          </Link>
-          <Link to="/dashboard/products/">
-            <li className="dashlinks" id="products-link">Products</li>
-          </Link>
-          <Link to="/dashboard/orders/">
-            <li className="dashlinks" id="orders-link">Orders</li>
-          </Link>
-          <Link to="/dashboard/users/">
-            <li className="dashlinks" id="users-link">Users</li>
-          </Link>
-          <Link to="/dashboard/clients/">
-            <li className="dashlinks" id="users-link">Clients</li>
-          </Link>
-          <Link to="/dashboard/users/">
-            <li className="dashlinks" id="users-link">Posts</li>
-          </Link>
-          <Link to="/dashboard/users/">
-            <li className="dashlinks" id="users-link">Events</li>
-          </Link>
+          <a href="/dashboard/">
+            <li className={menu.menu === '' ? `active`: ``} id="dashboard-link" onClick={activeMenu}>Dashboard</li>
+          </a>
+          <a href="/dashboard/products/">
+            <li className={menu.menu === 'products' ? `active`: ``} id="products-link" onClick={activeMenu}>Products</li>
+          </a>
+          <a href="/dashboard/orders/">
+            <li className={menu.menu === 'orders' ? `active`: ``} id="orders-link" onClick={activeMenu}>Orders</li>
+          </a>
+          <a href="/dashboard/users/">
+            <li className={menu.menu === 'users' ? `active`: ``} id="users-link" onClick={activeMenu}>Users</li>
+          </a>
+          <a href="/dashboard/clients/">
+            <li className={menu.menu === 'clients' ? `active`: ``} id="users-link" onClick={activeMenu}>Clients</li>
+          </a>
+          <a href="/dashboard/posts/">
+            <li className={menu.menu === 'posts' ? `active`: ``} id="users-link" onClick={activeMenu}>Posts</li>
+          </a>
+          <a href="/dashboard/events/">
+            <li className={menu.menu === 'events' ? `active`: ``} id="users-link" onClick={activeMenu}>Events</li>
+          </a>
         </ul>
       </nav>
 

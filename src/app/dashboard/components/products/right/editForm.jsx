@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Input, { Select, Textarea, Checkbox } from '../../../../common/inputs/index'
-import ApiGet, { ApiPut } from '../../../../config/axios'
+import ApiGet, { ApiPut, ApiPost, ApiDelete } from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 // import { NOTIMP } from 'dns';
+import { ShowNotify } from '../../../../common/popups'
 
 const EditForm = ({ props }) => {
   const [categories, setCategories] = useState([])
-  const [subCategories, setSubCategories] = useState([])
-  const [productClass, setProductClass] = useState([])
+  const [subcategories, setSubCategories] = useState([])
+  const [productclasses, setProductClasses] = useState([])
   const [product, setProduct] = useState({})
+  const [image, setImage] = useState([])
 
   const getCategories = () => {
     ApiGet(`${URLS().CATEGORIES}`)
@@ -17,18 +19,32 @@ const EditForm = ({ props }) => {
       })
   }
 
-  const getSubCategories = () => {
-    ApiGet(`${URLS().SUBCATEGORIES}`)
-      .then(res =>{
-        setSubCategories(res.data)
-      })
+  const getSubCategories = (id) => {
+    id ? (
+      ApiGet(`${URLS().SUBCATEGORIES}?category=${id}`)
+        .then(res => {
+          setSubCategories(res.data)
+        })
+    ) : (
+        ApiGet(`${URLS().SUBCATEGORIES}`)
+          .then(res => {
+            setSubCategories(res.data)
+          })
+      )
   }
 
-  const getProductClass = () => {
-    ApiGet(`${URLS().PRODUCTCLASS}`)
-      .then(res =>{
-        setProductClass(res.data)
-      })
+  const getProductclasses = (id) => {
+    id ? (
+      ApiGet(`${URLS().PRODUCTCLASS}?subcategory=${id}`)
+        .then(res => {
+          setProductClasses(res.data)
+        })
+    ) : (
+        ApiGet(`${URLS().PRODUCTCLASS}`)
+          .then(res => {
+            setProductClasses(res.data)
+          })
+      )
   }
 
   const getProduct = (id) => {
@@ -38,34 +54,38 @@ const EditForm = ({ props }) => {
       ))
   }
 
+
   useEffect(() => {
     getCategories()
+    getSubCategories()
+    getProductclasses()
     getProduct(props.match.params.id)
-    console.log(product)
   }, [])
 
   const handleName = (e) => {
     var np = { ...product }
     np.name = e.target.value
     setProduct(np)
-    
+    console.log(e.target.value)
   }
 
   const handleCategory = (e) => {
     var np = { ...product }
     np.category = e.target.value
-    getSubCategories()
     setProduct(np)
-  }
-  
-  const handleSubCategory = (e) =>{
-    var np = { ...product }
-    np.subcategory = e.target.value
-    getProductClass()
-    setProduct(np)
+
+    getSubCategories(e.target.value)
   }
 
-  const handleClass = (e) =>{
+  const handleSubCategory = (e) => {
+    var np = { ...product }
+    np.subcategory = e.target.value
+    setProduct(np)
+
+    getProductclasses(e.target.value)
+  }
+
+  const handleClass = (e) => {
     var np = { ...product }
     np.productclass = e.target.value
     setProduct(np)
@@ -83,14 +103,43 @@ const EditForm = ({ props }) => {
     setProduct(np)
   }
 
+  const handleImage = (e) => {
+    var np = []
+    np.push(e.target.files[0])
+    setImage(np)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    var btn = document.getElementById('editBtn')
+    btn.innerText = 'Saving...'
     ApiPut(`${URLS().CATALOG}${props.match.params.id}/`, { ...product })
+      .then(res => {
+        btn.innerText = "Saved!"
+        ShowNotify(`<b>${res.data.name}</b> was edited!`)
+        setProduct(res.data)
+      })
+
+    if (image.length > 0) {
+      var payload = new FormData()
+      payload.append('catalog', props.match.params.id)
+      payload.append('path', image[0])
+
+      ApiPost(`${URLS().IMAGES}`, payload)
+        .then(res => {
+          console.log(res.data)
+        })
+    }
+  }
+
+  const thanosSnap = (e) => {
+    e.preventDefault()
+
+    ApiDelete(`${URLS().CATALOG}${props.match.params.id}`)
       .then(res => {
         console.log(res.data)
       })
   }
-
 
 
   return (
@@ -104,8 +153,8 @@ const EditForm = ({ props }) => {
         <form className="form" onSubmit={handleSubmit}>
           <Input label="Name" type="text" ph="Item Name" value={product.name} onChange={handleName} />
           <Select label="Category" options={categories} value={product.category} onChange={handleCategory} />
-          <Select label="SubCategory" options={subCategories} value={product.subcategory} onChange={handleSubCategory} />
-          <Select label="Class" options={productClass} value={product.productClass} onChange={handleClass} />
+          <Select label="Sub Category" options={subcategories} value={product.subcategory} onChange={handleSubCategory} />
+          <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
           <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
           <Textarea label="Description" value={product.description} onChange={handleDescription} />
           <Checkbox label="Visibility" ph="Hide this item" />
@@ -119,7 +168,7 @@ const EditForm = ({ props }) => {
                   (
                     product.images.map(img => (
                       <div className="imgContainer isImg">
-                        <img src={img} alt="" />
+                        <img src={img.path} alt="" />
                       </div>
                     ))
                   )
@@ -130,13 +179,20 @@ const EditForm = ({ props }) => {
               }
               <div className="imgContainer isNewImg">
                 <label htmlFor="newImg" className="lato-m b grey"><span>Add an image</span></label>
-                <input type="file" accept="image/*" name="" id="newImg" />
+                <input type="file" accept="image/*" name="image" id="newImg" onChange={handleImage} />
               </div>
             </div>
           </div>
 
-          <button type="submit" className="btn btn-black btn-full">Save</button>
+          <button type="submit" className="btn btn-black btn-full" id="editBtn">Save</button>
+          <div id="ThanosDiv" className="mg-v-20">
+            <span className="lato-xsm i">Use this button to permanently delete this item. This Action is irreversible!</span>
+            <button type="button" className="btn btn-red btn-full" id="thanosBtn" onClick={thanosSnap}>Delete This Item</button>
+          </div>
         </form>
+
+
+
       </>
     ) : (
         <>

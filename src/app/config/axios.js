@@ -54,6 +54,14 @@ export const ApiPut = (url, payload) => {
   return Put(url, payload)
 }
 
+export const ApiDelete = (url) => {
+  const Delete = async (url) => {
+    const response = await axios.delete(url)
+    return response
+  }
+  return Delete(url)
+}
+
 
 export const ApiRefreshToken = () =>{
   var tokens = localStorage.getItem('tokens')

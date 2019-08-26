@@ -10,19 +10,19 @@
 
 .slider{
   background-color: $color-cream;
-  max-height: 700px ;
+  max-height: 200px ;
   position: relative;
-  &::before{
-    content: '\f104';
-    @extend .sliderBtns ;
-    left: 50px ;
-  }
+  // &::before{
+  //   content: '\f104';
+  //   @extend .sliderBtns ;
+  //   left: 50px ;
+  // }
 
-  &::after{
-    content: '\f105';
-    @extend .sliderBtns ;
-    right: 50px ;
-  }
+  // &::after{
+  //   content: '\f105';
+  //   @extend .sliderBtns ;
+  //   right: 50px ;
+  // }
 }
 
 .hero-slider{

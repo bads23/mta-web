@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CartTotals } from '../context'
 import URLS from '../../config/settings'
 import ApiGet, { ApiPost } from '../../config/axios'
+import {Select} from '../../common/inputs'
+
 
 const getAmount = () => {
   const context = JSON.parse(localStorage.getItem("Cart"))
@@ -17,13 +19,14 @@ const getAmount = () => {
   return Math.round(totals.subtotal + (.16 * totals.subtotal))
 }
 
-const makePayload = (payNumber, payMethod) => {
+const makePayload = (payNumber, payMethod, posta) => {
 
   var payload = {
     phone_number: payNumber,
     amount: getAmount(),
     payment_mode: payMethod,
-    currency_code: 'KES'
+    currency_code: 'KES',
+    posta: posta
   }
   return payload
 }
@@ -33,6 +36,19 @@ const Payment = () => {
 
   const [payMethod, setPayMethod] = useState(0)
   const [payNumber, setPayNumber] = useState(code)
+  const [postas, setPostas] = useState([])
+  const [posta, setPosta] = useState(0)
+
+  const getPostas = () => {
+    ApiGet(`${URLS().POSTAS}`)
+    .then(res => {
+      setPostas(res.data)
+    })
+  }
+
+  useEffect(() => {
+    getPostas()
+  },[])
 
   const getStatus = (kyc) => {
     ApiGet(`${URLS().PAYMENTS}?kyc=${kyc}`)
@@ -70,6 +86,10 @@ const Payment = () => {
 
   const handlePayNumber = (e) => setPayNumber(e.target.value)
 
+  const handlePostas = (e) => {
+    setPosta(e.target.value)
+  }
+
   const handlePayOrder = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -80,7 +100,7 @@ const Payment = () => {
     document.getElementById('payNumberInput').disabled = 'disabled'
     document.getElementById('payBtn').innerText = 'Sending Payment Request'
 
-    var payload = makePayload(payNumber, payMethod)
+    var payload = makePayload(payNumber, payMethod, posta)
 
     ApiPost(`${URLS().PAYMENTS}`, payload)
       .then(res => {
@@ -137,10 +157,24 @@ const Payment = () => {
 
   return (
     <div className="checkout-form">
-      <h1 className="playfair-lg align-center">Confirm Payment</h1>
-      <p className="lato-m i align-center mg-v-20">Pick your preffered method of payment</p>
 
-      <form className="form" onSubmit={handlePayOrder}>
+    <form className="form" onSubmit={handlePayOrder}>
+        {/* <div className="mg-v-50">
+          <h1 className="playfair-m align-center">Account Details</h1>
+          <p className="lato-m i align-center mg-v-10">Confirm Your Details</p>
+
+
+        </div> */}
+
+
+        <div className="mg-v-50">
+          <h1 className="playfair-m align-center">Shipping & Delivery</h1>
+          <p className="lato-m i align-center mg-v-10">Choose your preffered pick-up point.</p>
+          <Select label="Pick-up Station" options={postas} onChange={handlePostas}/>
+        </div>
+
+        <h1 className="playfair-m align-center">Payment</h1>
+        <p className="lato-m i align-center mg-v-10">Pick your preffered method of payment</p>
 
         <div className="mg-v-20" onClick={() => handlePayMethod('MPESA')} id="mpesaDiv">
           <h2 className="lato-m b radio radio-unchecked mg-v-10">Mpesa</h2>

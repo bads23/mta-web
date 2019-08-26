@@ -6,12 +6,14 @@ import Login from './app/auth/login'
 // import Footer from './app/common/header/footer'
 import Home from './app/common/index'
 import Product from './app/products/product'
+import Category from './app/products/category'
 import Cart from './app/cart/cart'
 import Logo from './app/common/assets/svg/MTA-SPIN.svg'
 import CartProvider from './app/cart/context'
 import UserProvider from './app/auth/context'
 import Dashboard from './app/dashboard/index'
 import Register from './app/auth/register'
+import Checkout from './app/cart/checkout'
 
 
 const Loading = () => {
@@ -43,15 +45,11 @@ const Loading = () => {
   )
 }
 
-
-
 class App extends Component {
 
   state = {
     api: false
   }
-
-
 
   render() {
     return (
@@ -64,8 +62,11 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/product/:id" component={Product} />
                 <Route path="/cart/" component={Cart} />
+                <Route path="/checkout/" component={Checkout} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <Route path="/categories/:id" component={Category} />
+                
                 {/* <div id="push"></div> */}
               </Router >
             </CartProvider>

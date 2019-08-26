@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import Input, { Select, Textarea, Checkbox } from '../../../../common/inputs/index'
+import Input, { Select, Textarea } from '../../../../common/inputs/index'
 import ApiGet, { ApiPost } from '../../../../config/axios'
 import URLS from '../../../../config/settings'
+import { ShowNotify } from '../../../../common/popups'
+
 
 const AddForm = ({ props }) => {
   const [categories, setCategories] = useState([])
-  const [subCategories, setSubCategories] = useState([])
-  const [productClass, setProductClass] = useState([])
+  const [subcategories, setSubCategories] = useState([])
+  const [productclasses, setProductClasses] = useState([])
   const [product, setProduct] = useState({})
 
   const getCategories = () => {
@@ -16,22 +18,38 @@ const AddForm = ({ props }) => {
       })
   }
 
-  const getSubCategories = () => {
-    ApiGet(`${URLS().SUBCATEGORIES}`)
-      .then(res =>{
-        setSubCategories(res.data)
-      })
+  const getSubCategories = (id) => {
+    id ? (
+      ApiGet(`${URLS().SUBCATEGORIES}?category=${id}`)
+        .then(res => {
+          setSubCategories(res.data)
+        })
+    ) : (
+        ApiGet(`${URLS().SUBCATEGORIES}`)
+          .then(res => {
+            setSubCategories(res.data)
+          })
+      )
   }
 
-  const getProductClass = () => {
-    ApiGet(`${URLS().PRODUCTCLASS}`)
-      .then(res =>{
-        setProductClass(res.data)
-      })
+  const getProductclasses = (id) => {
+    id ? (
+      ApiGet(`${URLS().PRODUCTCLASS}?subcategory=${id}`)
+        .then(res => {
+          setProductClasses(res.data)
+        })
+    ) : (
+        ApiGet(`${URLS().PRODUCTCLASS}`)
+          .then(res => {
+            setProductClasses(res.data)
+          })
+      )
   }
 
   useEffect(() => {
     getCategories()
+    getSubCategories()
+    getProductclasses()
   }, [])
 
   const handleName = (e) => {
@@ -44,18 +62,20 @@ const AddForm = ({ props }) => {
   const handleCategory = (e) => {
     var np = { ...product }
     np.category = e.target.value
-    getSubCategories()
     setProduct(np)
+
+    getSubCategories(e.target.value)
   }
 
-  const handleSubCategory = (e) =>{
+  const handleSubCategory = (e) => {
     var np = { ...product }
     np.subcategory = e.target.value
-    getProductClass()
     setProduct(np)
+
+    getProductclasses(e.target.value)
   }
 
-  const handleClass = (e) =>{
+  const handleClass = (e) => {
     var np = { ...product }
     np.productclass = e.target.value
     setProduct(np)
@@ -75,10 +95,19 @@ const AddForm = ({ props }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    var btn = document.getElementById('addBtn')
+    btn.innerHTML = "Saving..."
+
     console.log(product)
     ApiPost(`${URLS().CATALOG}`, { ...product })
       .then(res => {
-        console.log(res.data)
+        btn.innerText = "Saved!"
+        ShowNotify(`<b>${res.data.name}</b> was added successfully!`)
+        setTimeout(() => {
+          window.location.href = `edit/${res.data.id}`
+        }, 5000)
+
       })
   }
 
@@ -92,30 +121,12 @@ const AddForm = ({ props }) => {
       <form className="form" onSubmit={handleSubmit}>
         <Input label="Name" type="text" ph="Item Name" value={product.name} onChange={handleName} />
         <Select label="Category" options={categories} value={product.category} onChange={handleCategory} />
-        <Select label="SubCategory" options={subCategories} value={product.subcategory} onChange={handleSubCategory} />
-        <Select label="Class" options={productClass} value={product.productClass} onChange={handleClass} />
+        <Select label="Sub Category" options={subcategories} value={product.subcategory} onChange={handleSubCategory} />
+        <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
         <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
         <Textarea label="Description" value={product.description} onChange={handleDescription} />
-        <Checkbox label="Visibility" ph="Hide this item" />
 
-        {/* <div id="images_upload">
-          <label className="lato-m b mg-v-10">Images:</label>
-
-          <div className="fl-btw fl-wrap mg-v-20">
-            <div className="imgContainer isImg">
-              <img src="" alt="" />
-            </div>
-            <div className="imgContainer isImg">
-              <img src="" alt="" />
-            </div>
-            <div className="imgContainer isNewImg">
-              <label htmlFor="newImg" className="lato-m b grey"><span>Add an image</span></label>
-              <input type="file" accept="image/*" name="" id="newImg" />
-            </div>
-          </div>
-        </div> */}
-
-        <button type="submit" className="btn btn-black btn-full">Save</button>
+        <button type="submit" className="btn btn-black btn-full" id="addBtn">Save</button>
       </form>
     </>
   )

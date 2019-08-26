@@ -6,6 +6,8 @@ import DateProvider, { DateContext } from './context'
 import { CartContext } from '../../cart/context'
 import { UserContext } from '../../auth/context'
 
+import Notify from '../popups'
+
 const LeftHeader = () => {
   const context = useContext(DateContext)
 
@@ -25,6 +27,7 @@ const User = () => {
     localStorage.removeItem("user")
     localStorage.removeItem("tokens")
     context.setUser({})
+    window.href.location = '/'
   }
 
 
@@ -32,9 +35,10 @@ const User = () => {
     context.user.email ? (
       <div className="top">
         <span className="playfair-links">
-          <Link to="/myaccount">Hi {context.user.first_name} </Link>
+          {/* <Link to="/myaccount">Hi {context.user.first_name} </Link> */}
+          Hi {context.user.first_name}
         </span> |
-        {context.user.is_staff ? (
+        {/* {context.user.is_staff ? (
           <>
             <span className="playfair-links">
               <a href="/dashboard/">Dashboard</a>
@@ -42,9 +46,9 @@ const User = () => {
             |
           </>
         ) : ('')
-        }
+        } */}
         <span className="playfair-links" onClick={() => Logout()}>
-          <a href="">Logout</a>
+          <a href="/">Logout</a>
         </span>
       </div>
     ) : (
@@ -86,22 +90,24 @@ const Cart = () => {
 
 const Header = () => {
   return (
-    <div id="header">
-      <DateProvider>
-        <LeftHeader />
-      </DateProvider>
-      <div className="logo-box">
-        <Link to="/">
-          <img src={Logo} alt="Logo" className="logo" />
-        </Link>
+    <>
+      <div id="header">
+        <DateProvider>
+          <LeftHeader />
+        </DateProvider>
+        <div className="logo-box">
+          <Link to="/">
+            <img src={Logo} alt="Logo" className="logo" />
+          </Link>
+        </div>
+        <div id="right-header" className="header-sides">
+          <User />
+          <hr />
+          <Cart />
+        </div>
       </div>
-      <div id="right-header" className="header-sides">
-        <User />
-        <hr />
-        <Cart />
-      </div>
-    </div>
-
+      <Notify />
+    </>
   )
 }
 

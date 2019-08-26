@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import formatNumber from '../../common/functions/formatter'
 import { CartContext } from '../../cart/context'
+import { ShowNotify } from '../../common/popups'
 
 const UpdateCart = ({ item }) => {
   const context = useContext(CartContext)
@@ -25,6 +26,7 @@ const UpdateCart = ({ item }) => {
     }
     context.setCart(items)
     localStorage.setItem("Cart", JSON.stringify(items))
+    ShowNotify()
   }
   return (
     <button className="btn-black mg-v-20" onClick={() => newCart()}>
@@ -46,7 +48,6 @@ const ProductDetails = ({ item }) => {
         <li>Feature 2</li>
         <li>Feature 3</li>
         <li>Feature 4</li>
-
       </ul>
 
       <p className="playfair-xlg mg-v-50 gold">

@@ -46,10 +46,11 @@ const Cart = () => {
                 <p> <span className="lato">V.A.T(16%):</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().subtotal * .16))}</span></p>
 
                 <p><span className="lato">Total:</span><span className="subtotal playfair-xlg mg-v-20 gold price-spans">Ksh {format(Math.round(getTotals().subtotal + (getTotals().subtotal * .16)))}</span></p>
+
                 <Route exact path="/cart" render={() => {
                   return (
                     <>
-                      <Link to="checkout" className="mg-v-20"><button className="btn btn-black">Checkout</button> </Link>
+                      <Link to="/checkout" className="mg-v-20"><button className="btn btn-black">Checkout</button> </Link>
                       <Link to="/">
                         <span className="block mg-v-20 grey">
                           <i className="fas fa-angle-left"></i>
@@ -64,7 +65,7 @@ const Cart = () => {
               {/* <SignIn />
               <Payment /> */}
 
-              <Route path="/cart/checkout/" render={(props) => <PaymentMethod {...props} />} />
+              <Route path="/checkout" render={(props) => <PaymentMethod {...props} />} />
               
             </div>
           </>
