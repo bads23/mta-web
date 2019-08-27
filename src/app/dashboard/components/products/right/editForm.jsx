@@ -97,6 +97,12 @@ const EditForm = ({ props }) => {
     setProduct(np)
   }
 
+  const handleWeight = (e) => {
+    var np = { ...product }
+    np.weight = e.target.value
+    setProduct(np)
+  }
+
   const handleDescription = (e) => {
     var np = { ...product }
     np.description = e.target.value
@@ -116,7 +122,7 @@ const EditForm = ({ props }) => {
     ApiPut(`${URLS().CATALOG}${props.match.params.id}/`, { ...product })
       .then(res => {
         btn.innerText = "Saved!"
-        ShowNotify(`<b>${res.data.name}</b> was edited!`)
+        // ShowNotify(`<b>${res.data.name}</b> was edited!`)
         setProduct(res.data)
       })
 
@@ -156,6 +162,7 @@ const EditForm = ({ props }) => {
           <Select label="Sub Category" options={subcategories} value={product.subcategory} onChange={handleSubCategory} />
           <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
           <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
+          <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
           <Textarea label="Description" value={product.description} onChange={handleDescription} />
           <Checkbox label="Visibility" ph="Hide this item" />
 

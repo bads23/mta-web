@@ -87,6 +87,12 @@ const AddForm = ({ props }) => {
     setProduct(np)
   }
 
+  const handleWeight = (e) => {
+    var np = { ...product }
+    np.weight = e.target.value
+    setProduct(np)
+  }
+
   const handleDescription = (e) => {
     var np = { ...product }
     np.description = e.target.value
@@ -103,7 +109,7 @@ const AddForm = ({ props }) => {
     ApiPost(`${URLS().CATALOG}`, { ...product })
       .then(res => {
         btn.innerText = "Saved!"
-        ShowNotify(`<b>${res.data.name}</b> was added successfully!`)
+        // ShowNotify(`<b>${res.data.name}</b> was added successfully!`)
         setTimeout(() => {
           window.location.href = `edit/${res.data.id}`
         }, 5000)
@@ -124,6 +130,7 @@ const AddForm = ({ props }) => {
         <Select label="Sub Category" options={subcategories} value={product.subcategory} onChange={handleSubCategory} />
         <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
         <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
+        <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
         <Textarea label="Description" value={product.description} onChange={handleDescription} />
 
         <button type="submit" className="btn btn-black btn-full" id="addBtn">Save</button>
