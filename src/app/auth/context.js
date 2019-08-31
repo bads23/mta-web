@@ -15,7 +15,7 @@ const UserProvider = (props) => {
 
   useEffect(() => {
     setUser(userInfo)
-  }, { userInfo })
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

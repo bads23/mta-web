@@ -106,7 +106,7 @@ const AddForm = ({ props }) => {
         ShowNotify(`<b>${res.data.name}</b> was added successfully!`)
         setTimeout(() => {
           window.location.href = `edit/${res.data.id}`
-        }, 5000)
+        }, 1000)
 
       })
   }

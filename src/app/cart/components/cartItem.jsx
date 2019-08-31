@@ -44,7 +44,13 @@ const CartItem = ({ item }) => {
       <div className="item-container mg-v-20">
         <div className="item-desc flex">
           <div className="image-container img-wrap mg-h-10">
-            <img src={item.images[0].path} alt="img" />
+              {
+            item.images.length >= 1 ? (
+              <img src={item.images[0].path} alt="drum" />
+            ): (
+              <></>
+            )
+          }
           </div>
           <div className="details-container mg-h-20">
             <p className="lato-lg">{item.name}</p>
