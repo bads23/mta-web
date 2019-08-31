@@ -3,7 +3,7 @@ import React from 'react'
 
 export const ShowNotify = (item) => {
   var notify = document.getElementById("popup")
-  notify.innerHTML = `<p class="lato-m align-center">Item Added to cart</p>`
+  notify.innerHTML = `<p class="lato-m align-center">${item}</p>`
   notify.style.bottom = "100px"
 
   setTimeout(() => {
