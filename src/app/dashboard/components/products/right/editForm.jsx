@@ -54,19 +54,27 @@ const EditForm = ({ props }) => {
       ))
   }
 
+  const getImages = (id) => {
+    ApiGet(`${URLS().IMAGES}products/${id}/`)
+    .then(res => (
+      setImage(res.data)
+    ))
+  }
+
 
   useEffect(() => {
     getCategories()
     getSubCategories()
     getProductclasses()
     getProduct(props.match.params.id)
+    getImages(props.match.params.id)
   }, [])
 
   const handleName = (e) => {
     var np = { ...product }
     np.name = e.target.value
     setProduct(np)
-    console.log(e.target.value)
+    
   }
 
   const handleCategory = (e) => {
@@ -109,10 +117,37 @@ const EditForm = ({ props }) => {
     setProduct(np)
   }
 
+  const handleFeatures = (e) => {
+    var np = { ...product }
+    np.features = e.target.value
+    setProduct(np)
+  }
+
   const handleImage = (e) => {
     var np = []
-    np.push(e.target.files[0])
+    np = [...e.target.files]
     setImage(np)
+    console.log(image)
+    const reader = new FileReader();
+
+    reader.readAsDataURL(e.target.files[0]);
+    var imgUrl;
+
+    reader.onload = (e) => {
+      imgUrl = e.target.result
+    }
+
+    var imgWrap = document.getElementById('itemImgs')
+    var newImgWrap = document.createElement("div")
+    var newImg = document.createElement("img")
+  
+    newImg.setAttribute("src", imgUrl)
+    newImg.setAttribute("alt", "uploading...")
+    newImgWrap.classList.add("imgContainer")
+    newImgWrap.classList.add("isImg")
+    newImgWrap.appendChild(newImg)
+    imgWrap.prepend(newImgWrap)
+
   }
 
   const handleSubmit = (e) => {
@@ -124,17 +159,24 @@ const EditForm = ({ props }) => {
         btn.innerText = "Saved!"
         // ShowNotify(`<b>${res.data.name}</b> was edited!`)
         setProduct(res.data)
+        // setTimeout(() => {
+        //   window.location.reload()
+        // }, 1000)
       })
 
     if (image.length > 0) {
       var payload = new FormData()
-      payload.append('catalog', props.match.params.id)
-      payload.append('path', image[0])
+      payload.append('catalogue_id', props.match.params.id)
+      payload.append('image', image[0])
+      payload.append('category', 'products')
 
       ApiPost(`${URLS().IMAGES}`, payload)
         .then(res => {
           console.log(res.data)
         })
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
     }
   }
 
@@ -144,6 +186,10 @@ const EditForm = ({ props }) => {
     ApiDelete(`${URLS().CATALOG}${props.match.params.id}`)
       .then(res => {
         console.log(res.data)
+        ShowNotify(`Item has been deleted!`)
+        setTimeout(() => {
+          window.location.href = '/dashboard/products'
+        }, 1000)
       })
   }
 
@@ -164,18 +210,19 @@ const EditForm = ({ props }) => {
           <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
           <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
           <Textarea label="Description" value={product.description} onChange={handleDescription} />
+          <Textarea label="Features (Separate with a comma)" value={product.features} onChange={handleFeatures} ph="feature1,feature2,feature3" />
           <Checkbox label="Visibility" ph="Hide this item" />
 
           <div id="images_upload">
             <label className="lato-m b mg-v-10">Images:</label>
 
-            <div className="fl-btw fl-wrap mg-v-20">
+            <div className="fl-btw fl-wrap mg-v-20" id="itemImgs">
               {
-                product.images ?
+                image ?
                   (
-                    product.images.map(img => (
+                    image.map(img => (
                       <div className="imgContainer isImg">
-                        <img src={img.path} alt="" />
+                        <img src={`${URLS().IMAGES}`+img.path} alt="" />
                       </div>
                     ))
                   )

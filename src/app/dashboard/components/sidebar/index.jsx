@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
 import Logo from '../../../common/assets/svg/MTA.svg'
+import Notify from '../../../common/popups'
 
 const index = ({ props }) => {
 
@@ -15,7 +15,7 @@ const index = ({ props }) => {
 
   useEffect(() =>{
     activeMenu()
-  },{})
+  },[])
 
   return (
     <div className="sidebar">
@@ -58,7 +58,7 @@ const index = ({ props }) => {
           </a>
         </ul>
       </nav>
-
+      <Notify />
     </div>
   )
 }

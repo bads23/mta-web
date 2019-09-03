@@ -6,6 +6,8 @@ import URLS from '../../../config/settings'
 import Formart from '../../../common/functions/formatter'
 
 const Item = ({ props }) => {
+  const [images, setImages] = useState([]);
+
   return (
     <a href={`/dashboard/products/edit/` + props.id}>
       <div className="item">
@@ -21,12 +23,22 @@ const Item = ({ props }) => {
 
 const index = () => {
   const [products, setProducts] = useState([]);
-
+  
   const getItems = () => {
     ApiGet(`${URLS().CATALOG}`)
       .then(res => {
-        setProducts(res.data)
+        var list = [...res.data] 
+        for(var i=0; i<list.length; i++){
+          var imgs = getImages(list[i].id)
+          list[i].images = imgs
+        }
+        setProducts(list)
       })
+  }
+
+  const getImages = (id) => {
+    ApiGet(`${URLS().IMAGES}products/${id}/`)
+    .then(res => { return res})
   }
 
   useEffect(() => {

@@ -22,7 +22,7 @@ const ApiGet = url => {
     }
   }
 
-  if (tokens) {
+  if(tokens) {
     tokens = JSON.parse(tokens)
     isTokenExpired(tokens.access)
     header = {

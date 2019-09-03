@@ -37,6 +37,11 @@ const UpdateCart = ({ item }) => {
 
 
 const ProductDetails = ({ item }) => {
+
+  var list = item.features.split(',');
+
+
+
   return (
     <div className="text-container">
       <h1 className="playfair-xlg mg-v-20">{item.name}</h1>
@@ -44,10 +49,16 @@ const ProductDetails = ({ item }) => {
       <h1 className="playfair-lg mg-v-10">Features</h1>
 
       <ul className="lato-m">
-        <li>Feature 1</li>
+        {
+          
+          list.map(feature => (
+            <li>{feature}</li>
+          ))
+        }
+        {/* <li>Feature 1</li>
         <li>Feature 2</li>
         <li>Feature 3</li>
-        <li>Feature 4</li>
+        <li>Feature 4</li> */}
       </ul>
 
       <p className="playfair-xlg mg-v-50 gold">

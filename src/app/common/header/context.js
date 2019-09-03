@@ -19,7 +19,7 @@ const DateProvider = (props) => {
 
   useEffect(() => {
     setDate(DateInfo)
-  }, {})
+  }, [])
 
 
 

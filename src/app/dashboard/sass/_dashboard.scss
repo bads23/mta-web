@@ -143,6 +143,9 @@
     height: 150px;
     border: 1px solid $light-grey;
     @extend .mg-v-10;
+    img{
+      width: 100%;
+    }
   }
   .isImg{
     position: relative;
