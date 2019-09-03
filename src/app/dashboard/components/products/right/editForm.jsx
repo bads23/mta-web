@@ -160,13 +160,17 @@ const EditForm = ({ props }) => {
 
     if (image.length > 0) {
       var payload = new FormData()
-      payload.append('catalog', props.match.params.id)
-      payload.append('path', image[0])
+      payload.append('catalogue_id', props.match.params.id)
+      payload.append('image', image[0])
+      payload.append('category', 'products')
 
       ApiPost(`${URLS().IMAGES}`, payload)
         .then(res => {
           console.log(res.data)
         })
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
     }
   }
 
@@ -178,7 +182,7 @@ const EditForm = ({ props }) => {
         console.log(res.data)
         ShowNotify(`Item has been deleted!`)
         setTimeout(() => {
-          window.location.reload()
+          window.location.href = '/dashboard/products'
         }, 1000)
       })
   }
