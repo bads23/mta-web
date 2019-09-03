@@ -7,7 +7,14 @@ const Product = ({ item }) => {
     <Link to={`/product/`+item.id}>
       <div className="item">
         <div className="pr-image">
-          <img src={item.images[0].path} alt="guitar" />
+          {
+            item.images.length >= 1 ? (
+              <img src={item.images[0].path} alt="guitar" />
+            ) : (
+              <></>
+            )
+          }
+          
         </div>
         <div className="pr-info">
           <p className="lato-m b mg-0">{item.name}</p>
