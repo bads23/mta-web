@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Categories from './components/categoriesDetails'
 import axios from 'axios'
 import URLS from '../config/settings'
+import ApiGet from '../config/axios'
 // import Notify from '../common/popups'
 
 import Header from '../common/header/header'
@@ -13,6 +14,7 @@ class Category extends Component {
   componentDidMount() {
     var id = this.props.match.params.id
     this.getItems(id)
+    this.getImages()
   }
 
   getItems = async id => {
@@ -24,6 +26,16 @@ class Category extends Component {
       })
   }
 
+  getImages = () => {
+    ApiGet(`${URLS().IMAGES}products/`)
+    .then(res => {
+      this.setState({
+        images: [...res.data]
+      })
+    })
+  }
+
+
   render() {
     return (
       <>
@@ -34,7 +46,7 @@ class Category extends Component {
 
           {
             this.state.category ? (
-              <Categories category={this.state.category} key={this.state.category.id} />
+              <Categories category={this.state.category} key={this.state.category.id} images={this.state.images} />
             ) : (
                 ''
               )

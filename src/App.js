@@ -14,7 +14,7 @@ import UserProvider from './app/auth/context'
 import Dashboard from './app/dashboard/index'
 import Register from './app/auth/register'
 import Checkout from './app/cart/checkout'
-
+import User from './app/user'
 
 const Loading = () => {
   return (
@@ -66,7 +66,7 @@ class App extends Component {
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/categories/:id" component={Category} />
-                
+                <Route path="/my-account" component={User} />
                 {/* <div id="push"></div> */}
               </Router >
             </CartProvider>

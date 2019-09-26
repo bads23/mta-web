@@ -1,11 +1,12 @@
 import React from 'react'
+import { promised } from 'q';
 
 const Input1 = (props) => {
   return (
     <>
       <div className="input1">
         <label>{props.label}:</label>
-        <input type={props.type} placeholder={props.ph} id={props.id} value={props.value} onChange={props.onChange} />
+        <input type={props.type} placeholder={props.ph} id={props.id} value={props.value} onChange={props.onChange} onKeyUp={props.onKeyUp}/>
       </div>
     </>
   )

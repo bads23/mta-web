@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 
 import Product from './productComponent'
 
-const Categories = ({ category }) => {
+const Categories = ({ category}) => {
+
+
   return (
 
     <div className="mg-b-50" >
@@ -21,7 +23,7 @@ const Categories = ({ category }) => {
       <div className="fl-even fl-wrap">
         {
           category.items.slice(0,5).map(item => (
-            <Product item={item} key={item.id} />
+            <Product item={item} key={item.id}  />
           ))
         }
 

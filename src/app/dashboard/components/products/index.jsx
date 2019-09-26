@@ -6,12 +6,19 @@ import URLS from '../../../config/settings'
 import Formart from '../../../common/functions/formatter'
 
 const Item = ({ props }) => {
-  const [images, setImages] = useState([]);
-
+  
   return (
     <a href={`/dashboard/products/edit/` + props.id}>
       <div className="item">
-        <div className="pr-image"></div>
+        <div className="pr-image">
+          {
+            props.images.length >= 1 ? (
+              <img src={`http://media.motiontalentafrica.co.ke/${props.images[0].path}`} alt=""/>
+            ) : (
+              ''
+            )
+          }  
+        </div>
         <div className="pr-info">
           <p className="lato-m b mg-0">{props.name}</p>
           <p className="playfair-sm mg-0">Ksh {Formart(props.price)}</p>
@@ -23,26 +30,25 @@ const Item = ({ props }) => {
 
 const index = () => {
   const [products, setProducts] = useState([]);
-  
+  // const [images, setImages] = useState([]);
+
   const getItems = () => {
     ApiGet(`${URLS().CATALOG}`)
       .then(res => {
-        var list = [...res.data] 
-        for(var i=0; i<list.length; i++){
-          var imgs = getImages(list[i].id)
-          list[i].images = imgs
-        }
-        setProducts(list)
+        setProducts(res.data)
       })
   }
 
-  const getImages = (id) => {
-    ApiGet(`${URLS().IMAGES}products/${id}/`)
-    .then(res => { return res})
-  }
+  // const getImages = (id) => {
+  //   ApiGet(`${URLS().IMAGES}products/`)
+  //   .then(res => {
+  //     setImages(res.data)
+  //   })
+  // }
 
   useEffect(() => {
     getItems()
+    // getImages()
   }, [])
 
   // console.log(products)
@@ -63,7 +69,7 @@ const index = () => {
             products ?
               (
                 products.map(item => (
-                  <Item props={item} key={item.id} />
+                  <Item props={item} key={item.id}/>
                 ))
               ) :
               (

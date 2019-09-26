@@ -9,7 +9,6 @@ const index = ({ props }) => {
   const activeMenu = () => {
     var path = props.location.pathname
     path = path.split("/");
-    console.log(path[2])
     setMenu({menu: path[2]})
   }
 

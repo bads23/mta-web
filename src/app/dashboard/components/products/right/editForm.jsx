@@ -54,12 +54,12 @@ const EditForm = ({ props }) => {
       ))
   }
 
-  const getImages = (id) => {
-    ApiGet(`${URLS().IMAGES}products/${id}/`)
-    .then(res => (
-      setImage(res.data)
-    ))
-  }
+  // const getImages = (id) => {
+  //   ApiGet(`${URLS().IMAGES}products/${id}/`)
+  //   .then(res => (
+  //     setImage(res.data)
+  //   ))
+  // }
 
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const EditForm = ({ props }) => {
     getSubCategories()
     getProductclasses()
     getProduct(props.match.params.id)
-    getImages(props.match.params.id)
+    // getImages(props.match.params.id)
   }, [])
 
   const handleName = (e) => {
@@ -154,30 +154,39 @@ const EditForm = ({ props }) => {
     e.preventDefault()
     var btn = document.getElementById('editBtn')
     btn.innerText = 'Saving...'
+    btn.disabled = 'disabled'
+
     ApiPut(`${URLS().CATALOG}${props.match.params.id}/`, { ...product })
       .then(res => {
-        btn.innerText = "Saved!"
-        // ShowNotify(`<b>${res.data.name}</b> was edited!`)
         setProduct(res.data)
-        // setTimeout(() => {
-        //   window.location.reload()
-        // }, 1000)
+
+        if (image.length > 0) {
+          var payload = new FormData()
+          payload.append('catalogue_id', props.match.params.id)
+          payload.append('image', image[0])
+          payload.append('category', 'products')
+
+          ApiPost(`${URLS().IMAGES}`, payload)
+            .then(res => {
+              btn.innerText = "Saved!"
+            })
+            .catch(error => {
+              // btn.innerText = "Unable to upload! Try again!"
+              btn.disabled = ''
+              console.log(error)
+              setTimeout(() => {
+                window.location.reload()
+            }, 2000)
+            })
+        } else {
+          btn.innerText = "Saved!"
+          setTimeout(() => {
+            window.location.reload()
+          }, 2000)
+        }
+
       })
 
-    if (image.length > 0) {
-      var payload = new FormData()
-      payload.append('catalogue_id', props.match.params.id)
-      payload.append('image', image[0])
-      payload.append('category', 'products')
-
-      ApiPost(`${URLS().IMAGES}`, payload)
-        .then(res => {
-          console.log(res.data)
-        })
-        setTimeout(() => {
-          window.location.reload()
-        }, 2000)
-    }
   }
 
   const thanosSnap = (e) => {
@@ -218,9 +227,9 @@ const EditForm = ({ props }) => {
 
             <div className="fl-btw fl-wrap mg-v-20" id="itemImgs">
               {
-                image ?
+                product.images ?
                   (
-                    image.map(img => (
+                    product.images.map(img => (
                       <div className="imgContainer isImg">
                         <img src={`${URLS().IMAGES}`+img.path} alt="" />
                       </div>

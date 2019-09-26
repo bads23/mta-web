@@ -35,8 +35,10 @@ const User = () => {
     context.user.email ? (
       <div className="top">
         <span className="playfair-links">
+          <Link to="/my-account/info">
           {/* <Link to="/myaccount">Hi {context.user.first_name} </Link> */}
           Hi {context.user.first_name}
+          </Link>
         </span> |
         {!context.user.is_staff ? (
           <>
@@ -61,6 +63,7 @@ const User = () => {
         </div>
       )
   )
+  
 }
 
 const Cart = () => {
@@ -108,6 +111,7 @@ const Header = () => {
       </div>
       <Notify />
     </>
+    
   )
 }
 

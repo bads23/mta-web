@@ -192,30 +192,30 @@
 
 /*Orders page*/
 
-table{
-  width: 100%;
-  margin-top: 5rem;
-}
+// table{
+//   width: 100%;
+//   margin-top: 5rem;
+// }
 
-th{
-  text-align: left;
-  background-color: $color-cream;
-}
+// th{
+//   text-align: left;
+//   background-color: $color-cream;
+// }
 
-tr{
-  height: 30px;
-  &:nth-child(even){
-    background-color: rgba(0,0,0,0.2);
-  }
-}
+// tr{
+//   height: 30px;
+//   &:nth-child(even){
+//     background-color: rgba(0,0,0,0.2);
+//   }
+// }
 
-table, th, td {
-  border-collapse: collapse;
-}
+// table, th, td {
+//   border-collapse: collapse;
+// }
 
-td, th{
-  padding: 20px 10px;
-}
+// td, th{
+//   padding: 20px 10px;
+// }
 
 .totalsCol{
   text-align: right;

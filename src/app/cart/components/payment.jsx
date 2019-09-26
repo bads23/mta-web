@@ -114,32 +114,67 @@ const Payment = () => {
         sessionStorage.setItem("payStatus", JSON.stringify(payStatus))
         document.getElementById('payBtn').innerText = 'Confirming Payment...'
 
-        var checkPayStatus = setInterval(() => {
+        // var checkPayStatus = setInterval(() => {
 
           payStatus = JSON.parse(sessionStorage.getItem("payStatus"))
 
-          if (payStatus.status === "success") {
-            clearInterval(checkPayStatus)
+          // if (payStatus.status !== "Success") {
+            // clearInterval(checkPayStatus)
             document.getElementById('payBtn').innerText = 'Payment Confirmed!'
-          } else if (payStatus.status === "PendingConfirmation") {
-            getStatus(data.kyc)
-            setTimeout(() => {
-              clearInterval(checkPayStatus)
-              document.getElementById('payBtn').innerText = 'Payment Failed!'
-            }, 60000)
-          } else {
-            clearInterval(checkPayStatus)
-            document.getElementById('payBtn').innerText = 'Payment Failed!'
-            setTimeout(() => {
-              document.getElementById('payBtn').innerText = 'Make Payment'
-              document.getElementById('payBtn').disabled = ''
-              document.getElementById('payNumberInput').disabled = ''
-              document.getElementById('mpesaDiv').style.pointerEvents = ''
-              document.getElementById('podDiv').style.pointerEvents = ''
-            }, 3000)
-            console.log(payload)
-          }
-        }, 5000)
+
+            const user = JSON.parse(localStorage.getItem("user"))
+
+            var order = {
+              user: user.id,
+              payment: data.id,
+              total: 1,
+              delivery: posta,
+              payment_mode: payMethod,
+            }
+
+            ApiPost(`${URLS().ORDERS}`,order)
+              .then(res=>{
+                var data = res.data
+                const context = JSON.parse(localStorage.getItem("Cart"))
+                var cart = [...context];
+
+                for(var i=0; i<cart.length; i++){
+
+                  var item = {
+                    quantity: cart[i].quantity,
+                    order: data.id,
+                    product: cart[i].id
+                  }
+
+                  ApiPost(`${URLS().ORDERITEMS}`, item)
+                  .then(res => {
+                    console.log(res.data)
+                  })
+                }
+              })
+
+
+
+            // }
+          // } else if (payStatus.status === "PendingConfirmation") {
+          //   getStatus(data.kyc)
+          //   setTimeout(() => {
+          //     clearInterval(checkPayStatus)
+          //     document.getElementById('payBtn').innerText = 'Payment Failed!'
+          //   }, 60000)
+          // } else {
+          //   clearInterval(checkPayStatus)
+          //   document.getElementById('payBtn').innerText = 'Payment Failed!'
+          //   setTimeout(() => {
+          //     document.getElementById('payBtn').innerText = 'Make Payment'
+          //     document.getElementById('payBtn').disabled = ''
+          //     document.getElementById('payNumberInput').disabled = ''
+          //     document.getElementById('mpesaDiv').style.pointerEvents = ''
+          //     document.getElementById('podDiv').style.pointerEvents = ''
+          //   }, 3000)
+          //   console.log(payload)
+          // }
+        // }, 5000)
 
       })
       .catch(error => {

@@ -46,7 +46,7 @@ const CartItem = ({ item }) => {
           <div className="image-container img-wrap mg-h-10">
               {
             item.images.length >= 1 ? (
-              <img src={item.images[0].path} alt="drum" />
+              <img src={`http://media.motiontalentafrica.co.ke/${item.images[0].path}`} alt="drum" />
             ): (
               <></>
             )

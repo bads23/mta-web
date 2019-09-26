@@ -28,9 +28,13 @@ class Home extends Component {
         <Slider />
         <div className="main-section">
           {
-            this.state.Categories.map(category => (
-              <Categories category={category} key={category.id} />
-            ))
+            this.state.Categories.map(category =>
+              
+                category.items.length >= 1 ? (
+                  <Categories category={category} key={category.id} />
+                ) : ( '')
+              
+            )
           }
         </div>
       </>

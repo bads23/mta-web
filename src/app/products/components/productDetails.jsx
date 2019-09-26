@@ -26,7 +26,7 @@ const UpdateCart = ({ item }) => {
     }
     context.setCart(items)
     localStorage.setItem("Cart", JSON.stringify(items))
-    ShowNotify()
+    ShowNotify('Item added to cart.')
   }
   return (
     <button className="btn-black mg-v-20" onClick={() => newCart()}>
@@ -38,7 +38,9 @@ const UpdateCart = ({ item }) => {
 
 const ProductDetails = ({ item }) => {
 
-  var list = item.features.split(',');
+  var list;
+
+  item.features ? list = item.features.split(',') : list = [];
 
 
 
