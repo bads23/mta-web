@@ -12,13 +12,18 @@ export const getTotals = () => {
   var cart = [...context.cart]
   var totals = {
     subtotal: 0,
-    delivery: 0
+    delivery: 0,
+    vat: 0,
+    total: 0
   }
+
   if (cart.length > 0) {
     context.cart.forEach(item => {
       totals.subtotal += item.price * item.quantity
       totals.delivery += item.weight < 5 ? (item.quantity*280) : ((((item.weight - 5) * 30)*item.quantity) + (item.quantity*280) )
     })
+    totals.vat = totals.subtotal * .16
+    totals.total = totals.subtotal + totals.delivery + totals.vat
   }
   return totals
 }
