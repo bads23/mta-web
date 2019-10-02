@@ -202,61 +202,72 @@ const EditForm = ({ props }) => {
       })
   }
 
+  const deleteImage = (id) => {
+    ApiDelete(`${URLS().IMAGES_URL}${id}/`)
+    .then(res =>{
+      console.log(res.id)
+    })
+  }
 
   return (
     product.name ? (
-      <>
+      <div>
         <div className="fl-center">
-          {/* <Link to="/"><span className="lato-lg">Activity</span></Link> */}
           <span className="lato-lg b">Edit Product</span>
         </div>
 
-        <form className="form" onSubmit={handleSubmit}>
-          <Input label="Name" type="text" ph="Item Name" value={product.name} onChange={handleName} />
-          <Select label="Category" options={categories} value={product.category} onChange={handleCategory} />
-          <Select label="Sub Category" options={subcategories} value={product.subcategory} onChange={handleSubCategory} />
-          <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
-          <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
-          <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
-          <Textarea label="Description" value={product.description} onChange={handleDescription} />
-          <Textarea label="Features (Separate with a comma)" value={product.features} onChange={handleFeatures} ph="feature1,feature2,feature3" />
-          <Checkbox label="Visibility" ph="Hide this item" />
+        <form className="form" onSubmit={handleSubmit} id="editForm_products">
 
-          <div id="images_upload">
-            <label className="lato-m b mg-v-10">Images:</label>
-
-            <div className="fl-btw fl-wrap mg-v-20" id="itemImgs">
-              {
-                product.images ?
-                  (
-                    product.images.map(img => (
-                      <div className="imgContainer isImg">
-                        <img src={`${URLS().IMAGES}`+img.path} alt="" />
-                      </div>
-                    ))
-                  )
-                  :
-                  (
-                    <></>
-                  )
-              }
-              <div className="imgContainer isNewImg">
-                <label htmlFor="newImg" className="lato-m b grey"><span>Add an image</span></label>
-                <input type="file" accept="image/*" name="image" id="newImg" onChange={handleImage} />
-              </div>
-            </div>
+          <div className="editForm_left">
+            <Input label="Name" type="text" ph="Item Name" value={product.name} onChange={handleName} />
+            <Select label="Category" options={categories} value={product.category} onChange={handleCategory} />
+            <Select label="Sub Category" options={subcategories} value={product.subcategory} onChange={handleSubCategory} />
+            <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
+            <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
+            <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
+            <Textarea label="Description" value={product.description} onChange={handleDescription} />
+            <Textarea label="Features (Separate with a comma)" value={product.features} onChange={handleFeatures} ph="feature1,feature2,feature3" />
+            {/* <Checkbox label="Visibility" ph="Hide this item" /> */}
           </div>
 
-          <button type="submit" className="btn btn-black btn-full" id="editBtn">Save</button>
-          <div id="ThanosDiv" className="mg-v-20">
-            <span className="lato-xsm i">Use this button to permanently delete this item. This Action is irreversible!</span>
-            <button type="button" className="btn btn-red btn-full" id="thanosBtn" onClick={thanosSnap}>Delete This Item</button>
+          <div className="editForm_right">
+            <div id="images_upload">
+              <label className="lato-m b mg-v-10">Images:</label>
+
+              <div className="fl-btw fl-wrap mg-v-20" id="itemImgs">
+                {
+                  product.images ?
+                  (
+                    product.images.map(img => (
+                        <div className="imgContainer isImg">
+                          <img src={`${URLS().IMAGES}`+img.path} alt="" />
+                          <span className="delBtn" onClick={() => {deleteImage(img.id)}}><i className="fas fa-trash-alt"></i></span>
+                        </div>
+                      ))
+                    )
+                    :
+                    (
+                      <></>
+                      )
+                    }
+                <div className="imgContainer isNewImg">
+                  <label htmlFor="newImg" className="lato-m b grey"><span>Add an image</span></label>
+                  <input type="file" accept="image/*" name="image" id="newImg" onChange={handleImage} />
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" className="btn btn-black btn-full" id="editBtn">Save</button>
+            <div id="ThanosDiv" className="mg-v-20">
+              <span className="lato-xsm i">Use this button to permanently delete this item. This Action is irreversible!</span>
+              <button type="button" className="btn btn-red btn-full" id="thanosBtn" onClick={thanosSnap}>Delete This Item</button>
+            </div>
           </div>
         </form>
 
 
 
-      </>
+      </div>
     ) : (
         <>
           <i className="fas fa-circle-notch"></i>

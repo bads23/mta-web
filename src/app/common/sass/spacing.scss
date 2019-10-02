@@ -55,6 +55,10 @@
   @include margin(0px 10px)
 }
 
+.mg-h-20{
+  @include margin(0px 20px)
+}
+
 .mg-50-auto{
   @include margin(50px auto)
 }

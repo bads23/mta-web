@@ -22,6 +22,7 @@ const URLS = () => {
       "CLIENTS": BASE_URL + 'clients/clients/',
       "CLIENTSCATS": BASE_URL + 'clients/clientsCategory',
       "POSTAS": BASE_URL + 'orders/postas/',
+      "IMAGES_URL": BASE_URL + 'images/',
       "IMAGES": IMG_URL
     }
   )
