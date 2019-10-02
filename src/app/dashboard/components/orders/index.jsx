@@ -21,7 +21,7 @@ const index = () => {
 
   return (
     <>
-      <div className="midsection_sm">
+      <div className="midsection_full">
         {
           orders.length > 0 ?
             (
@@ -39,12 +39,13 @@ const index = () => {
                     </tr>
 
                     {orders.map(order => (
+
                       <>
                         <tr>
-                          <th>{FormatDate(order.date_added)}</th>
-                          <th>{order.name}</th>
-                          <th>{order.order_items.map(item => (item.product + ','))}</th>
-                          <th className="totalsCol"> Ksh {Formart(order.total)}</th>
+                          <td>{FormatDate(order.date_added).date}</td>
+                          <td>{order.name}</td>
+                          <td>{order.order_items.map(item => (item.product + ','))}</td>
+                          <td className="totalsCol"> Ksh {Formart(order.total)}</td>
                         </tr>
                       </>
                     ))}

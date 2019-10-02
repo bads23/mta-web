@@ -54,14 +54,6 @@ const EditForm = ({ props }) => {
       ))
   }
 
-  // const getImages = (id) => {
-  //   ApiGet(`${URLS().IMAGES}products/${id}/`)
-  //   .then(res => (
-  //     setImage(res.data)
-  //   ))
-  // }
-
-
   useEffect(() => {
     getCategories()
     getSubCategories()
@@ -205,7 +197,8 @@ const EditForm = ({ props }) => {
   const deleteImage = (id) => {
     ApiDelete(`${URLS().IMAGES_URL}${id}/`)
     .then(res =>{
-      console.log(res.id)
+      ShowNotify("Image Deleted!")
+      getProduct(props.match.params.id)
     })
   }
 

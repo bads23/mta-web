@@ -1,10 +1,23 @@
 const formatNumber = num => {
-  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  if(num){
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
 }
 
 export const FormatDate = str => {
   var dstr = str.split('T')
-  return dstr[0]
+  var time = dstr[1].split('.')
+  var sec = time[0].split(':')
+
+  time = sec[0] + ':' +sec[1]
+
+  var dateObj = {
+    date: dstr[0],
+    time: time
+  }
+  console.log(dateObj)
+  // return time
+  return dateObj
 }
 
 export default formatNumber

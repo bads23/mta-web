@@ -7,8 +7,6 @@ import {FormatDate} from '../../common/functions/formatter'
 
 
 const OrderComponent = ({orders}) =>{
-    
-    
 
     const Total = (items) => {
         var subtotal = 0
