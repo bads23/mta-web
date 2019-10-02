@@ -26,7 +26,7 @@ const UpdateCart = ({ item }) => {
     }
     context.setCart(items)
     localStorage.setItem("Cart", JSON.stringify(items))
-    ShowNotify('Item added to cart.')
+    ShowNotify('Item added to cart. <a href="/cart">View Cart</a>')
   }
   return (
     <button className="btn-black mg-v-20" onClick={() => newCart()}>
@@ -48,21 +48,18 @@ const ProductDetails = ({ item }) => {
     <div className="text-container">
       <h1 className="playfair-xlg mg-v-20">{item.name}</h1>
       <p className="lato-m">{item.description}</p>
-      <h1 className="playfair-lg mg-v-10">Features</h1>
-
-      <ul className="lato-m">
-        {
-          
-          list.map(feature => (
-            <li>{feature}</li>
-          ))
-        }
-        {/* <li>Feature 1</li>
-        <li>Feature 2</li>
-        <li>Feature 3</li>
-        <li>Feature 4</li> */}
-      </ul>
-
+      {
+        list.length > 0 ? (
+        <> 
+         
+          <h1 className="playfair-lg mg-v-10">Features</h1>
+          <ul className="lato-m">{
+              list.map(feature => (
+                <li>{feature}</li>
+              ))}
+          </ul>
+        </>) : (<></>)
+      }
       <p className="playfair-xlg mg-v-50 gold">
         <span>Ksh </span>
         {item ? formatNumber(item.price) : 'no'}

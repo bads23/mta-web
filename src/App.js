@@ -15,6 +15,7 @@ import Dashboard from './app/dashboard/index'
 import Register from './app/auth/register'
 import Checkout from './app/cart/checkout'
 import User from './app/user'
+import FinalStep from './app/cart/confirmed';
 
 const Loading = () => {
   return (
@@ -63,6 +64,7 @@ class App extends Component {
                 <Route exact path="/product/:id" component={Product} />
                 <Route path="/cart/" component={Cart} />
                 <Route path="/checkout/" component={Checkout} />
+                <Route path="/order-successful/" component={FinalStep} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
                 <Route path="/categories/:id" component={Category} />
