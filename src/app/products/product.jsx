@@ -5,6 +5,7 @@ import axios from 'axios'
 import URLS from '../config/settings'
 import ApiGet from '../config/axios'
 import Header from '../common/header/header'
+import Loader from '../common/loader'
 
 class Product extends Component {
 
@@ -48,7 +49,7 @@ class Product extends Component {
                   <ProductDetails item={this.state.item} />
                 </>
               ) : (
-                  <p>Loading</p>
+                  <Loader/>
                 )
             }
           </div>

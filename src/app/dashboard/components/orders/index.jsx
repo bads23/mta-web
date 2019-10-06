@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Right from './right/right'
-import ApiGet from '../../../config/axios'
+import ApiGet, { ApiDelete } from '../../../config/axios'
 import URLS from '../../../config/settings'
 import Formart, { FormatDate } from '../../../common/functions/formatter'
+import {Select} from '../../../common/inputs'
+import { ShowNotify, ShowOption } from '../../../common/popups'
 
 const index = () => {
 
   const [orders, setOrders] = useState([])
 
   const getOrders = () => {
-    ApiGet(`${URLS().ORDERS}`)
+    ApiGet(`${URLS().ORDERS}?ordering=-id`)
       .then(res => {
         setOrders(res.data)
       })
@@ -18,6 +20,19 @@ const index = () => {
   useEffect(() => {
     getOrders()
   }, [])
+
+
+  const deleteOrder = (id) =>{
+    ApiDelete(`${URLS().ORDERS}id/`)
+    .then(res =>{
+      console.log(res.data)
+    })
+  }
+
+  const handleAction = (id) =>{
+    console.log(id)
+    ShowOption('Delete This Item?')
+  }
 
   return (
     <>
@@ -34,8 +49,11 @@ const index = () => {
                     <tr>
                       <th>Date</th>
                       <th>Order No</th>
+                      <th>User</th>
                       <th>Items</th>
                       <th className="totalsCol">Total</th>
+                      <th>Payment</th>
+                      <th width="5%">Action(Change Status)</th>
                     </tr>
 
                     {orders.map(order => (
@@ -44,8 +62,24 @@ const index = () => {
                         <tr>
                           <td>{FormatDate(order.date_added).date}</td>
                           <td>{order.name}</td>
-                          <td>{order.order_items.map(item => (item.product + ','))}</td>
+                          <td>{order.user_email}</td>
+                          <td>{order.order_items.map(item => (
+                            <li>
+                              {item.name + '('+item.quantity+')' +', '}
+                            </li>
+                            ))}
+                          </td>
                           <td className="totalsCol"> Ksh {Formart(order.total)}</td>
+                          <td>{order.pay_status}  ({order.mode})</td>
+                          <td>
+                            <select onChange={() => handleAction(order.id)}>
+                              <option value="pending">Pending</option>
+                              <option value="confirm">Confirm</option>
+                              <option value="cancel">Cancel</option>
+                              <option value="delete">Intransit</option>
+                              <option value="delete">Delete</option>
+                            </select>
+                          </td>
                         </tr>
                       </>
                     ))}

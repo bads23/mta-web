@@ -26,7 +26,7 @@ const OrderComponent = ({orders}) =>{
                 <td>
                     
                 </td>
-                <td>{FormatDate(order.date_added)}</td>
+                <td>{FormatDate(order.date_added).date}</td>
                 <td>KES {Total(order.order_items)}</td>
                 <td>{order.status}</td>
             </tr>

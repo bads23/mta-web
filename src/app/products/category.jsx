@@ -3,6 +3,7 @@ import Categories from './components/categoriesDetails'
 import axios from 'axios'
 import URLS from '../config/settings'
 import ApiGet from '../config/axios'
+import Loader from '../common/loader'
 // import Notify from '../common/popups'
 
 import Header from '../common/header/header'
@@ -41,15 +42,15 @@ class Category extends Component {
       <>
         <Header />
         <div id="top-bar"></div>
+        
         <div className="middle-section">
-
-
+        
           {
             this.state.category ? (
               <Categories category={this.state.category} key={this.state.category.id} images={this.state.images} />
             ) : (
-                ''
-              )
+              <Loader />
+            )
           }
 
         </div>

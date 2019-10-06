@@ -2,11 +2,11 @@
 
 
 .rotation{
-  -webkit-animation:spin 50s linear infinite !important;
-  -moz-animation:spin 50s linear infinite !important;
-  animation:spin 50s linear infinite !important; 
+  -webkit-animation:spin 5s linear infinite !important;
+  -moz-animation:spin 5s linear infinite !important;
+  animation:spin 5s linear infinite !important; 
 }
-kkkjjj
+
 .faster-rotation{
   -webkit-animation:spin 10s linear infinite !important;
   -moz-animation:spin 10s linear infinite !important;
@@ -25,9 +25,9 @@ kkkjjj
 
 
 .counter-rotation{
-  -webkit-animation:spin-reverse 50s linear infinite !important;
-  -moz-animation:spin-reverse 50s linear infinite !important;
-  animation:spin-reverse 50s linear infinite !important; 
+  -webkit-animation:spin-reverse 5s linear infinite !important;
+  -moz-animation:spin-reverse 5s linear infinite !important;
+  animation:spin-reverse 5s linear infinite !important; 
 }
 @-moz-keyframes spin-reverse { 100% { -moz-transform: rotate(-360deg); } }
 @-webkit-keyframes spin-reverse { 100% { -webkit-transform: rotate(-360deg); } }

@@ -16,7 +16,11 @@ export const Select = (props) => {
   return (
     <>
       <div className="input1">
-        <label>{props.label}:</label>
+        {
+          props.label ? (
+            <label>{props.label}:</label>
+          ):(<></>)
+        }
         <select value={props.value} onChange={props.onChange}>
           <option value=''>--Please choose one--</option>
           {

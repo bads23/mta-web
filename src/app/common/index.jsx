@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Slider from './slider/sliderComponent'
 import Categories from '../products/components/categoriesComponent'
 import axios from 'axios'
 import URLS from '../config/settings'
 import Header from './header/header'
+import Loader from '../common/loader'
 
 class Home extends Component {
   state = {
@@ -25,15 +25,16 @@ class Home extends Component {
     return (
       <>
         <Header />
-        <Slider />
-        <div className="main-section">
+        <div id="top-bar"></div>
+        {/* <Slider /> */}
+        <div className="middle-section">
           {
-            this.state.Categories.map(category =>
-              
-                category.items.length >= 1 ? (
-                  <Categories category={category} key={category.id} />
-                ) : ( '')
-              
+            this.state.Categories.length>1 ? (
+              this.state.Categories.map(category =>
+                <Categories category={category} key={category.id} />
+              )
+            ) : (
+              <Loader/>
             )
           }
         </div>

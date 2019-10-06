@@ -1,9 +1,9 @@
 .popups{
     position: fixed;
-    z-index: 9999;
+    z-index: 9999999;
     background-color: #fffdd0;
     padding: 20px 50px;
-    bottom: -100px;
+    bottom: -150px;
     border: 1px solid #d4af37;
     transition: all .3s ease-in-out;
     @extend .h-center ;
