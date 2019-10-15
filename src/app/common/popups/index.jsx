@@ -14,8 +14,9 @@ export const ShowNotify = (item) => {
 export const ShowOption = (item) => {
   var notify = document.getElementById("popup")
   notify.innerHTML = `
-    <p class="lato-m align-center">${item}</p>
+    <p class="lato-m align-center mg-v-10">${item}</p>
     <button>Yes</button>
+    <button>Cancel</button>
     `
   notify.style.bottom = "100px"
 

@@ -17,6 +17,7 @@ const index = ({ props }) => {
   },[])
 
   return (
+    <>
     <div className="sidebar">
 
       <div className="logo-wrapper align-center pd-v-20">
@@ -57,8 +58,10 @@ const index = ({ props }) => {
           </a>
         </ul>
       </nav>
-      <Notify />
+      
     </div>
+    <Notify />
+    </>
   )
 }
 

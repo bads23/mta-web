@@ -4,10 +4,11 @@ import React, {useState, useEffect} from 'react'
 import ApiGet, {ApiPut} from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 
-import Input1, {Textarea} from '../../../../common/inputs'
+import Input1, {Editor, Select} from '../../../../common/inputs'
 
 const editClient = ({props}) => {
     const [editor, setEditor] = useState([])
+    const [cats, setCats] = useState([])
 
     const getClient = (id) =>{
         ApiGet(`${URLS().CLIENTS}${id}/`)
@@ -16,14 +17,28 @@ const editClient = ({props}) => {
         })
     }
 
+    const getCategories = () =>{
+        ApiGet(`${URLS().CLIENTSCATS}/`)
+        .then(res => {
+            setCats(res.data)
+        })
+    }
+
     useEffect(() => {
         getClient(props.match.params.id)
+        getCategories()
     }, [])
 
 
     const handleName = (e) =>{
         var np = {...editor}
         np.name = e.target.value
+        setEditor(np)
+    }
+
+    const handleCategory = (e) =>{
+        var np = {...editor}
+        np.category = e.target.value
         setEditor(np)
     }
 
@@ -60,7 +75,7 @@ const editClient = ({props}) => {
 
     const handleBio = (e) =>{
         var np = {...editor}
-        np.bio = e.target.value
+        np.bio = e.editor.getData()
         setEditor(np)
     }
 
@@ -89,6 +104,7 @@ const editClient = ({props}) => {
                         <img src="" alt=""/>
                     </div>
                     <Input1 type="text" ph="Client Name" label="Name" value={editor.name} onChange={handleName} />
+                    <Select label="Category" options={cats} value={editor.category} onChange={handleCategory}/>
                     <Input1 type="text" ph="twitter handle" label="Twitter" value={editor.twitter} onChange={handleTW} />
                     <Input1 type="text" ph="instgram handle" label="Instagram" value={editor.instagram} onChange={handleIG} />
                     <Input1 type="text" ph="Facebook url" label="Facebook" value={editor.facebook} onChange={handleFB} />
@@ -96,8 +112,7 @@ const editClient = ({props}) => {
                     <Input1 type="text" ph="Youtube url" label="Youtube" value={editor.youtube} onChange={handleYT} />
                 </div>
                 <div id="clientBio">
-                    <h3 className="playfair-m">Bio</h3>
-                    <Textarea label="Edit Bio" value={editor.bio} onChange={handleBio} />
+                    <Editor label="Bio" value={editor.bio} onChange={handleBio} />
                     <button type="submit" className="btn-black" id="submitBtn">Save</button>
                 </div>
             </form>

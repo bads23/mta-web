@@ -1,4 +1,5 @@
 import React from 'react'
+import CKEditor from 'ckeditor4-react'
 import { promised } from 'q';
 
 const Input1 = (props) => {
@@ -58,6 +59,17 @@ export const Checkbox = (props) => {
       <div className="input1">
         <label htmlFor="">{props.label}:</label>
         <input type="checkbox" id="checkbox" /><span className="lato-sm grey">{props.ph}</span>
+      </div>
+    </>
+  )
+}
+
+export const Editor = (props) =>{
+  return(
+    <>
+      <div className="input1">
+        <label htmlFor="">{props.label}:</label>
+        <CKEditor data={props.value} onChange={props.onChange} />
       </div>
     </>
   )

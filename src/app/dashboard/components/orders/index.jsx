@@ -50,9 +50,9 @@ const index = () => {
                       <th>Date</th>
                       <th>Order No</th>
                       <th>User</th>
-                      <th>Items</th>
+                      <th>Item(Qty)</th>
                       <th className="totalsCol">Total</th>
-                      <th>Payment</th>
+                      <th>Payment Method</th>
                       <th width="5%">Action(Change Status)</th>
                     </tr>
 

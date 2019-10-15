@@ -1,11 +1,11 @@
 table{
     width: 100%;
-    margin-top: 5rem;
+    margin-top: 3rem;
   }
   
   th{
     text-align: left;
-    background-color: $color-cream;
+    background-color: $color-gold;
     @extend .playfair-sm
   }
   
@@ -16,9 +16,6 @@ table{
     }
   }
   
-  table, th, td {
-  }
-  
   td, th{
-    padding: 20px 10px;
+    padding: 10px 10px;
   }
