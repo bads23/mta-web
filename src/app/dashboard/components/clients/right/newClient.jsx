@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import ApiGet, {ApiPost} from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 
-import Input1, {Textarea, Select} from '../../../../common/inputs'
+import Input1, {Editor, Select} from '../../../../common/inputs'
 
 const editClient = ({props}) => {
 
@@ -68,7 +68,7 @@ const editClient = ({props}) => {
 
     const handleBio = (e) =>{
         var np = {...editor}
-        np.bio = e.target.value
+        np.bio = e.editor.getData()
         setEditor(np)
     }
 
@@ -105,8 +105,7 @@ const editClient = ({props}) => {
                     <Input1 type="text" ph="Youtube url" label="Youtube" value={editor.youtube} onChange={handleYT} />
                 </div>
                 <div id="clientBio">
-                    <h3 className="playfair-m">Bio</h3>
-                    <Textarea label="Bio" value={editor.bio} onChange={handleBio} />
+                    <Editor label="Bio" value={editor.bio} onChange={handleBio} />
                     <button type="submit" className="btn-black" id="submitBtn">Save</button>
                 </div>
             </form>
