@@ -102,6 +102,13 @@ const editClient = ({props}) => {
                     <h3 className="playfair-m">Profile</h3>
                     <div id="profile-img" className="mg-v-20">
                         <img src="" alt=""/>
+
+                        <div id="uploadImgBtn">
+                            <label htmlFor="avatarIn" className="btn btn-black">
+                                Upload
+                            </label>
+                            <input type="file" id="avatarIn" hidden />
+                        </div>
                     </div>
                     <Input1 type="text" ph="Client Name" label="Name" value={editor.name} onChange={handleName} />
                     <Select label="Category" options={cats} value={editor.category} onChange={handleCategory}/>
