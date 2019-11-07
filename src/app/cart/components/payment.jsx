@@ -77,9 +77,9 @@ const Payment = () => {
       const div_ = document.getElementById('podDiv')
       div_.classList.remove("radio-unchecked-div")
       div_.classList.add("radio-checked-div")
-      const div = document.getElementById('mpesaDiv')
-      div.classList.remove("radio-checked-div")
-      div.classList.add("radio-unchecked-div")
+      // const div = document.getElementById('mpesaDiv')
+      // div.classList.remove("radio-checked-div")
+      // div.classList.add("radio-unchecked-div")
     }
     document.getElementById('payBtn').disabled = ''
     // setPayMethod(method)
@@ -95,11 +95,11 @@ const Payment = () => {
     e.preventDefault()
     e.stopPropagation()
     
-    document.getElementById('mpesaDiv').style.pointerEvents = 'none'
+    // document.getElementById('mpesaDiv').style.pointerEvents = 'none'
     document.getElementById('podDiv').style.pointerEvents = 'none'
     document.getElementById('payBtn').disabled = 'disabled'
-    document.getElementById('payNumberInput').disabled = 'disabled'
-    document.getElementById('payBtn').innerText = 'Sending Payment Request'
+    // document.getElementById('payNumberInput').disabled = 'disabled'
+    document.getElementById('payBtn').innerText = 'Confirming Order...'
 
     var payload = makePayload(payNumber, payMethod)
 
@@ -253,7 +253,7 @@ const Payment = () => {
         <h1 className="playfair-lg align-center">Payment</h1>
         <p className="lato-m i align-center mg-v-10">Pick your preffered method of payment</p>
 
-        <div className="mg-v-50" onClick={() => handlePayMethod('MPESA')} id="mpesaDiv">
+        {/* <div className="mg-v-50" onClick={() => handlePayMethod('MPESA')} id="mpesaDiv">
           <h2 className="lato-m b radio radio-unchecked mg-v-10">Mpesa Paybill</h2>
           <p className="lato-m">Pay Ksh {format(getTotals().total)} via Mpesa paybill. Enter the phone number to make the payment.</p>
   
@@ -263,7 +263,7 @@ const Payment = () => {
             <input type="text" placeholder="Enter the phone number you'll use to pay" id="payNumberInput" value={payNumber} onChange={handlePayNumber} />
           </div>
         
-        </div>
+        </div> */}
 
         <div className="mg-v-20" onClick={() => handlePayMethod('PAY_ON_DELIVERY')} id="podDiv">
           <h2 className="lato-m b radio radio-unchecked mg-v-10">Pay on Delivery</h2>

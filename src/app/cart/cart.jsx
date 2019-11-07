@@ -13,7 +13,7 @@ export const getTotals = () => {
   var totals = {
     subtotal: 0,
     delivery: 0,
-    vat: 0,
+    // vat: 0,
     total: 0
   }
 
@@ -22,8 +22,8 @@ export const getTotals = () => {
       totals.subtotal += item.price * item.quantity
       totals.delivery += item.weight < 5 ? (item.quantity*280) : ((((item.weight - 5) * 30)*item.quantity) + (item.quantity*280) )
     })
-    totals.vat = totals.subtotal * .16
-    totals.total = totals.subtotal + totals.delivery + totals.vat
+    // totals.vat = totals.subtotal * .16
+    totals.total = totals.subtotal + totals.delivery
   }
   return totals
 }
@@ -50,9 +50,9 @@ const Cart = () => {
 
               <div className="total pd-20 align-right medium-text">
                 <p> <span className="lato">Subtotal:</span>&nbsp;&nbsp;<span className="playfair-lg b price-spans">Ksh {format(getTotals().subtotal)}</span></p>
-                <p> <span className="lato">V.A.T(16%):</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().subtotal * .16))}</span></p>
+                {/* <p> <span className="lato">V.A.T(16%):</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().subtotal * .16))}</span></p> */}
                 <p> <span className="lato">Delivery:</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().delivery))}</span></p>
-                <p><span className="lato">Total:</span><span className="subtotal playfair-xlg mg-v-20 gold price-spans">Ksh {format(Math.round(getTotals().subtotal + (getTotals().subtotal * .16) + getTotals().delivery))}</span></p>
+                <p><span className="lato">Total:</span><span className="subtotal playfair-xlg mg-v-20 gold price-spans">Ksh {format(Math.round(getTotals().subtotal + getTotals().delivery))}</span></p>
 
                 <Route exact path="/cart" render={() => {
                   return (

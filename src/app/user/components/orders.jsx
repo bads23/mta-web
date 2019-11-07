@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import URLS from '../../config/settings'
 import ApiGet from '../../config/axios'
 
-import {FormatDate} from '../../common/functions/formatter'
+import formatNumber, {FormatDate} from '../../common/functions/formatter'
 
 
 const OrderComponent = ({orders}) =>{
@@ -15,7 +15,7 @@ const OrderComponent = ({orders}) =>{
             subtotal += (items[i].price * items[i].quantity)
         }
 
-        return subtotal
+        return formatNumber(subtotal)
     }
     
 
@@ -24,11 +24,17 @@ const OrderComponent = ({orders}) =>{
             <tr>
                 <td>{order.name}</td>
                 <td>
-                    
+                    {
+                       order.order_items.map(item =>(
+                           <p>
+                               {`${item.name}(${item.quantity})`} 
+                           </p>
+                       )) 
+                    }
                 </td>
                 <td>{FormatDate(order.date_added).date}</td>
-                <td>KES {Total(order.order_items)}</td>
-                <td>{order.status}</td>
+                <td>KES {formatNumber(order.amount)}</td>
+                <td>{order.pay_status}</td>
             </tr>
         ))
     )
