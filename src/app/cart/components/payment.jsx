@@ -43,12 +43,23 @@ const Payment = () => {
   const getPostas = () => {
     ApiGet(`${URLS().POSTAS}`)
     .then(res => {
-      setPostas(res.data)
+      editPostas(res.data)
     })
+  }
+
+  const editPostas = (data) => {
+    var new_postas = []
+    for(var i=0; i<data.length; i++){
+      data[i].name = data[i].name+' - '+data[i].code
+      new_postas.push(data[i])
+      
+    }
+    setPostas(new_postas)
   }
 
   useEffect(() => {
     getPostas()
+    console.log(postas.length)
   },[])
 
   const getStatus = (kyc) => {
@@ -85,7 +96,7 @@ const Payment = () => {
     // setPayMethod(method)
   }
 
-  const handlePayNumber = (e) => setPayNumber(e.target.value)
+  // const handlePayNumber = (e) => setPayNumber(e.target.value)
 
   const handlePostas = (e) => setPosta(e.target.value)
   
@@ -112,7 +123,7 @@ const Payment = () => {
           "kyc": data.kyc
         }
         
-        if (data.payment_mode == 1){
+        if (data.payment_mode === 1){
 
           sessionStorage.setItem("payStatus", JSON.stringify(payStatus))
           document.getElementById('payBtn').innerText = 'Confirming Payment...'
@@ -251,7 +262,10 @@ const Payment = () => {
         </div>
 
         <h1 className="playfair-lg align-center">Payment</h1>
-        <p className="lato-m i align-center mg-v-10">Pick your preffered method of payment</p>
+        <p className="lato-m i align-center mg-v-10">
+          The amount is payable through M-PESA PAYBILL. <br/>
+          <strong>Business No. - 400222 <br/> Acc. No. - 450673</strong>
+          </p>
 
         {/* <div className="mg-v-50" onClick={() => handlePayMethod('MPESA')} id="mpesaDiv">
           <h2 className="lato-m b radio radio-unchecked mg-v-10">Mpesa Paybill</h2>

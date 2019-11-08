@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Right from './right/right'
-import ApiGet, { ApiDelete } from '../../../config/axios'
+import ApiGet from '../../../config/axios'
 import URLS from '../../../config/settings'
 import Formart, { FormatDate } from '../../../common/functions/formatter'
-import {Select} from '../../../common/inputs'
-import { ShowNotify, ShowOption } from '../../../common/popups'
+import { ShowOption } from '../../../common/popups'
 
 const index = () => {
 
@@ -22,12 +20,12 @@ const index = () => {
   }, [])
 
 
-  const deleteOrder = (id) =>{
-    ApiDelete(`${URLS().ORDERS}id/`)
-    .then(res =>{
-      console.log(res.data)
-    })
-  }
+  // const deleteOrder = (id) =>{
+  //   ApiDelete(`${URLS().ORDERS}id/`)
+  //   .then(res =>{
+  //     console.log(res.data)
+  //   })
+  // }
 
   const handleAction = (id) =>{
     console.log(id)
@@ -65,7 +63,8 @@ const index = () => {
                           <td>{order.user_email}</td>
                           <td>{order.order_items.map(item => (
                             <li>
-                              {item.name + '('+item.quantity+')' +', '}
+                              {/* {item.name + '('+item.quantity+')' +', '} */}
+                              {`${item.name} ( ${item.quantity}, )`}
                             </li>
                             ))}
                           </td>

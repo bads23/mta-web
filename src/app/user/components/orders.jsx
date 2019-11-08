@@ -7,18 +7,6 @@ import formatNumber, {FormatDate} from '../../common/functions/formatter'
 
 
 const OrderComponent = ({orders}) =>{
-
-    const Total = (items) => {
-        var subtotal = 0
-
-        for(var i=0; i<items.length;i++){
-            subtotal += (items[i].price * items[i].quantity)
-        }
-
-        return formatNumber(subtotal)
-    }
-    
-
     return(
         orders.map(order => (
             <tr>
@@ -41,8 +29,6 @@ const OrderComponent = ({orders}) =>{
 }
 
 const Orders = () =>{
-    
-    
     const [orders, setOrders] = useState([])
     
     const getOrders = () =>{

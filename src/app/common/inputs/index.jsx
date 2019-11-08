@@ -1,6 +1,5 @@
 import React from 'react'
 import CKEditor from 'ckeditor4-react'
-import { promised } from 'q';
 
 const Input1 = (props) => {
   return (

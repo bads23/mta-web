@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Input, { Select, Textarea, Checkbox } from '../../../../common/inputs/index'
+import Input, { Select, Textarea } from '../../../../common/inputs/index'
 import ApiGet, { ApiPut, ApiPost, ApiDelete } from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 // import { NOTIMP } from 'dns';

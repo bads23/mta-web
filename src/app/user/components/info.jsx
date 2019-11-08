@@ -4,22 +4,22 @@ import {UserContext} from '../../auth/context'
 import URLS from '../../config/settings'
 import {ApiPut} from '../../config/axios'
 
-import Input1, {Select} from '../../common/inputs'
+import Input1 from '../../common/inputs'
 
-const genderOptions = [
-    {
-        id: 1,
-        name: "Male"
-    },
-    {
-        id: 2,
-        name: "Female"
-    },
-    {
-        id: 3,
-        name: "Other"
-    }
-]
+// const genderOptions = [
+//     {
+//         id: 1,
+//         name: "Male"
+//     },
+//     {
+//         id: 2,
+//         name: "Female"
+//     },
+//     {
+//         id: 3,
+//         name: "Other"
+//     }
+// ]
 
 
 
@@ -47,11 +47,11 @@ const Info = () =>{
         setMyInfo(np)
     }
 
-    const handleNumber = (e) =>{
-        var np = {...myInfo}
-        np.first_name = e.target.value
-        setMyInfo(np)
-    }
+    // const handleNumber = (e) =>{
+    //     var np = {...myInfo}
+    //     np.first_name = e.target.value
+    //     setMyInfo(np)
+    // }
     
 
     const handleForm = (e) =>{

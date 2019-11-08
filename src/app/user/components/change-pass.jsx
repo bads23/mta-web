@@ -1,11 +1,11 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 
-import URLS from '../../config/settings'
-import {ApiPost, ApiPut} from '../../config/axios'
-import Input1, {Select} from '../../common/inputs'
+// import URLS from '../../config/settings'
+// import {ApiPost, ApiPut} from '../../config/axios'
+import Input1 from '../../common/inputs'
 
 
-import { UserContext } from '../../auth/context'
+// import { UserContext } from '../../auth/context'
 
 
 const errorMsg = (msg) => {
@@ -27,7 +27,7 @@ const ChangePass = () =>{
     }
 
     const [pass, setPass] = useState(obj)
-    const context = useContext(UserContext)
+    // const context = useContext(UserContext)
 
     const handleOldPass = (e) =>{
         const npass = {...pass}
@@ -62,9 +62,9 @@ const ChangePass = () =>{
         e.preventDefault()
         e.stopPropagation()
 
-        if(pass.oldPass == '' | pass.newPass == '' | pass.newPass2 == ''){
+        if(pass.oldPass === '' | pass.newPass === '' | pass.newPass2 === ''){
             errorMsg('Please fill all fields!')
-        } else if(pass.newPass != pass.newPass2){
+        } else if(pass.newPass !== pass.newPass2){
             errorMsg('Passwords do not match');
         } else {
             

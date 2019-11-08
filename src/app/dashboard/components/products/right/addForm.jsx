@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Input, { Select, Textarea } from '../../../../common/inputs/index'
 import ApiGet, { ApiPost } from '../../../../config/axios'
 import URLS from '../../../../config/settings'
-import { ShowNotify } from '../../../../common/popups'
+// import { ShowNotify } from '../../../../common/popups'
 
 
 const AddForm = ({ props }) => {
