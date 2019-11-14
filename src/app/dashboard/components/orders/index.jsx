@@ -62,13 +62,13 @@ const index = () => {
                           <td>{order.name}</td>
                           <td>{order.user_email}</td>
                           <td>{order.order_items.map(item => (
-                            <li>
+                            <li style={{listStyleType:'none'}}>
                               {/* {item.name + '('+item.quantity+')' +', '} */}
-                              {`${item.name} ( ${item.quantity}, )`}
+                              {`${item.name} ( ${item.quantity})`}
                             </li>
                             ))}
                           </td>
-                          <td className="totalsCol"> Ksh {Formart(order.total)}</td>
+                          <td className="totalsCol"> Ksh {Formart(order.amount)}</td>
                           <td>{order.pay_status}  ({order.mode})</td>
                           <td>
                             <select onChange={() => handleAction(order.id)}>

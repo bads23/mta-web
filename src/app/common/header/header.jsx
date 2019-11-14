@@ -82,7 +82,7 @@ const Cart = () => {
     <>
       {
         context.cart.length === 0 ? (
-          <div className="bottom"><Link to="/cart/">Your Cart is empty!</Link></div>
+          <div className="bottom"><Link to="/cart/">Your Cart is empty.</Link></div>
         ) : (
             <div className="bottom"><Link to="/cart/">{totals.allitems} item{totals.allitems > 1 ? "s" : ""} in cart</Link></div>
           )

@@ -154,7 +154,10 @@ const Payment = () => {
                     var item = {
                       quantity: cart[i].quantity,
                       order: data.id,
-                      product: cart[i].id
+                      product: cart[i].id,
+                      delivery_fee: cart[i].weight < 5 ? (cart[i].quantity*280) : ((((cart[i].weight - 5) * 30)*cart[i].quantity) + (cart[i].quantity*280) ),
+                      buying_price: cart[i].price
+
                     }
 
                     ApiPost(`${URLS().ORDERITEMS}`, item)
@@ -213,7 +216,9 @@ const Payment = () => {
                 var item = {
                   quantity: cart[i].quantity,
                   order: data.id,
-                  product: cart[i].id
+                  product: cart[i].id,
+                  delivery_fee: cart[i].weight < 5 ? (cart[i].quantity*280) : ((((cart[i].weight - 5) * 30)*cart[i].quantity) + (cart[i].quantity*280) ),
+                  buying_price: cart[i].price
                 }
 
                 ApiPost(`${URLS().ORDERITEMS}`, item)
@@ -223,10 +228,10 @@ const Payment = () => {
               }
 
               document.getElementById('payBtn').innerText = 'Order Succesful!'
-              localStorage.removeItem('Cart')
-              setTimeout(() => {
-                window.location.href = "/order-successful/"
-              }, 3000)
+              // localStorage.removeItem('Cart')
+              // setTimeout(() => {
+              //   window.location.href = "/order-successful/"
+              // }, 3000)
 
             })
         }
