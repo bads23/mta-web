@@ -5,6 +5,7 @@ import { ShowNotify } from '../../common/popups'
 
 const UpdateCart = ({ item }) => {
   const context = useContext(CartContext)
+
   const newCart = () => {
     var items = [...context.cart]
 
@@ -28,6 +29,7 @@ const UpdateCart = ({ item }) => {
     localStorage.setItem("Cart", JSON.stringify(items))
     ShowNotify('Item added to cart. <a href="/cart">View Cart</a>')
   }
+  
   return (
     <button className="btn-black mg-v-20" onClick={() => newCart()}>
       Add to Cart
@@ -41,8 +43,6 @@ const ProductDetails = ({ item }) => {
   var list;
 
   item.features ? list = item.features.split(',') : list = [];
-
-
 
   return (
     <div className="text-container">

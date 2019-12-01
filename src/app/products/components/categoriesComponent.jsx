@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import {shuffle} from '../../common/functions/helpers'
 import Product from './productComponent'
 
 const Categories = ({ category}) => {
 
+  var items = shuffle(category.items)
 
   return (
 
@@ -22,7 +23,7 @@ const Categories = ({ category}) => {
         </Link>
       <div className="fl-even fl-wrap">
         {
-          category.items.slice(0,5).map(item => (
+          items.slice(0,5).map(item => (
             <Product item={item} key={item.id}  />
           ))
         }

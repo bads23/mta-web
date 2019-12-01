@@ -12,6 +12,7 @@
       height: 150px;
       border-bottom: 1px solid $light-grey;
       padding: 0px 20px;
+      position: relative;
       .item-desc{
           .image-container{
               height: 70px;
@@ -22,7 +23,18 @@
               }
           }
       }
+      &:hover{
+          .delete{
+              display: block;
+          }
+      }
   }
+}
+
+.price-container{
+    position: relative;
+    bottom: 0px;
+    margin-top: 50px;
 }
 
 .total{
@@ -53,8 +65,12 @@
 
 .delete{
     cursor: pointer;
+    position: absolute;
+    top: 0; right: 0;
+    font-size: 16px;
+    display: none;
     &::before{
-        content:'\f2ed';
+        content:'\f00d';
         @extend .fontawesome, .mg-h-10 ;
     }
 }

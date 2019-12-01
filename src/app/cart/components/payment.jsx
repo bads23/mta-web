@@ -228,10 +228,10 @@ const Payment = () => {
               }
 
               document.getElementById('payBtn').innerText = 'Order Succesful!'
-              // localStorage.removeItem('Cart')
-              // setTimeout(() => {
-              //   window.location.href = "/order-successful/"
-              // }, 3000)
+              localStorage.removeItem('Cart')
+              setTimeout(() => {
+                window.location.href = "/order-successful/"
+              }, 3000)
 
             })
         }

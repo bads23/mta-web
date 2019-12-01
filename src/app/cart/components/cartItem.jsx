@@ -53,17 +53,19 @@ const CartItem = ({ item }) => {
           }
           </div>
           <div className="details-container mg-h-20">
-            <p className="lato-lg">{item.name}</p>
+            <a href={`/product/${item.id}`}><p className="lato-lg">{item.name}</p></a>
             <span className="subQty" onClick={() => sub(item.id)}></span>
             <span className="lato-sm b"> {item.quantity}</span>
             <span className="addQty" onClick={() => add(item.id)}></span>
             &nbsp;&nbsp;
-            <span className="delete" onClick={() => remove(item.id)}></span>
+
           </div>
         </div>
         <div className="price-container">
           <p className="playfair-lg gold">Ksh {format(item.price * item.quantity)}</p>
         </div>
+        <span className="delete" onClick={() => remove(item.id)}></span>
+
       </div>
     </>
   )
