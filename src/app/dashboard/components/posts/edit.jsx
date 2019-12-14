@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react'
 import Input, {Editor} from '../../../common/inputs'
 import ApiGet, { ApiPut } from '../../../config/axios'
 import URLS from '../../../config/settings'
+import {Uploader} from '../../../common/inputs' 
 
 const Edit = ({props}) => {
     
     const [post, setPost] = useState([])
+    const [cover, setCover] = useState('')
 
     const handleTitle = (e) => {
         var np = {...post}
@@ -47,9 +49,20 @@ const Edit = ({props}) => {
     const getItem = (id) => {
         ApiGet(`${URLS().NEWS}${id}/`)
         .then(res =>(
-            setPost(res.data)
+            setPost(res.data),
+            setCover(res.data.Cover_Image)
         ))
     }
+
+    const showImage = (e) => {
+        
+        let reader = new FileReader();
+        
+        reader.onloadend = () => {
+            setCover(reader.result)
+        }
+        reader.readAsDataURL(e.target.files[0])
+    }   
 
     useEffect(() => {
        getItem(props.match.params.id)
@@ -64,7 +77,9 @@ const Edit = ({props}) => {
                     <Input type="text" label="Title" onChange={handleTitle} value={post.Title} />
                     <Input type="Text" label="Subtitle" onChange={handleSubtitle} value={post.Subtitle} />
                     <Editor label="Article" value={post.Content} onChange={handleArticle} />
-                    <Input type="text" label="Cover Image" onChange={handleCover} value={post.Cover_Image}/>
+                    {/* <Input type="text" label="Cover Image" onChange={handleCover} value={post.Cover_Image}/> */}
+                    <Uploader url={cover} postId={post.id} onChange={showImage} />
+
                     <button className="btn btn-black">Save</button>
                 </form>
             </div>

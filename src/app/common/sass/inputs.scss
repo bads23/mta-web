@@ -72,3 +72,31 @@
     @extend .radio-checked ;
   }
 }
+
+#imgUploaderWrap{
+  width:100%;
+  background-color: $light-grey;
+  min-height: 300px;
+  position: relative;
+  &::after{
+    content: '\f03e';
+    @extend .fontawesome ;
+    font-size: 150px;
+    opacity: .3;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #cover-img-label{
+    @extend .btn;
+    font-family: 'Playfair Display', serif !important;
+    position: absolute !important;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: inherit;
+    display: block;
+    padding-top: 6px !important;
+    background-color: #fff !important;
+  }
+}

@@ -74,4 +74,22 @@ export const Editor = (props) =>{
   )
 }
 
+export const Uploader = ({url, onChange}) => {
+
+  return(
+      <>  
+        <div className="input1">
+          <label>Cover Image</label>
+          <div id="imgUploaderWrap">
+              <div className="imgWrap">
+                  <img src={url} alt=""/>
+              </div>
+              <label htmlFor="cover-img" id="cover-img-label" className="btn-black">Choose Cover Photo</label>
+              <input type="file" id="cover-img" name="cover-image" accept="image/*" hidden onChange={onChange}/>
+          </div>
+        </div>
+      </>
+  )
+}
+
 export default Input1

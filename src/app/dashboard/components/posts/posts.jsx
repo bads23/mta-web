@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import ApiGet from '../../../config/axios'
 import URLS from '../../../config/settings'
+import { FormatDate } from '../../../common/functions/formatter'
+import {Link} from 'react-router-dom'
 
 
 const PostsTable = ({news}) => {
@@ -19,7 +21,7 @@ const PostsTable = ({news}) => {
                         <tr>
                             <td>{item.id}</td>
                             <td><a href={`/dashboard/posts/edit/${item.id}/`}>{item.Title}</a></td>
-                            <td></td>
+                            <td>{ FormatDate(item.date_added).date }</td>
                             <td></td>
                         </tr>
                     ))
@@ -64,6 +66,10 @@ const Posts = () =>{
                     )
                 }
                 
+                <Link to="new">
+                    <button className="btn" id="newpostBtn">New Post</button>
+                </Link>
+
             </div>
         </>
     )
