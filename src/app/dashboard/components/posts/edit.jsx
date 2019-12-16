@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Input, {Editor} from '../../../common/inputs'
-import ApiGet, { ApiPut } from '../../../config/axios'
+import ApiGet, { ApiPut, ApiPost } from '../../../config/axios'
 import URLS from '../../../config/settings'
 import {Uploader} from '../../../common/inputs' 
 
@@ -37,9 +37,34 @@ const Edit = ({props}) => {
         e.preventDefault()
         e.stopPropagation()
 
+        var btn = document.getElementById('editBtn')
+        btn.innerText = 'Saving...'
+        btn.disabled = 'disabled'
+
         ApiPut(`${URLS().NEWS}${props.match.params.id}/`, post)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
+
+            if (cover !== ''){
+                var payload = new FormData()
+                payload.append('post_id', props.match.params.id)
+                payload.append('image', cover)
+                payload.append('category', 'posts')
+
+                ApiPost(`${URLS().IMAGES}`, payload)
+                    .then(res => {
+                    btn.innerText = "Saved!"
+                    })
+                    .catch(error => {
+                    // btn.innerText = "Unable to upload! Try again!"
+                    btn.disabled = ''
+                    console.log(error)
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 2000)
+                })
+            }
+
         })
         .catch(error => {
             console.log(error)
@@ -55,7 +80,6 @@ const Edit = ({props}) => {
     }
 
     const showImage = (e) => {
-        
         let reader = new FileReader();
         
         reader.onloadend = () => {
@@ -80,7 +104,7 @@ const Edit = ({props}) => {
                     {/* <Input type="text" label="Cover Image" onChange={handleCover} value={post.Cover_Image}/> */}
                     <Uploader url={cover} postId={post.id} onChange={showImage} />
 
-                    <button className="btn btn-black">Save</button>
+                    <button className="btn btn-black" id="editBtn">Save</button>
                 </form>
             </div>
         </>
