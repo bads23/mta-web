@@ -3,16 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.1",
+    "babel-polyfill": "^6.26.0",
+    "ckeditor4-react": "^1.0.0",
+    "draft-js": "^0.10.5",
+    "jsonwebtoken": "^8.5.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-froala-wysiwyg": "^3.0.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "cra-build-watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -24,6 +31,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "cra-build-watch": "^1.4.0",
+    "node-sass": "^4.11.0",
+    "ws": "3.3.2"
   }
 }

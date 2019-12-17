@@ -16,6 +16,9 @@
   box-sizing: border-box;
 }
 
+.mg-0{
+  margin: 0px !important;
+}
 
 .mg-t-10{
   @include margin-top(10px);
@@ -23,6 +26,11 @@
 .mg-b-10{
   @include margin-bottom(10px);
 }
+
+.mg-b-50{
+  @include margin-bottom(50px);
+}
+
 .mg-v-5{
   @include margin(5px 0px)
 }
@@ -47,6 +55,14 @@
   @include margin(0px 10px)
 }
 
+.mg-h-20{
+  @include margin(0px 20px)
+}
+
+.mg-50-auto{
+  @include margin(50px auto)
+}
+
 .pd-20 {
   @include padding(20px)
 }
@@ -57,7 +73,7 @@
 }
 
 .fl-wrap{
-  @extend .fl-wrap ;
+  @extend .flex ;
   flex-wrap: wrap ;
 }
 
@@ -69,6 +85,11 @@
 .fl-even{
   @extend .flex ;
   justify-content: space-evenly;
+}
+
+.fl-center{
+  @extend .flex ;
+  justify-content: center;
 }
 
 .fl-col{
@@ -87,7 +108,17 @@
 }
 
 /* POSITIONING */
+.v-h-center{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .h-center{
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) !important;
+}
+.v-center{
+  top: 50%;
+  transform: translateY(-50%) ;
 }

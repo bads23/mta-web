@@ -1,0 +1,116 @@
+.input1{
+  width: 100%;
+  @extend .mg-v-20 ;
+  label{
+      display: block;
+      @extend .lato-m, .b ;
+      @extend .mg-v-10 ;
+  }
+  input, select, textarea{
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background: none;
+      border: none;
+      border-bottom: 1px solid $light-grey ;
+      @extend .lato-m ;
+      &:focus{
+        border-bottom: 1px solid $color-gold;
+      }
+  }  
+  textarea{
+    max-width: 100%;
+    min-width: 100%;
+    line-height: 26px;
+  }
+  #checkbox{
+    width: 20px;
+  }
+}
+
+.form{
+  padding: 20px;
+  .btn-1{
+      @extend .mg-v-20 ;
+  }
+  .btn-full{
+      @extend .btn-1 ;
+      width: 100%;
+  }
+}
+.radio{
+  cursor: pointer;
+}
+
+.radio-checked{
+  &::before{
+      content: '\f058' ;
+      @extend .fontawesome, .mg-h-10 ;
+      font-weight: normal;
+      margin-left: -22px;
+  }
+}
+
+.radio-unchecked{
+  &::before{
+      content: '\f111' ;
+      @extend .fontawesome, .mg-h-10 ;
+      font-weight: normal;
+      margin-left: -22px;
+  }
+}
+
+.radio-unchecked-div{
+  @extend .grey ;
+  h2{
+    @extend .radio-unchecked ;
+  }
+}
+
+.radio-checked-div{
+  h2{
+    @extend .radio-checked ;
+  }
+}
+
+#imgUploaderWrap{
+  width:100%;
+  background-color: $light-grey;
+  min-height: 300px;
+  max-height: 600px;
+  position: relative;
+  overflow: hidden;
+  &::after{
+    content: '\f03e';
+    @extend .fontawesome ;
+    font-size: 150px;
+    opacity: .3;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  #cover-img-label{
+    @extend .btn;
+    font-family: 'Playfair Display', serif !important;
+    position: absolute !important;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: inherit;
+    display: block;
+    padding-top: 6px !important;
+    background-color: #fff !important;
+    z-index: 5;
+  }
+  .imgWrap{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    overflow: hidden;
+    img{
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}

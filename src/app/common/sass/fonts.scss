@@ -11,6 +11,7 @@
 
 .fontawesome{
   font-family: "Font Awesome 5 Free";
+  font-weight: bold;
 }
 
 
@@ -154,4 +155,23 @@
 
 .align-center{
   text-align: center;
+}
+
+
+.section-header{
+  @extend .playfair-lg, .mg-b-10;
+  text-align: center;
+}
+
+
+ul{
+  list-style-type: none;
+  padding-left: 0px;
+  li{
+    &::before{
+      content: "\f0da";
+      @extend .fontawesome ;
+      margin-right: 10px;
+    }
+  }
 }

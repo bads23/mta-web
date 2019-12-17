@@ -1,20 +1,53 @@
 @import './spacing.scss';
 @import './colors.scss';
 @import './fonts.scss';
-
+@import './layout.scss';
+@import './inputs.scss';
+@import './animations.scss';
+@import './loading.scss';
+@import './tables.scss';
 
 @import '../buttons/buttons.scss';
 @import '../header/header.scss';
-
+@import '../slider/styles.scss';
+@import '../popups/styles.scss';
 
 
 /* GENERAL STYLING */
 
-body{
+body, html{
   width: 100%;
+  margin: 0px;
+  height: 100%;
 }
 
 a{
   color: inherit;
   text-decoration: none;
+}
+
+.block{
+  display: block;
+}
+
+#wrapper{
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+
+#footer{
+  background-color: $color-cream;
+  color: $color-black;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 20px 0px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 67px;
+  margin-top: 120px;
+}
+
+*{
+  outline: 0;
 }

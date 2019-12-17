@@ -1,0 +1,32 @@
+.sliderBtns{
+  position: absolute ;
+  @extend .fontawesome, .b, .v-center, .xlg-text ;
+
+  &:hover{
+    color: $color-gold;
+    cursor: pointer;
+  }
+}
+
+.slider{
+  background-color: $color-cream;
+  max-height: 200px ;
+  position: relative;
+  // &::before{
+  //   content: '\f104';
+  //   @extend .sliderBtns ;
+  //   left: 50px ;
+  // }
+
+  // &::after{
+  //   content: '\f105';
+  //   @extend .sliderBtns ;
+  //   right: 50px ;
+  // }
+}
+
+.hero-slider{
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+}

@@ -34,3 +34,16 @@
       }
   }
 }
+
+
+
+@media only screen and (max-width: 600px) {
+    #header{
+        #left-header{
+            display: none;
+        }
+        #right-header{
+            width: calc(100% - 100px)
+        }
+    }
+}
