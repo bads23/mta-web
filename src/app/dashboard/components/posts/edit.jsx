@@ -102,7 +102,7 @@ const Edit = ({props}) => {
                     <Input type="Text" label="Subtitle" onChange={handleSubtitle} value={post.Subtitle} />
                     <Editor label="Article" value={post.Content} onChange={handleArticle} />
                     {/* <Input type="text" label="Cover Image" onChange={handleCover} value={post.Cover_Image}/> */}
-                    <Uploader url={cover} postId={post.id} onChange={showImage} />
+                    <Uploader url={`${URLS().IMAGES}/${cover}`} postId={post.id} onChange={showImage} />
 
                     <button className="btn btn-black" id="editBtn">Save</button>
                 </form>
