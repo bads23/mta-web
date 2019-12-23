@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import formatNumber from '../../common/functions/formatter'
 import { CartContext } from '../../cart/context'
 import { ShowNotify } from '../../common/popups'
@@ -38,16 +38,18 @@ const UpdateCart = ({ item }) => {
 
 const ProductDetails = ({ item }) => {
 
-  var list;
-
+  let list;
   item.features ? list = item.features.split(',') : list = [];
-
-
+  
+  useEffect(() => {
+    const itemDesc = document.getElementById('itemDesc');
+    itemDesc.innerHTML = item.description
+  }, [])
 
   return (
     <div className="text-container">
       <h1 className="playfair-xlg mg-v-20">{item.name}</h1>
-      <p className="lato-m">{item.description}</p>
+      <p className="lato-m" id="itemDesc"></p>
       {
         list.length > 0 ? (
         <> 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Input, { Select, Textarea } from '../../../../common/inputs/index'
+import Input, { Select, Textarea, Editor } from '../../../../common/inputs/index'
 import ApiGet, { ApiPut, ApiPost, ApiDelete } from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 // import { NOTIMP } from 'dns';
@@ -105,7 +105,7 @@ const EditForm = ({ props }) => {
 
   const handleDescription = (e) => {
     var np = { ...product }
-    np.description = e.target.value
+    np.description = e.editor.getData()
     setProduct(np)
   }
 
@@ -218,7 +218,8 @@ const EditForm = ({ props }) => {
             <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
             <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
             <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
-            <Textarea label="Description" value={product.description} onChange={handleDescription} />
+            {/* <Textarea label="Description" value={product.description} onChange={handleDescription} /> */}
+            <Editor label="Description" value={product.description} onChange={handleDescription}  />
             <Textarea label="Features (Separate with a comma)" value={product.features} onChange={handleFeatures} ph="feature1,feature2,feature3" />
             {/* <Checkbox label="Visibility" ph="Hide this item" /> */}
           </div>

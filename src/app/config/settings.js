@@ -26,7 +26,9 @@ const URLS = () => {
       "POSTAS": BASE_URL + 'orders/postas/',
       "IMAGES_URL": BASE_URL + 'images/',
       "IMAGES": IMG_URL,
-      "NEWS": BASE_URL + 'posts/news/'
+      "NEWS": BASE_URL + 'posts/news/',
+      "VISITORS": BASE_URL + 'users/visitors/',
+      "VISITORSTATS": BASE_URL + 'users/visitorStats/'
     }
   )
 }

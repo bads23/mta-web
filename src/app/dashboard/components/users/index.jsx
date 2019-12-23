@@ -21,7 +21,7 @@ const index = () => {
 
   return (
     <>
-      <div className="midsection_sm">
+      <div className="midsection_full">
         <h2 className="playfair-lg">Users</h2>
 
         <table className="lato-sm-b">
@@ -50,7 +50,6 @@ const index = () => {
           </tbody>
         </table>
       </div>
-      <Right />
     </>
   )
 }

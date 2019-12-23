@@ -8,6 +8,7 @@ const index = () => {
 
   const [orders, setOrders] = useState([])
   const [itemsStats, setItemStats] = useState([])
+  const [visitorStats, setVisitorStats] = useState([])
   const [graphW, setGraphW] = useState(0)
 
 
@@ -22,6 +23,13 @@ const index = () => {
     ApiGet(`${URLS().ITEMSSTATS}`)
     .then(res =>(
       setItemStats(res.data)
+    ))
+  }
+
+  const getVisitorStats = () => {
+    ApiGet(`${URLS().VISITORSTATS}`)
+    .then(res =>(
+      setVisitorStats(res.data)
     ))
   }
 
@@ -40,6 +48,7 @@ const index = () => {
   useEffect(() => {
     getOrderStats()
     getItemStats()
+    getVisitorStats()
     var gw = document.getElementById('graphDiv').offsetWidth;
     setGraphW(gw*.95)
 
@@ -67,7 +76,15 @@ const index = () => {
 
         <div className="fl-btw">
           <div className="analytics">
-            <h3 className="playfair gold">60</h3>
+            <h3 className="playfair gold">
+              {
+                visitorStats.length > 1 ? (
+                  visitorStats.length
+                ) : (
+                  '-'
+                )
+              }
+            </h3>
             <p className="lato-m">Unique visitors in the past week</p>
           </div>
           <div className="analytics">
