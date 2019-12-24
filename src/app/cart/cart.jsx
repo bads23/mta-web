@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import CartItem from './components/cartItem'
 import PaymentMethod from './components/paymentMethod'
 import format from '../common/functions/formatter'
 import Header from '../common/header/header'
-
+import {Select} from '../common/inputs'
+import ApiGet from '../config/axios'
 import { CartContext } from './context'
+import URLS from '../config/settings'
 
 export const getTotals = () => {
   const context = useContext(CartContext)
@@ -31,6 +33,34 @@ export const getTotals = () => {
 
 const Cart = () => {
   const context = useContext(CartContext)
+  
+  const [postas, setPostas] = useState([])
+  const [posta, setPosta] = useState(0)
+
+  const getPostas = () => {
+    ApiGet(`${URLS().POSTAS}`)
+    .then(res => {
+      editPostas(res.data)
+    })
+  }
+
+  const editPostas = (data) => {
+    var new_postas = []
+    for(var i=0; i<data.length; i++){
+      data[i].name = data[i].name+' - '+data[i].code
+      new_postas.push(data[i])
+    }
+    setPostas(new_postas)
+  }
+
+  const handlePostas = (e) => setPosta(e.target.value)
+
+  useEffect(() => {
+    getPostas()
+    console.log(postas.length)
+  },[])
+
+ 
   return (
     <>
       <Header />
@@ -39,19 +69,23 @@ const Cart = () => {
           <>
             <div id="top-bar"></div>
             <div className="cart-container middle-section">
-              <h1 className="playfair-lg mg-v-20">Shopping Cart</h1>
-
+              <h1 className="playfair-xlg gold mg-v-20">Shopping Cart</h1>
               {
                 context.cart.map(item => (
                   <CartItem item={item} key={item.id} />
                 ))
-
               }
+
+              <div className="mg-v-50">
+                <h1 className="playfair-lg align-center">Shipping & Delivery</h1>
+                <p className="lato-m i align-center mg-v-10">Delivery will be done through the postal service, Posta. Pick the point closest to you.</p>
+                <Select label="Pick-up Station" options={postas} onChange={handlePostas}/>
+              </div>
 
               <div className="total pd-20 align-right medium-text">
                 <p> <span className="lato">Subtotal:</span>&nbsp;&nbsp;<span className="playfair-lg b price-spans">Ksh {format(getTotals().subtotal)}</span></p>
                 {/* <p> <span className="lato">V.A.T(16%):</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().subtotal * .16))}</span></p> */}
-                <p> <span className="lato">Delivery:</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().delivery))}</span></p>
+                <p> <span className="lato">Delivery Fee:</span> <span className="playfair-lg b price-spans">Ksh {format(Math.round(getTotals().delivery))}</span></p>
                 <p><span className="lato">Total:</span><span className="subtotal playfair-xlg mg-v-20 gold price-spans">Ksh {format(Math.round(getTotals().subtotal + getTotals().delivery))}</span></p>
 
                 <Route exact path="/cart" render={() => {

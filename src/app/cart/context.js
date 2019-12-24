@@ -24,6 +24,7 @@ export const CartTotals = () => {
       })
     }
   }
+  
   update()
   return totals
 }

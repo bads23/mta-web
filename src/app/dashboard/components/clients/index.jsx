@@ -14,7 +14,9 @@ const Item = ({ props }) => {
   return (
     <a href={`/dashboard/clients/edit/${props.id}`}>
       <div className="item">
-        <div className="pr-image"></div>
+        <div className="pr-image">
+          <img src={`${URLS().IMAGES}${props.profile_photo}`} alt=""/>
+        </div>
         <div className="pr-info">
           <p className="lato-m b">{props.name}</p>
         </div>

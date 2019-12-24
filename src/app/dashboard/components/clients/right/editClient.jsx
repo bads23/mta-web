@@ -1,19 +1,20 @@
 import React, {useState, useEffect} from 'react'
-// import {Editor, EditorState} from 'draft-js'
-
-import ApiGet, {ApiPut} from '../../../../config/axios'
+import ApiGet, {ApiPut,ApiPost} from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 
-import Input1, {Editor, Select} from '../../../../common/inputs'
+import Input1, {Editor, Select, Uploader} from '../../../../common/inputs'
 
 const editClient = ({props}) => {
     const [editor, setEditor] = useState([])
     const [cats, setCats] = useState([])
+    const [avatar, setAvatar] = useState('')
+    const [image, setImage] = useState('')
 
     const getClient = (id) =>{
         ApiGet(`${URLS().CLIENTS}${id}/`)
         .then(res => {
             setEditor(res.data)
+            setAvatar(`${URLS().IMAGES}${res.data.profile_photo}`)
         })
     }
 
@@ -79,18 +80,44 @@ const editClient = ({props}) => {
         setEditor(np)
     }
 
+    const showImage = (e) => {
+        let reader = new FileReader();
+        reader.onloadend = () => {
+            setAvatar(reader.result)
+        }
+        reader.readAsDataURL(e.target.files[0])
+        setImage(e.target.files[0])
+    }
+
+    const uploadImg = () =>{
+
+        var payload = new FormData()
+
+        payload.append('client_id', props.match.params.id)
+        payload.append('category', 'clients')
+        payload.append('image', image)
+
+        ApiPost(`${URLS().IMAGES}`, payload)
+        .then(res => {
+            console.log('uploaded')
+        })
+
+    }
+
     const handleSubmit = (e) =>{
         e.preventDefault()
 
         const subBtn = document.getElementById('submitBtn')
         subBtn.innerText = 'Saving...'
-
+        
         ApiPut(`${URLS().CLIENTS}${props.match.params.id}/`, {...editor})
-        .then(res =>{
+        .then(res =>{          
             subBtn.innerText = 'Saved!'
-            setTimeout(() => {
-                window.location.href = '/dashboard/clients';
-            }, 3000)
+            console.log(res.data)
+            uploadImg()
+            // setTimeout(() => {
+            //     window.location.href = '/dashboard/clients';
+            // }, 3000)
         })
     }
 
@@ -100,16 +127,8 @@ const editClient = ({props}) => {
             <form className="fl-btw" onSubmit={handleSubmit}>
                 <div id="clientProfile">
                     <h3 className="playfair-m">Profile</h3>
-                    <div id="profile-img" className="mg-v-20">
-                        <img src="" alt=""/>
 
-                        <div id="uploadImgBtn">
-                            <label htmlFor="avatarIn" className="btn btn-black">
-                                Upload
-                            </label>
-                            <input type="file" id="avatarIn" hidden />
-                        </div>
-                    </div>
+                    <Uploader url={avatar} onChange={showImage} />
                     <Input1 type="text" ph="Client Name" label="Name" value={editor.name} onChange={handleName} />
                     <Select label="Category" options={cats} value={editor.category} onChange={handleCategory}/>
                     <Input1 type="text" ph="twitter handle" label="Twitter" value={editor.twitter} onChange={handleTW} />

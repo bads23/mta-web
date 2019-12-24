@@ -119,26 +119,24 @@ const EditForm = ({ props }) => {
     var np = []
     np = [...e.target.files]
     setImage(np)
-    console.log(image)
-    const reader = new FileReader();
-
-    reader.readAsDataURL(e.target.files[0]);
-    var imgUrl;
-
-    reader.onload = (e) => {
-      imgUrl = e.target.result
-    }
 
     var imgWrap = document.getElementById('itemImgs')
     var newImgWrap = document.createElement("div")
     var newImg = document.createElement("img")
-  
-    newImg.setAttribute("src", imgUrl)
-    newImg.setAttribute("alt", "uploading...")
-    newImgWrap.classList.add("imgContainer")
-    newImgWrap.classList.add("isImg")
-    newImgWrap.appendChild(newImg)
-    imgWrap.prepend(newImgWrap)
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      var imgUrl = reader.result
+      newImg.setAttribute("src", imgUrl)
+      newImg.setAttribute("alt", "uploading...")
+      newImgWrap.classList.add("imgContainer")
+      newImgWrap.classList.add("isImg")
+      newImgWrap.appendChild(newImg)
+      imgWrap.prepend(newImgWrap)
+    }
+
+    reader.readAsDataURL(e.target.files[0]);
 
   }
 

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { getTotals } from '../cart'
 import URLS from '../../config/settings'
 import ApiGet, { ApiPost } from '../../config/axios'
-import {Select} from '../../common/inputs'
 import format from '../../common/functions/formatter'
 
 const getAmount = () => {
@@ -37,31 +36,7 @@ const Payment = () => {
 
   const [payMethod, setPayMethod] = useState(0)
   const [payNumber, setPayNumber] = useState(code)
-  const [postas, setPostas] = useState([])
-  const [posta, setPosta] = useState(0)
-
-  const getPostas = () => {
-    ApiGet(`${URLS().POSTAS}`)
-    .then(res => {
-      editPostas(res.data)
-    })
-  }
-
-  const editPostas = (data) => {
-    var new_postas = []
-    for(var i=0; i<data.length; i++){
-      data[i].name = data[i].name+' - '+data[i].code
-      new_postas.push(data[i])
-      
-    }
-    setPostas(new_postas)
-  }
-
-  useEffect(() => {
-    getPostas()
-    console.log(postas.length)
-  },[])
-
+  
   const getStatus = (kyc) => {
     ApiGet(`${URLS().PAYMENTS}?kyc=${kyc}`)
       .then(res => {
@@ -96,10 +71,7 @@ const Payment = () => {
     // setPayMethod(method)
   }
 
-  // const handlePayNumber = (e) => setPayNumber(e.target.value)
-
-  const handlePostas = (e) => setPosta(e.target.value)
-  
+  // const handlePayNumber = (e) => setPayNumber(e.target.value) 
 
 
   const handlePayOrder = (e) => {
@@ -139,7 +111,6 @@ const Payment = () => {
                 user: user.id,
                 payment: data.id,
                 total: 1,
-                delivery: parseInt(posta),
                 payment_mode: payMethod,
               }
 
@@ -201,7 +172,6 @@ const Payment = () => {
             user: user.id,
             payment: data.id,
             total: 1,
-            delivery: parseInt(posta),
             payment_mode: payMethod,
           }
 
@@ -259,12 +229,6 @@ const Payment = () => {
           <h1 className="playfair-m align-center">Account Details</h1>
           <p className="lato-m i align-center mg-v-10">Confirm Your Details</p>
         </div> */}
-
-        <div className="mg-v-50">
-          <h1 className="playfair-lg align-center">Shipping & Delivery</h1>
-          <p className="lato-m i align-center mg-v-10">Delivery will be done through the postal service, Posta. Pick the point closest to you.</p>
-          <Select label="Pick-up Station" options={postas} onChange={handlePostas}/>
-        </div>
 
         <h1 className="playfair-lg align-center">Payment</h1>
         <p className="lato-m i align-center mg-v-10">
