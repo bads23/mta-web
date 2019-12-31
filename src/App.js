@@ -77,7 +77,7 @@ class App extends Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
     } else { 
-       console.log("Geolocation is not supported by this browser.");
+      //  console.log("Geolocation is not supported by this browser.");
        this.showPosition(false)
     }
   }
@@ -93,7 +93,7 @@ class App extends Component {
   getBrowser = () =>{
     var parser = new UAParser();
     var r = parser.getResult(); 
-    console.log(parser.getResult());
+    // console.log(parser.getResult());
     this.setState({
       browser: `${r.browser.name}, ${r.browser.version}`,
       os: `${r.os.name}, ${r.os.version}`

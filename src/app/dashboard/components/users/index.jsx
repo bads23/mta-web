@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Right from './right/right'
 import ApiGet from '../../../config/axios'
 import URLS from '../../../config/settings'
 import { FormatDate } from '../../../common/functions/formatter';

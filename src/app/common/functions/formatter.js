@@ -15,7 +15,6 @@ export const FormatDate = str => {
     date: dstr[0],
     time: time
   }
-  console.log(dateObj)
   // return time
   return dateObj
 }

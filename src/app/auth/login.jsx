@@ -1,14 +1,14 @@
 import React from 'react'
 import Loginform from './components/loginForm'
-import Logo from '../common/assets/svg/MTA.svg'
+import Sidebar from './components/leftsidebar';
 
 const index = () => {
   return (
     <div id="auth-wrapper">
-      <div id="logo">
-        <img src={Logo} alt="" />
+      <Sidebar />
+      <div id="loginFormDiv">
+        <Loginform />
       </div>
-      <Loginform />
     </div>
   )
 }

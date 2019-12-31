@@ -3,7 +3,6 @@ import ImageSlider from './components/imageslider'
 import ProductDetails from './components/productDetails'
 import axios from 'axios'
 import URLS from '../config/settings'
-import ApiGet from '../config/axios'
 import Header from '../common/header/header'
 import Loader from '../common/loader'
 

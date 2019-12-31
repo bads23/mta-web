@@ -28,12 +28,6 @@ const Edit = ({props}) => {
         setPost(np)
     }
 
-    const handleCover = (e) => {
-        var np = {...post}
-        np.Cover_Image = e.target.value
-        setPost(np)
-    }
-
     const handleSubmit = (e) =>{
         e.preventDefault()
         e.stopPropagation()

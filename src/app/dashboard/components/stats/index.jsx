@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ApiGet from '../../../config/axios'
 import URLS from '../../../config/settings'
-import { LineChart, Line, XAxis,YAxis, Tooltip, Legend, CartesianGrid, Label } from 'recharts';
+import { LineChart, Line, XAxis,YAxis, Tooltip, CartesianGrid, Label } from 'recharts';
 import formatNumber from '../../../common/functions/formatter'
 
 const index = () => {
