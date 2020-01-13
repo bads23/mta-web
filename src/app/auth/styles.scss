@@ -127,3 +127,64 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 800px){
+  #sidebar{
+    width: 100%;
+    height: 20vh;
+    top: 0px;
+    position: relative;
+  }
+  .logowrap{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    #spinLogo{
+      width: 30%;
+      #loaderImgDiv{
+        width: 100%;
+        margin: 0px auto;
+      }
+      #middleM{
+        margin:0;
+        font-size: 52px;
+        // visibility: hidden;
+      }
+    }
+    #logo-text{
+      width: 50%;
+      margin: 0;
+      h2{
+        font-size: 42px;
+        letter-spacing: 5px;
+      }
+      p{
+        font-size: 14px;
+        width: 100%;
+      }
+    }
+  }
+  #quote{
+    position: relative;
+    bottom: -76x  vh;
+    width: 100%;
+    margin: 0px auto;
+    background-color: $light-grey;
+    padding: 20px 0px;
+    font-size: 16px;
+    .quote-author{
+     padding-right: 50px;
+    }
+  }
+
+  #loginFormDiv{
+    width: 100%;
+    position: relative;
+    top: 30vh;
+  }
+}

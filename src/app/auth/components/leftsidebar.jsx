@@ -21,12 +21,16 @@ const Sidebar = () => {
     return(
         <>
             <div id="sidebar">
-                <Spinnerlogo />
-                <div id="logo-text">
-                    <h2 className="playfair gold">MOTION</h2>
-                    <hr/>
-                    <p className="lato gold mg-v-10">TALENT AFRICA</p>
+                
+                <div className="logowrap">
+                    <Spinnerlogo />
+                    <div id="logo-text">
+                        <h2 className="playfair gold">MOTION</h2>
+                        <hr/>
+                        <p className="lato gold mg-v-10">TALENT AFRICA</p>
+                    </div>
                 </div>
+                
                 
                 <div id="quote" className="playfair">
                     <p>"Imagination is more important than knowledge."</p>
