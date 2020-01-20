@@ -9,6 +9,7 @@ import Orders from './components/orders'
 import Users from './components/users'
 import Clients from './components/clients'
 import Posts from './components/posts'
+import Events from './components/events'
 
 class Dashboard extends Component {
   render() {
@@ -23,6 +24,7 @@ class Dashboard extends Component {
           <Route path="/dashboard/users/" component={Users} />
           <Route path="/dashboard/clients/" component={Clients} />
           <Route path="/dashboard/posts/" component={Posts} />
+          <Route path="/dashboard/events/" component={Events} />
         </div>
       </>
     )
