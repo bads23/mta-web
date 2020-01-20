@@ -29,7 +29,8 @@ const URLS = () => {
       "IMAGES": IMG_URL,
       "NEWS": BASE_URL + 'posts/news/',
       "VISITORS": BASE_URL + 'users/visitors/',
-      "VISITORSTATS": BASE_URL + 'users/visitorStats/'
+      "VISITORSTATS": BASE_URL + 'users/visitorStats/',
+      "EVENTS": BASE_URL + 'posts/events/'
     }
   )
 }
