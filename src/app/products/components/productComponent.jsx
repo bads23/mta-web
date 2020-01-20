@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import formatter from '../../common/functions/formatter'
+import URLS from '../../config/settings'
 
 const Product = ({ item }) => {
   
@@ -10,7 +11,7 @@ const Product = ({ item }) => {
         <div className="pr-image">
         {
         item.images.length >= 1 ? (
-          <img src={`http://media.motiontalentafrica.co.ke/${item.images[0].path}`} alt="drum" />
+          <img src={`${URLS().IMAGES}${item.images[0].path}`} alt="" />
         ): (
           <></>
         )

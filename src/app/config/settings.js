@@ -1,8 +1,8 @@
 const URLS = () => {
-  // const BASE_URL = 'https://b23.pythonanywhere.com/'
-  // const IMG_URL = 'http://media.motiontalentafrica.co.ke/'
-  const BASE_URL = 'http://localhost:8000/'
-  const IMG_URL = 'http://mta.lan/'
+  const BASE_URL = 'https://b23.pythonanywhere.com/'
+  const IMG_URL = 'https://media.motiontalentafrica.co.ke/'
+  // const IMG_URL = 'http://mta.lan/'
+  // const BASE_URL = 'http://localhost:8000/'
 
   return (
     {
@@ -20,12 +20,16 @@ const URLS = () => {
       "USERDETAILS": BASE_URL + 'users/userDetails/',
       "ORDERS": BASE_URL + 'orders/list/',
       "ORDERITEMS": BASE_URL + 'orders/orderItems/',
+      "ORDERSTATS": BASE_URL + 'orders/stats/',
+      "ITEMSSTATS": BASE_URL + 'orders/itemssold/',
       "CLIENTS": BASE_URL + 'clients/clients/',
       "CLIENTSCATS": BASE_URL + 'clients/clientsCategory',
       "POSTAS": BASE_URL + 'orders/postas/',
       "IMAGES_URL": BASE_URL + 'images/',
       "IMAGES": IMG_URL,
       "NEWS": BASE_URL + 'posts/news/',
+      "VISITORS": BASE_URL + 'users/visitors/',
+      "VISITORSTATS": BASE_URL + 'users/visitorStats/',
       "EVENTS": BASE_URL + 'posts/events/'
     }
   )

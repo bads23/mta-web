@@ -1,6 +1,6 @@
 .input1{
   width: 100%;
-  @extend .mg-v-20 ;
+  margin: 30px 0px;
   label{
       display: block;
       @extend .lato-m, .b ;
@@ -12,10 +12,10 @@
       box-sizing: border-box;
       background: none;
       border: none;
-      border-bottom: 1px solid $light-grey ;
+      border: 1px solid rgba(0,0,0,0.2) ;
       @extend .lato-m ;
       &:focus{
-        border-bottom: 1px solid $color-gold;
+        border: 1px solid $color-gold;
       }
   }  
   textarea{

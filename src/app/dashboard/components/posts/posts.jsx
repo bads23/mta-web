@@ -22,7 +22,7 @@ const PostsTable = ({news}) => {
                             <td>{item.id}</td>
                             <td><a href={`/dashboard/posts/edit/${item.id}/`}>{item.Title}</a></td>
                             <td>{ FormatDate(item.date_added).date }</td>
-                            <td></td>
+                            <td>{item.views}</td>
                         </tr>
                     ))
                 }

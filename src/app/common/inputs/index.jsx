@@ -84,7 +84,7 @@ export const Uploader = ({url, onChange}) => {
               <div className="imgWrap">
                   <img src={url} alt=""/>
               </div>
-              <label htmlFor="cover-img" id="cover-img-label" className="btn-black">Choose Cover Photo</label>
+              <label htmlFor="cover-img" id="cover-img-label" className="btn-black">Choose file</label>
               <input type="file" id="cover-img" name="cover-image" accept="image/*" hidden onChange={onChange}/>
           </div>
         </div>

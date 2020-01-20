@@ -20,10 +20,11 @@ const LoginForm = () => {
 
   const errorMsg = (msg) => {
     var errDiv = document.getElementById("errorDiv")
-
+    errDiv.style.visibility = 'visible';
     errDiv.innerHTML = `<p>${msg}</p>`;
     setTimeout(() => {
       errDiv.innerHTML = '&nbsp;';
+      errDiv.style.visibility = 'hidden';
     }, 5000)
   }
 

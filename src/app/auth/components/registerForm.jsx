@@ -5,6 +5,9 @@ import { ApiPost } from '../../config/axios'
 import { UserContext } from '../context';
 // import { hostname } from 'os';
 
+
+
+
 const RegisterForm = () => {
   const context = useContext(UserContext)
   const [userInfo, setUserInfo] = useState({})
@@ -12,13 +15,13 @@ const RegisterForm = () => {
 
   const errorMsg = (msg) => {
     var errDiv = document.getElementById("errorDiv")
-
+    errDiv.style.visibility = 'visible';
     errDiv.innerHTML = `<p>${msg}</p>`;
     setTimeout(() => {
       errDiv.innerHTML = '&nbsp;';
+      errDiv.style.visibility = 'hidden';
     }, 5000)
   }
-
   const disableBtn = (msg) => {
     var btn = document.getElementById('subBtn')
     btn.disabled = 'disabled'

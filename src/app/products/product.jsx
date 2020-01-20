@@ -3,7 +3,6 @@ import ImageSlider from './components/imageslider'
 import ProductDetails from './components/productDetails'
 import axios from 'axios'
 import URLS from '../config/settings'
-import ApiGet from '../config/axios'
 import Header from '../common/header/header'
 import Loader from '../common/loader'
 
@@ -14,7 +13,6 @@ class Product extends Component {
   componentDidMount() {
     var id = this.props.match.params.id
     this.getItem(id)
-    this.getImages(id)
   }
 
   getItem = async id => {
@@ -24,15 +22,6 @@ class Product extends Component {
           item: { ...res.data }
         })
       })
-  }
-
-  getImages = (id) => {
-    ApiGet(`${URLS().IMAGES}products/`)
-    .then(res => {
-      this.setState({
-        images: [...res.data]
-      })
-    })
   }
 
   render() {

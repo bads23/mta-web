@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Input, { Select, Textarea } from '../../../../common/inputs/index'
+import Input, { Select, Textarea, Editor } from '../../../../common/inputs/index'
 import ApiGet, { ApiPut, ApiPost, ApiDelete } from '../../../../config/axios'
 import URLS from '../../../../config/settings'
 // import { NOTIMP } from 'dns';
@@ -105,7 +105,7 @@ const EditForm = ({ props }) => {
 
   const handleDescription = (e) => {
     var np = { ...product }
-    np.description = e.target.value
+    np.description = e.editor.getData()
     setProduct(np)
   }
 
@@ -119,26 +119,24 @@ const EditForm = ({ props }) => {
     var np = []
     np = [...e.target.files]
     setImage(np)
-    console.log(image)
-    const reader = new FileReader();
-
-    reader.readAsDataURL(e.target.files[0]);
-    var imgUrl;
-
-    reader.onload = (e) => {
-      imgUrl = e.target.result
-    }
 
     var imgWrap = document.getElementById('itemImgs')
     var newImgWrap = document.createElement("div")
     var newImg = document.createElement("img")
-  
-    newImg.setAttribute("src", imgUrl)
-    newImg.setAttribute("alt", "uploading...")
-    newImgWrap.classList.add("imgContainer")
-    newImgWrap.classList.add("isImg")
-    newImgWrap.appendChild(newImg)
-    imgWrap.prepend(newImgWrap)
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      var imgUrl = reader.result
+      newImg.setAttribute("src", imgUrl)
+      newImg.setAttribute("alt", "uploading...")
+      newImgWrap.classList.add("imgContainer")
+      newImgWrap.classList.add("isImg")
+      newImgWrap.appendChild(newImg)
+      imgWrap.prepend(newImgWrap)
+    }
+
+    reader.readAsDataURL(e.target.files[0]);
 
   }
 
@@ -218,7 +216,8 @@ const EditForm = ({ props }) => {
             <Select label="Class" options={productclasses} value={product.productclass} onChange={handleClass} />
             <Input label="Price (Ksh)" type="number" ph="Item Price" value={product.price} onChange={handlePrice} />
             <Input label="Weight (Kgs)" type="number" ph="Item Weight" value={product.weight} onChange={handleWeight} />
-            <Textarea label="Description" value={product.description} onChange={handleDescription} />
+            {/* <Textarea label="Description" value={product.description} onChange={handleDescription} /> */}
+            <Editor label="Description" value={product.description} onChange={handleDescription}  />
             <Textarea label="Features (Separate with a comma)" value={product.features} onChange={handleFeatures} ph="feature1,feature2,feature3" />
             {/* <Checkbox label="Visibility" ph="Hide this item" /> */}
           </div>

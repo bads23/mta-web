@@ -40,7 +40,7 @@ const User = () => {
           Hi {context.user.first_name}
           </Link>
         </span> |
-        {!context.user.is_staff ? (
+        {context.user.is_staff ? (
           <>
             <span className="playfair-links">
               <a href="/dashboard">Dashboard</a>

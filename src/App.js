@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios'
+import UAParser from 'ua-parser-js'
+
+
 
 import Login from './app/auth/login'
 // import Header from './app/common/header/header'
@@ -17,6 +21,9 @@ import Checkout from './app/cart/checkout'
 import User from './app/user'
 import FinalStep from './app/cart/confirmed';
 import CountDown from './app/common/header/countdown'
+
+import URLS from './app/config/settings'
+import { ApiPost } from './app/config/axios'
 
 const Loading = () => {
   return (
@@ -47,10 +54,69 @@ const Loading = () => {
   )
 }
 
+
+
 class App extends Component {
 
   state = {
-    api: false
+    api: false,
+    userIp: '',
+    location: '',
+    browser: '',
+    os: ''
+  }
+
+  getIp = () => {
+    axios.get('https://jsonip.com')
+    .then(res =>{
+      this.setState({ ip: res.data.ip})
+      this.updateVisitors(this.state)
+    })
+  }
+
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else { 
+      //  console.log("Geolocation is not supported by this browser.");
+       this.showPosition(false)
+    }
+  }
+
+  showPosition = (pos) => {
+    if(pos !== false){
+      this.setState({location: `${pos.coords.latitude}, ${pos.coords.longitude}`})
+    } else{
+      this.setState({location: 'n/a'})
+    }
+  }
+
+  getBrowser = () =>{
+    var parser = new UAParser();
+    var r = parser.getResult(); 
+    // console.log(parser.getResult());
+    this.setState({
+      browser: `${r.browser.name}, ${r.browser.version}`,
+      os: `${r.os.name}, ${r.os.version}`
+    })
+  }
+
+  componentWillMount(){
+    this.getLocation()
+    this.getBrowser()
+    this.getIp()
+  }
+
+
+
+  updateVisitors = (payload) =>{
+    var obj = localStorage.getItem('mta_visitor')
+    if(obj === null){
+      ApiPost(`${URLS().VISITORS}`, payload)
+        .then(res => {
+          localStorage.setItem("mta_visitor", JSON.stringify(res.data))
+        })
+    }
   }
 
   render() {

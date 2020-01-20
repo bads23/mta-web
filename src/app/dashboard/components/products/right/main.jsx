@@ -12,7 +12,7 @@ const Item = ({ props }) => {
         <div className="pr-image">
           {
             props.images.length >= 1 ? (
-              <img src={`http://media.motiontalentafrica.co.ke/${props.images[0].path}`} alt=""/>
+              <img src={`${URLS().IMAGES}/${props.images[0].path}`} alt=""/>
             ) : (
               ''
             )
@@ -29,7 +29,6 @@ const Item = ({ props }) => {
 
 const index = () => {
   const [products, setProducts] = useState([]);
-  // const [images, setImages] = useState([]);
 
   const getItems = () => {
     ApiGet(`${URLS().CATALOG}`)
@@ -38,19 +37,9 @@ const index = () => {
       })
   }
 
-  // const getImages = (id) => {
-  //   ApiGet(`${URLS().IMAGES}products/`)
-  //   .then(res => {
-  //     setImages(res.data)
-  //   })
-  // }
-
   useEffect(() => {
     getItems()
-    // getImages()
   }, [])
-
-  // console.log(products)
 
   return (
     <>

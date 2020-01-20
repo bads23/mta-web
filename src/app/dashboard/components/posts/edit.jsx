@@ -8,6 +8,7 @@ const Edit = ({props}) => {
     
     const [post, setPost] = useState([])
     const [cover, setCover] = useState('')
+    const [image, setImage] = useState('')
 
     const handleTitle = (e) => {
         var np = {...post}
@@ -27,12 +28,6 @@ const Edit = ({props}) => {
         setPost(np)
     }
 
-    const handleCover = (e) => {
-        var np = {...post}
-        np.Cover_Image = e.target.value
-        setPost(np)
-    }
-
     const handleSubmit = (e) =>{
         e.preventDefault()
         e.stopPropagation()
@@ -46,10 +41,11 @@ const Edit = ({props}) => {
             // console.log(res.data)
 
             if (cover !== ''){
+
                 var payload = new FormData()
-                payload.append('post_id', props.match.params.id)
-                payload.append('image', cover)
                 payload.append('category', 'posts')
+                payload.append('post_id', props.match.params.id)
+                payload.append('image', image)
 
                 ApiPost(`${URLS().IMAGES}`, payload)
                     .then(res => {
@@ -75,7 +71,7 @@ const Edit = ({props}) => {
         ApiGet(`${URLS().NEWS}${id}/`)
         .then(res =>(
             setPost(res.data),
-            setCover(res.data.Cover_Image)
+            setCover(`${URLS().IMAGES}${res.data.Cover_Image}`)
         ))
     }
 
@@ -86,6 +82,7 @@ const Edit = ({props}) => {
             setCover(reader.result)
         }
         reader.readAsDataURL(e.target.files[0])
+        setImage(e.target.files[0])
     }   
 
     useEffect(() => {
@@ -101,9 +98,7 @@ const Edit = ({props}) => {
                     <Input type="text" label="Title" onChange={handleTitle} value={post.Title} />
                     <Input type="Text" label="Subtitle" onChange={handleSubtitle} value={post.Subtitle} />
                     <Editor label="Article" value={post.Content} onChange={handleArticle} />
-                    {/* <Input type="text" label="Cover Image" onChange={handleCover} value={post.Cover_Image}/> */}
                     <Uploader url={cover} postId={post.id} onChange={showImage} />
-
                     <button className="btn btn-black" id="editBtn">Save</button>
                 </form>
             </div>

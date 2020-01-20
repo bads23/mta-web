@@ -31,7 +31,7 @@ class Home extends Component {
         {/* <Slider /> */}
         <div className="middle-section">
           {
-            this.state.Categories.length>1 ? (
+            this.state.Categories.length > 1 ? (
               this.state.Categories.map(category =>
                 <Categories category={category} key={category.id} />
               )

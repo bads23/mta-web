@@ -1,4 +1,5 @@
 import React from 'react'
+import URLS from '../../config/settings'
 
 const ImageSlider = ({item}) => {
 
@@ -6,7 +7,7 @@ const ImageSlider = ({item}) => {
     <div className="image-container">
       {
         item.images.length >= 1 ? (
-          <img src={`http://media.motiontalentafrica.co.ke/`+item.images[0].path} alt="drum" />
+          <img src={`${URLS().IMAGES}`+item.images[0].path} alt="" />
         ): (
           <></>
         )

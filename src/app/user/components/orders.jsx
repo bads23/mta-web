@@ -6,24 +6,52 @@ import ApiGet from '../../config/axios'
 import formatNumber, {FormatDate} from '../../common/functions/formatter'
 
 
+
 const OrderComponent = ({orders}) =>{
+
+    const countDelivery = (items) =>{
+        let delivery = 0
+        for(var i=0; i<items.length; i++){
+            var fee = items[i].delivery_fee * items[i].quantity
+            delivery += fee
+        }
+
+        return delivery
+    }
+
     return(
         orders.map(order => (
-            <tr>
-                <td>{order.name}</td>
-                <td>
-                    {
-                       order.order_items.map(item =>(
-                           <p>
-                               {`${item.name}(${item.quantity})`} 
-                           </p>
-                       )) 
-                    }
-                </td>
-                <td>{FormatDate(order.date_added).date}</td>
-                <td>KES {formatNumber(order.amount)}</td>
-                <td>{order.pay_status}</td>
-            </tr>
+            <>
+                <div className="order" key={order.name}>
+                    <div className="ordertop fl-btw">
+                        <p className="lato-m gold b">{order.name}</p>
+                        <p className="lato-m grey">{FormatDate(order.date_added).date} | {order.status}</p>
+                    </div>
+
+                    <div className="ordermiddle">
+                        {
+                            order.order_items.map(item =>(
+                                <div className="orderitem fl-btw" key={item.name}>
+                                    <div className="itemimg">
+                                        <img src="" alt=""/>
+                                    </div>
+                                    <p className="itemname playfair-lg">
+                                        {item.name}
+                                        <span className="lato-sm b i mg-v-20" style={{ display:'block' }}>Quantity: x{item.quantity}</span>
+                                    </p>
+                                    <p className="itemprice align-right playfair-lg gold">Kshs {formatNumber(item.buying_price * item.quantity)}</p>
+                                </div>
+                            ))
+                        }
+                        
+                    </div>
+
+                    <div className="orderbottom">
+                        <p className="lato-m b mg-v-20">Delivery fee: <span className="gold playfair-lg">Kshs {countDelivery(order.order_items)}</span> </p>
+                        <p className="lato-m b mg-v-20">Total: <span className="gold playfair-xlg">Kshs {formatNumber(order.amount)}</span> </p>
+                    </div>
+                </div>
+            </>
         ))
     )
 }
@@ -35,7 +63,7 @@ const Orders = () =>{
 
         ApiGet(`${URLS().ORDERS}`)
         .then(res => {
-            setOrders(res.data)
+            setOrders(res.data.reverse())
         })
     }
 
@@ -45,23 +73,13 @@ const Orders = () =>{
     
     return(
         <>
+        <h1 className="playfair">Orders</h1>
         {
             orders.length > 0 ? (
-        
-                <table>
-                    <tbody>
-                        <tr>
-                            <th width="15%">Order No.</th>
-                            <th width="35%">Items</th>
-                            <th width="10%">Date</th>
-                            <th width="20%" align="right">Total</th>
-                            <th width="10%">Status</th>
-                        </tr>
-                        
-                        <OrderComponent orders={orders} />
-                        
-                    </tbody>
-                </table>
+                <>
+                    <OrderComponent orders={orders} />
+                </>
+                
             ) :
 
             (

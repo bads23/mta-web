@@ -14,7 +14,9 @@ const Item = ({ props }) => {
   return (
     <a href={`/dashboard/clients/edit/${props.id}`}>
       <div className="item">
-        <div className="pr-image"></div>
+        <div className="pr-image">
+          <img src={`${URLS().IMAGES}${props.profile_photo}`} alt=""/>
+        </div>
         <div className="pr-info">
           <p className="lato-m b">{props.name}</p>
         </div>
@@ -42,7 +44,7 @@ const index = () => {
       <Router>
         <Route exact path="/dashboard/clients/" render={() => (
           <>
-            <div className="midsection_sm">
+            <div className="midsection_full">
               <div className="fl-btw">
                 <h2 className="playfair-lg">Clientele</h2>
                 <div>

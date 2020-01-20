@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Right from './right/right'
 import ApiGet from '../../../config/axios'
 import URLS from '../../../config/settings'
 import { FormatDate } from '../../../common/functions/formatter';
@@ -21,7 +20,7 @@ const index = () => {
 
   return (
     <>
-      <div className="midsection_sm">
+      <div className="midsection_full">
         <h2 className="playfair-lg">Users</h2>
 
         <table className="lato-sm-b">
@@ -50,7 +49,6 @@ const index = () => {
           </tbody>
         </table>
       </div>
-      <Right />
     </>
   )
 }
