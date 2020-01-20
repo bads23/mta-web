@@ -16,6 +16,7 @@ import Register from './app/auth/register'
 import Checkout from './app/cart/checkout'
 import User from './app/user'
 import FinalStep from './app/cart/confirmed';
+import CountDown from './app/common/header/countdown'
 
 const Loading = () => {
   return (
@@ -57,6 +58,7 @@ class App extends Component {
       <>{this.state.api ? (<Loading />) : (
 
         <div id="wrapper">
+          <CountDown />
           <UserProvider>
             <CartProvider>
               <Router>

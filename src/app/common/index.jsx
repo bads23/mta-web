@@ -5,6 +5,7 @@ import URLS from '../config/settings'
 import Header from './header/header'
 import Loader from '../common/loader'
 
+
 class Home extends Component {
   state = {
     Categories: []
@@ -24,6 +25,7 @@ class Home extends Component {
   render() {
     return (
       <>
+        
         <Header />
         <div id="top-bar"></div>
         {/* <Slider /> */}

@@ -35,7 +35,54 @@
   }
 }
 
+.countdownBar{
+    position: absolute;
+    top:0px;
+    height: 40px;
+    width: 100%;
+    background-color: $color-gold;
+    z-index: 999999;
+    text-align: center;
+    color: white;
+    padding-top: 12px;
+    box-sizing: border-box;
+    .counterWrap{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0px auto;
+    }
 
+    .timers{
+        font-size: 16px;
+        margin: 0px 5px;
+    }
+
+    #clock{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #dayTimer::after{
+        content: ' Days';
+    }
+    
+    #hourTimer::after{
+        content: ' Hours';
+    }
+    
+    #minTimer::after{
+        content: ' Minutes';
+    }
+    
+    #secTimer::after{
+        content: ' Seconds';
+    }
+
+    .dayTimer::after{
+        margin-left: 10px;
+    }
+}
 
 @media only screen and (max-width: 600px) {
     #header{
