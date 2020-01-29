@@ -57,7 +57,7 @@ export const Checkbox = (props) => {
     <>
       <div className="input1">
         <label htmlFor="">{props.label}:</label>
-        <input type="checkbox" id="checkbox" /><span className="lato-sm grey">{props.ph}</span>
+        <input type="checkbox" id="checkbox" checked={props.checked ? 'checked' : ''} onChange={props.onChange} /><span className="lato-sm grey">{props.ph}</span>
       </div>
     </>
   )

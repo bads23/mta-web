@@ -42,10 +42,10 @@ const CountdownBar = () =>{
                 <div className="counterWrap">
                     <h2>Countdown to Launch: </h2>
                     <div id="clock">
-                        <div class="timers" id="dayTimer">00</div>
-                        <div class="timers" id="hourTimer">00</div>
-                        <div class="timers" id="minTimer">00</div>
-                        <div class="timers" id="secTimer">00</div>
+                        <div className="timers" id="dayTimer">00</div>
+                        <div className="timers" id="hourTimer">00</div>
+                        <div className="timers" id="minTimer">00</div>
+                        <div className="timers" id="secTimer">00</div>
                     </div>
                 </div>
             </div>

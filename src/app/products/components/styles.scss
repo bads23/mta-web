@@ -63,13 +63,24 @@
   }  
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .product-container{
+    flex-direction: column; 
+
     .image-container{
       width: 100%;
+      img{
+        width: 100%;
+      }
     }
+
     .text-container{
       width: 100%;
     }
   }
+}
+
+#relatedDiv{
+  width: 100%;
+  margin-top: 100px;
 }

@@ -74,10 +74,10 @@ const Edit = ({props}) => {
 
     const getItem = (id) => {
         ApiGet(`${URLS().EVENTS}${id}/`)
-        .then(res =>(
-            setPost(res.data),
+        .then(res =>{
+            setPost(res.data)
             setCover(`${URLS().IMAGES}${res.data.cover_image}`)
-        ))
+        })
     }
 
     const showImage = (e) => {

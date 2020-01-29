@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import formatter from '../../common/functions/formatter'
 import URLS from '../../config/settings'
 
 const Product = ({ item }) => {
   
   return (
-    <Link to={`/product/`+item.id}>
+    <a href={`/product/`+item.id}>
       <div className="item">
         <div className="pr-image">
         {
@@ -22,7 +22,7 @@ const Product = ({ item }) => {
           <p className="playfair-sm mg-0">Ksh {formatter(item.price)}</p>
         </div>
       </div>
-    </Link>
+    </a>
   )
 }
 

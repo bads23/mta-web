@@ -5,6 +5,8 @@ import axios from 'axios'
 import URLS from '../config/settings'
 import Header from '../common/header/header'
 import Loader from '../common/loader'
+import Related from './components/relatedComponent'
+
 
 class Product extends Component {
 
@@ -36,6 +38,8 @@ class Product extends Component {
                 <>
                   <ImageSlider item={this.state.item} />
                   <ProductDetails item={this.state.item} />
+
+                  <Related id={this.props.match.params.id} category={this.state.item.category} />
                 </>
               ) : (
                   <Loader/>

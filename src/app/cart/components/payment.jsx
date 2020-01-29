@@ -17,7 +17,7 @@ const getAmount = () => {
       totals.delivery += item.weight < 5 ? (item.quantity*280) : ((((item.weight - 5) * 30)*item.quantity) + (item.quantity*280) )
     })
   }
-  return Math.round(totals.subtotal + (.16 * totals.subtotal) + totals.delivery)
+  return Math.round(totals.subtotal + totals.delivery)
 }
 
 const makePayload = (payNumber, payMethod, posta) => {
