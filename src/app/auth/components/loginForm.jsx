@@ -45,6 +45,22 @@ const LoginForm = () => {
     localStorage.setItem("user", JSON.stringify(user))
   }
 
+  const sendEmail = (user) => {
+    var payload = {
+      email: "NEW USER",
+      data: {...user}
+    }
+
+    ApiPost(`${URLS().IMAGES}`, payload)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -68,6 +84,7 @@ const LoginForm = () => {
           // get user credentials
           ApiGet(`${URLS().ME}`)
             .then(res => {
+              // sendEmail(res.data)
               window.history.back()
               updateContext(res.data)
             })

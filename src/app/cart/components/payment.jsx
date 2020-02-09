@@ -73,7 +73,20 @@ const Payment = () => {
 
   // const handlePayNumber = (e) => setPayNumber(e.target.value) 
 
-
+  const sendEmail = (data) => {
+    var payload = {
+      email : "NEW ORDER",
+      order: data.id
+    }
+    
+    ApiPost(`${URLS().IMAGES}`, payload)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
   const handlePayOrder = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -194,6 +207,7 @@ const Payment = () => {
                 ApiPost(`${URLS().ORDERITEMS}`, item)
                 .then(res => {
                   console.log(res.data)
+                  sendEmail(res.data)
                 })
               }
 

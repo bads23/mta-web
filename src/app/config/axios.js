@@ -46,7 +46,7 @@ export const ApiPost = (url, payload) => {
   return Post(url, payload)
 }
 
-export const ApiPut = (url, payload) => {
+export const ApiPut = (url, payload,) => {
   const Put = async (url, payload) => {
     const response = await axios.put(url, payload)
     return response

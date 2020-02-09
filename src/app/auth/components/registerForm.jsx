@@ -12,7 +12,6 @@ const RegisterForm = () => {
   const context = useContext(UserContext)
   const [userInfo, setUserInfo] = useState({})
 
-
   const errorMsg = (msg) => {
     var errDiv = document.getElementById("errorDiv")
     errDiv.style.visibility = 'visible';
@@ -49,6 +48,26 @@ const RegisterForm = () => {
     setUserInfo(user)
   }
 
+  const sendEmail = () => {
+
+    var payload = {
+      email: "NEW USER",
+      data: {
+        first_name: userInfo.fname,
+        last_name: userInfo.lname,
+        email: userInfo.email
+      }
+    }
+    
+    ApiPost(`${URLS().IMAGES}`, payload)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -68,6 +87,7 @@ const RegisterForm = () => {
       ApiPost(`${URLS().USERS}`, payload)
         .then(res => {
           errorMsg("Registration Successful!")
+          
           updateContext(res.data)
           // console.log(res.data.access)
           // get user credentials
@@ -76,11 +96,11 @@ const RegisterForm = () => {
             'password': userInfo.password
           })
             .then(res => {
+              sendEmail()
               window.history.back()
               localStorage.setItem("tokens", JSON.stringify(res.data))
             })
             .catch(error => {
-
             })
 
         })
