@@ -3,57 +3,22 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios'
 import UAParser from 'ua-parser-js'
 
-
-
 import Login from './app/auth/login'
-// import Header from './app/common/header/header'
-// import Footer from './app/common/header/footer'
 import Home from './app/common/index'
 import Product from './app/products/product'
 import Category from './app/products/category'
 import Cart from './app/cart/cart'
-import Logo from './app/common/assets/svg/MTA-SPIN.svg'
 import CartProvider from './app/cart/context'
 import UserProvider from './app/auth/context'
-import Dashboard from './app/dashboard/index'
 import Register from './app/auth/register'
 import Checkout from './app/cart/checkout'
 import User from './app/user'
 import FinalStep from './app/cart/confirmed';
-import CountDown from './app/common/header/countdown'
 
 import URLS from './app/config/settings'
 import { ApiPost } from './app/config/axios'
 
-const Loading = () => {
-  return (
-    <>
-      <div id="loadingScreen">
-        <div id="loadingWrap">
-          <div id='loaderImgDiv'>
-            <img src={Logo} alt="Logo" className="logo" id="loaderImg" />
-          </div>
-          <div id="fakeLogo">
-            <div className="sq-wraps">
-              <div className="sq" id="sq1"></div>
-            </div>
-            <div className="sq-wraps">
-              <div className="sq" id="sq2"></div>
-            </div>
-            <div className="sq-wraps">
-              <h1>M</h1>
-            </div>
-          </div>
-          <div id="loaderText">
-            <span id="main">MOTION</span>
-            <span id="other">TALENT AFRICA</span>
-          </div>
-        </div>
-      </div>
-    </>
-  )
-}
-
+import Loading from './app/common/functions/loaders'
 
 
 class App extends Component {
@@ -107,8 +72,6 @@ class App extends Component {
     this.getIp()
   }
 
-
-
   updateVisitors = (payload) =>{
     var obj = localStorage.getItem('mta_visitor')
     if(obj === null){
@@ -124,7 +87,6 @@ class App extends Component {
       <>{this.state.api ? (<Loading />) : (
 
         <div id="wrapper">
-          <CountDown />
           <UserProvider>
             <CartProvider>
               <Router>
@@ -140,10 +102,6 @@ class App extends Component {
                 {/* <div id="push"></div> */}
               </Router >
             </CartProvider>
-
-            <Router>
-              <Route path="/dashboard/" component={Dashboard} />
-            </Router>
           </UserProvider>
         </div >
       )
