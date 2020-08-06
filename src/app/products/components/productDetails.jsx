@@ -66,6 +66,7 @@ const ProductDetails = ({ item }) => {
         <span>Ksh </span>
         {item ? formatNumber(item.price) : 'no'}
       </p>
+      <hr/>
       <UpdateCart item={item} />
     </div>
   )

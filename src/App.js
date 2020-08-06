@@ -13,7 +13,9 @@ import UserProvider from './app/auth/context'
 import Register from './app/auth/register'
 import Checkout from './app/cart/checkout'
 import User from './app/user'
-import FinalStep from './app/cart/confirmed';
+import FinalStep from './app/cart/confirmed'
+import ResetPassword from './app/auth/components/resetForm'
+import ForgotPassword from './app/auth/components/forgotPassword'
 
 import URLS from './app/config/settings'
 import { ApiPost } from './app/config/axios'
@@ -97,6 +99,8 @@ class App extends Component {
                 <Route path="/order-successful/" component={FinalStep} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <Route path="/forgotpassword" component={ForgotPassword} />
+                <Route path="/resetpassword" component={ResetPassword} />
                 <Route path="/categories/:id" component={Category} />
                 <Route path="/my-account" component={User} />
                 {/* <div id="push"></div> */}

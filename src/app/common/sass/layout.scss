@@ -26,3 +26,11 @@
   z-index: 9998;
   top: 0px
 }
+
+.categorySection{
+  display: block;
+  padding-left: 70px;
+  .sectionLink{
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
+}

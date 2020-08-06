@@ -4,6 +4,7 @@ import axios from 'axios'
 import URLS from '../config/settings'
 import Header from './header/header'
 import Loader from '../common/loader'
+import AdBanner from '../common/ads'
 
 
 class Home extends Component {
@@ -30,10 +31,12 @@ class Home extends Component {
         <div id="top-bar"></div>
         {/* <Slider /> */}
         <div className="middle-section">
+        <AdBanner />
+        
           {
             this.state.Categories.length > 1 ? (
               this.state.Categories.map(category =>
-                <Categories category={category} key={category.id} />
+                  <Categories category={category} key={category.id} />
               )
             ) : (
               <Loader/>

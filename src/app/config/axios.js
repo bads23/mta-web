@@ -8,27 +8,28 @@ const ApiGet = url => {
   var tokens = localStorage.getItem('tokens')
   var header = {}
 
-  const isTokenExpired = (token) => {
+  const isTokenExpired = async (token) => {
     var decoded = JWT.decode(token)
-    if (decoded.exp < Date.now() / 1000) { // Checking if token is expired. N
-      ApiRefreshToken()
-      .then(res => {
-        var tokens = JSON.parse(localStorage.getItem('tokens'))
-        var new_token = {}
-        new_token.refresh = tokens.refresh
-        new_token.access = res.data.access
-        localStorage.setItem('tokens',JSON.stringify(new_token))
-      })
-    }
+    console.log(decoded)
+    // if (decoded.exp < Date.now() / 1000) { // Checking if token is expired
+    //   await ApiRefreshToken()
+    //   .then(res => {
+    //     var tokens = JSON.parse(localStorage.getItem('tokens'))
+    //     var new_token = {}
+    //     new_token.refresh = tokens.refresh
+    //     new_token.access = res.data.access
+    //     localStorage.setItem('tokens',JSON.stringify(new_token))
+    //   })
+    // }
   }
 
-  if(tokens) {
-    tokens = JSON.parse(tokens)
-    isTokenExpired(tokens.access)
-    header = {
-      Authorization: `Bearer ${tokens.access}`
-    }
-  }
+  // if(tokens){
+  //   tokens = JSON.parse(tokens)
+  //   isTokenExpired(tokens.access)
+  //   header = {
+  //     Authorization: `Bearer ${tokens.access}`
+  //   }
+  // }
 
   const Get = async (url) => {
     const response = await axios.get(url, { headers: header })

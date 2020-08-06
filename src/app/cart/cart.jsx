@@ -7,6 +7,7 @@ import Header from '../common/header/header'
 import {Select} from '../common/inputs'
 import ApiGet from '../config/axios'
 import { CartContext } from './context'
+import { UserContext } from '../auth/context'
 import URLS from '../config/settings'
 
 export const getTotals = () => {
@@ -33,6 +34,7 @@ export const getTotals = () => {
 
 const Cart = () => {
   const context = useContext(CartContext)
+  const userContext = useContext(UserContext)
   
   const [postas, setPostas] = useState([])
   const [posta, setPosta] = useState(0)
@@ -76,7 +78,7 @@ const Cart = () => {
                 ))
               }
 
-              <div className="mg-v-50">
+              <div className="mg-v-50" id="shippingContainer">
                 <h1 className="playfair-lg align-center">Shipping & Delivery</h1>
                 <p className="lato-m i align-center mg-v-10">Delivery will be done through the postal service, Posta. Pick the point closest to you.</p>
                 <Select label="Pick-up Station" options={postas} onChange={handlePostas}/>
@@ -91,7 +93,14 @@ const Cart = () => {
                 <Route exact path="/cart" render={() => {
                   return (
                     <>
-                      <Link to="/checkout" className="mg-v-20"><button className="btn btn-black">Checkout</button> </Link>
+                      {
+                        !userContext.user.email ? (
+                          <Link to="/login" className="mg-v-20"><button className="btn btn-black">Login to Checkout</button> </Link>
+                        ) : (
+                          <Link to="/checkout" className="mg-v-20"><button className="btn btn-black">Checkout</button> </Link>
+                          )
+                      }
+
                       <Link to="/">
                         <span className="block mg-v-20 grey">
                           <i className="fas fa-angle-left"></i>
@@ -102,9 +111,6 @@ const Cart = () => {
                     </>)
                 }} />
               </div>
-
-              {/* <SignIn />
-              <Payment /> */}
 
               <Route path="/checkout" render={(props) => <PaymentMethod {...props} />} />
               

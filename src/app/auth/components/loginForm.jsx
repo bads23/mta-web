@@ -3,7 +3,8 @@ import Input1 from '../../common/inputs'
 import URLS from '../../config/settings'
 import ApiGet, { ApiPost } from '../../config/axios'
 import { UserContext } from '../context';
-// import { hostname } from 'os';
+import axios from 'axios'
+
 
 const LoginForm = () => {
   const context = useContext(UserContext)
@@ -45,22 +46,6 @@ const LoginForm = () => {
     localStorage.setItem("user", JSON.stringify(user))
   }
 
-  const sendEmail = (user) => {
-    var payload = {
-      email: "NEW USER",
-      data: {...user}
-    }
-
-    ApiPost(`${URLS().IMAGES}`, payload)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -79,18 +64,18 @@ const LoginForm = () => {
       ApiPost(`${URLS().AUTH}`, payload)
         .then(res => {
           errorMsg("Login Successful!")
-          localStorage.setItem("tokens", JSON.stringify(res.data))
-          console.log(res.data.access)
+          var header = {
+            Authorization: `Bearer ${res.data.access}`
+          }
           // get user credentials
-          ApiGet(`${URLS().ME}`)
-            .then(res => {
-              // sendEmail(res.data)
-              window.history.back()
-              updateContext(res.data)
-            })
-            .catch(error => {
+          axios.get(`${URLS().ME}`, { headers: header })
+          .then(res => {
+            window.history.back()
+            updateContext(res.data)
+          })
+          .catch(error => {
 
-            })
+          })
 
         })
         .catch(error => {
@@ -110,6 +95,7 @@ const LoginForm = () => {
       <h1 className="playfair-xlg mg-v-50">Login</h1>
       <Input1 label="Email Address" type="email" ph="Your email here" id="authEmail" value={email} onChange={handleEmail} required="required" />
       <Input1 label="Password" type="password" ph="Your password" id="authPass" value={password} onChange={handlePassword} required="required" />
+      <a href="/forgotpassword" className="link lato-m align-center">Forgot Password?</a>
       <div id="errorDiv" className="lato-sm mg-v-20">&nbsp;</div>
       <button className="btn btn-full mg-v-50" id="subBtn">Login</button>
     </form>

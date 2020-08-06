@@ -31,7 +31,8 @@ const URLS = () => {
       "VISITORS": BASE_URL + 'users/visitors/',
       "VISITORSTATS": BASE_URL + 'users/visitorStats/',
       "EVENTS": BASE_URL + 'posts/events/',
-      "SENDMAIL": BASE_URL + 'orders/sendEmail/'
+      "SENDMAIL": BASE_URL + 'orders/sendEmail/',
+      "RESETPASS": BASE_URL + 'api/password_reset/'
     }
   )
 }

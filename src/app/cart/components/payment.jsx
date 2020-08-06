@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { getTotals } from '../cart'
 import URLS from '../../config/settings'
-import ApiGet, { ApiPost } from '../../config/axios'
+import { ApiPost } from '../../config/axios'
 import format from '../../common/functions/formatter'
 
 const Payment = () => {
