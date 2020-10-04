@@ -1,31 +1,34 @@
 import React, {useState, useEffect} from 'react'
-
-import URLS from '../../config/settings'
-import ApiGet from '../../config/axios'
-
+import URLS from '../../config/api'
+import ApiGet from '../../config/axios_legacy'
 import formatNumber, {FormatDate} from '../../common/functions/formatter'
-
-
 
 const OrderComponent = ({orders}) =>{
 
-    const countDelivery = (items) =>{
+    const countTotals = (items) =>{
         let delivery = 0
+        let total = 0
+
         for(var i=0; i<items.length; i++){
             var fee = items[i].delivery_fee * items[i].quantity
+            var price = items[i].price * items[i].quantity
             delivery += fee
+            total += price
         }
 
-        return delivery
+        return {
+            delivery: delivery,
+            total: total+delivery
+        }
     }
 
     return(
         orders.map(order => (
             <>
-                <div className="order" key={order.name}>
-                    <div className="ordertop fl-btw">
-                        <p className="lato-m gold b">{order.name}</p>
-                        <p className="lato-m grey">{FormatDate(order.date_added).date} | {order.status}</p>
+                <div className="order" key={order.name}>    
+                    <div className="ordertop">
+                        <p className="lato-m">Order No: <span className="gold b">{order.name}</span></p>
+                        <p className="lato-m grey">{FormatDate(order.date_added).date} | {order.status_name}</p>
                     </div>
 
                     <div className="ordermiddle">
@@ -35,20 +38,21 @@ const OrderComponent = ({orders}) =>{
                                     <div className="itemimg">
                                         <img src="" alt=""/>
                                     </div>
-                                    <p className="itemname playfair-lg">
-                                        {item.name}
-                                        <span className="lato-sm b i mg-v-20" style={{ display:'block' }}>Quantity: x{item.quantity}</span>
+                                    <p className="itemname lato-m">
+                                        {item.name} ({item.quantity})
+                                        <br/>
+                                        Kshs {formatNumber(item.buying_price * item.quantity)}
                                     </p>
-                                    <p className="itemprice align-right playfair-lg gold">Kshs {formatNumber(item.buying_price * item.quantity)}</p>
+                                    <p className="itemprice playfair-lg gold"></p>
                                 </div>
                             ))
                         }
                         
                     </div>
 
-                    <div className="orderbottom">
-                        <p className="lato-m b mg-v-20">Delivery fee: <span className="gold playfair-lg">Kshs {countDelivery(order.order_items)}</span> </p>
-                        <p className="lato-m b mg-v-20">Total: <span className="gold playfair-xlg">Kshs {formatNumber(order.amount)}</span> </p>
+                    <div className="orderbottom align-right">
+                        <p className="lato-m b mg-v-10">Delivery fee: <span className="gold playfair-lg">Kshs {formatNumber(countTotals(order.order_items).delivery)}</span> </p>
+                        <p className="lato-m b mg-v-20">Total: <span className="gold playfair-lg">Kshs {formatNumber(countTotals(order.order_items).total)}</span> </p>
                     </div>
                 </div>
             </>
@@ -73,7 +77,7 @@ const Orders = () =>{
     
     return(
         <>
-        <h1 className="playfair">Orders</h1>
+        <h1 className="playfair align-center">Orders</h1>
         {
             orders.length > 0 ? (
                 <>

@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import Sidebar from './leftsidebar';
 import Input1 from '../../common/inputs'
-import {ApiPost} from '../../config/axios'
-import URLS from '../../config/settings'
+import {ApiPost} from '../../config/axios_legacy'
+import URLS from '../../config/api'
 
 const index = (props) => {
 

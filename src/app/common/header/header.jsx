@@ -34,10 +34,13 @@ const User = () => {
   return (
     context.user.email ? (
       <div className="top">
+        <span>
+          Hi {context.user.first_name} 
+        </span> |
         <span className="playfair-links">
           <Link to="/my-account/info">
           {/* <Link to="/myaccount">Hi {context.user.first_name} </Link> */}
-          Hi {context.user.first_name}
+            My Account
           </Link>
         </span> |
         <span className="playfair-links" onClick={() => Logout()}>

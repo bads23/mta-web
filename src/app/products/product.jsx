@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import ImageSlider from './components/imageslider'
 import ProductDetails from './components/productDetails'
-import axios from 'axios'
-import URLS from '../config/settings'
+import Api from '../config/api'
 import Header from '../common/header/header'
 import Loader from '../common/loader'
 import Related from './components/relatedComponent'
@@ -18,7 +17,7 @@ class Product extends Component {
   }
 
   getItem = async id => {
-    await axios.get(`${URLS().CATALOG + id}/`)
+    Api.catalog.get(`${id}`)
       .then(res => {
         this.setState({
           item: { ...res.data }
@@ -38,7 +37,6 @@ class Product extends Component {
                 <>
                   <ImageSlider item={this.state.item} />
                   <ProductDetails item={this.state.item} />
-
                   <Related id={this.props.match.params.id} category={this.state.item.category} />
                 </>
               ) : (

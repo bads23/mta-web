@@ -1,31 +1,37 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-const Sidemenu = () =>{
+const Sidemenu = ({props}) =>{
+    const [is_active, setActive] = useState('')
 
-   
-    
+    const updateSideBar = (v) =>{
+        console.log(v)
+    }
+
+    useEffect(() => {
+        setActive(props.location.pathname.split("/")[2])
+    },[])
+
     return(
         <>
             <div id="sidemenu">
-                <h1 className="playfair-lg mg-v-50">My Account</h1>
                 <div id="menu-div">
-                    <div className="menu-item active">
-                        <Link to="/my-account/info">
+                    <div className={`menu-item ${is_active === 'info' ? 'activeMenu' : '' }`}>
+                        <a href="/my-account/info">
                             <span className="lato" id="info-menu">Personal Info</span>
-                        </Link>
+                        </a>
                     </div>
 
-                    <div className="menu-item" >
-                        <Link to="/my-account/orders">
+                    <div className={`menu-item ${is_active === 'orders' ? 'activeMenu' : '' }`}>
+                        <a href="/my-account/orders">
                             <span className="lato" id="info-orders">Orders</span>
-                        </Link>
+                        </a>
                     </div>
 
-                    <div className="menu-item">
-                        <Link to="/my-account/change-password">
+                    <div className={`menu-item ${is_active === 'change-password' ? 'activeMenu' : '' }`}>
+                        <a href="/my-account/change-password">
                             <span className="lato" id="info-pass">Change Password</span>
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>

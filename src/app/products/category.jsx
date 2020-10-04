@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import Categories from './components/categoriesDetails'
-import axios from 'axios'
-import URLS from '../config/settings'
-import ApiGet from '../config/axios'
 import Loader from '../common/loader'
-// import Notify from '../common/popups'
+import Api from '../config/api'
 
 import Header from '../common/header/header'
 
@@ -19,16 +16,16 @@ class Category extends Component {
   }
 
   getItems = async id => {
-    await axios.get(`${URLS().CATEGORIES + id}/`)
-      .then(res => {
-        this.setState({
-          category: { ...res.data }
-        })
+    Api.categories.get(id)
+    .then(res => {
+      this.setState({
+        category: { ...res.data }
       })
+    })
   }
 
   getImages = () => {
-    ApiGet(`${URLS().IMAGES}products/`)
+    Api.images.get('products')
     .then(res => {
       this.setState({
         images: [...res.data]

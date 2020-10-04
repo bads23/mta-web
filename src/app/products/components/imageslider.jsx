@@ -1,18 +1,16 @@
 import React from 'react'
-import URLS from '../../config/settings'
+import Api from '../../config/api'
 
 const ImageSlider = ({item}) => {
-
   return (
     <div className="image-container">
       {
         item.images.length >= 1 ? (
-          <img src={`${URLS().IMAGES}`+item.images[0].path} alt="" />
+          <img src={`${Api.images.get(item.images[0].path)}`} alt="" />
         ): (
           <></>
         )
       }
-     
     </div>
   )
 }

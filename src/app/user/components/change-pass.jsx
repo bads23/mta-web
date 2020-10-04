@@ -92,7 +92,7 @@ const ChangePass = () =>{
 
     return(
         <>  
-            <h1 className="playfair">Change Password</h1>
+            <h1 className="playfair align-center">Change Password</h1>
             <form onSubmit={handleChangePass}>
                 <Input1 type="password" label="Old Password" value={pass.oldPass} onChange={handleOldPass} required/>
                 <Input1 type="password" label="New Password" value={pass.newPass} onChange={handleNewPass}  />

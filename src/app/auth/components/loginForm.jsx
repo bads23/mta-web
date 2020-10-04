@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Input1 from '../../common/inputs'
-import URLS from '../../config/settings'
-import ApiGet, { ApiPost } from '../../config/axios'
+import URLS from '../../config/api'
+import ApiGet, { ApiPost } from '../../config/axios_legacy'
 import { UserContext } from '../context';
 import axios from 'axios'
 

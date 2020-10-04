@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-import axios from 'axios'
-import URLS from '../../config/settings'
-import Product from './productComponent'
+import Api from '../../config/api'
+import {Product} from './categoriesComponent'
 import { Select } from '../../common/inputs/index'
 import Loader from '../../common/loader'
 
@@ -19,17 +17,17 @@ const Categories = ({ category }) => {
   const [params, setParams] = useState(paramItems)
 
   const getProducts = (id) => {
-    axios.get(`${URLS().CATALOG}?category=${id}`)
-      .then(res => {
-        setProducts(res.data)
-      })
+    Api.catalog.get(`?category=${id}`)
+    .then(res => {
+      setProducts(res.data)
+    })
   }
 
   const getItems = () => {
-    axios.get(`${URLS().SUBCATEGORIES}?category=${category.id}`)
-      .then(res => {
-        setSubCategory(res.data)
-      })
+    Api.subcategories.get(`?category=${category.id}`)
+    .then(res => {
+      setSubCategory(res.data)
+    })
   }
 
   useEffect(() => {
@@ -38,10 +36,10 @@ const Categories = ({ category }) => {
   }, [])
 
   const getClasses = (sub_id) => {
-    axios.get(`${URLS().PRODUCTCLASS}?subcategory=${sub_id}`)
-      .then(res => {
-        setSubClass(res.data)
-      })
+    Api.productclass.get(`?subcategory=${sub_id}`)
+    .then(res => {
+      setSubClass(res.data)
+    })
   }
 
   const handleSubcategory = (e) => {
@@ -59,21 +57,20 @@ const Categories = ({ category }) => {
 
   const handleFilter = () => {
     params.subcategory === '' || params.subcategory === 'All' ? (
-      axios.get(`${URLS().CATALOG}?category=${category.id}`)
-        .then(res => {
-          setProducts(res.data)
-        })
+      Api.catalog.get(`?category=${category.id}`)
+      .then(res => {
+        setProducts(res.data)
+      })
     ) : (
-        axios.get(`${URLS().CATALOG}?subcategory=${params.subcategory}&productclass=${params.productclass}`)
-          .then(res => {
-            setProducts(res.data)
-          })
-      )
+      Api.catalog.get(`?subcategory=${params.subcategory}&productclass=${params.productclass}`)
+      .then(res => {
+        setProducts(res.data)
+      })
+    )
   }
 
 
   return (
-
     <div className="mg-b-50" >
       <h2 className="section-header">{category.name}</h2>
       <div className="mg-50-auto fl-btw pd-20" id="filter-section">
@@ -85,10 +82,6 @@ const Categories = ({ category }) => {
           <span className="filterdivs">
             <Select label="Class" options={subClass} onChange={handleClass} />
           </span>
-
-          {/* <span>
-            <Select label="Price" />
-          </span> */}
         </div>
 
         <div className="relative">
@@ -108,7 +101,6 @@ const Categories = ({ category }) => {
               <Loader />
             )
         }
-
       </div>
     </div>
   )

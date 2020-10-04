@@ -52,8 +52,7 @@ const ProductDetails = ({ item }) => {
       <p className="lato-m" id="itemDesc"></p>
       {
         list.length > 0 ? (
-        <> 
-         
+        <>
           <h1 className="playfair-lg mg-v-10">Features</h1>
           <ul className="lato-m">{
               list.map(feature => (

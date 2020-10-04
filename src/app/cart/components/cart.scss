@@ -12,6 +12,8 @@
       height: 150px;
       border-bottom: 1px solid rgba(0,0,0,0.2);
       padding: 0px 20px;
+      position: relative;
+      box-sizing: border-box;
       .item-desc{
           .image-container{
               height: 70px;
@@ -25,37 +27,39 @@
   }
 }
 
-
-.total{
-  p{
-      line-height: 30px;
-  }
-  .price-spans{
-      display: inline-block;
-      min-width: 200px;
-  }
-}
-
 .addQty{
     cursor: pointer;
     &::before{
-        content:'\f105';
+        content:'\f067';
         @extend .fontawesome, .mg-h-10 ;
+        font-size: 9px;
     }
 }
 
 .subQty{
     cursor: pointer;
     &::before{
-        content:'\f104';
+        content:'\f068';
         @extend .fontawesome, .mg-h-10 ;
+        font-size: 9px;
     }
 }
 
-.delete{
+.deleteItem{
     cursor: pointer;
+    position: absolute;
+    display: block;
+    bottom: 10px; right: 0px;
+    color: rgba(0,0,0,0.5);
     &::before{
         content:'\f2ed';
         @extend .fontawesome, .mg-h-10 ;
     }
+    &:hover{
+        color: $color-gold;
+    }   
+}
+
+.CartTotals{
+    border-top: 1px solid rgba(0,0,0,0.2);
 }

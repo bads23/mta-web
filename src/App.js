@@ -4,7 +4,7 @@ import axios from 'axios'
 import UAParser from 'ua-parser-js'
 
 import Login from './app/auth/login'
-import Home from './app/common/index'
+import Home from './app/home/index'
 import Product from './app/products/product'
 import Category from './app/products/category'
 import Cart from './app/cart/cart'
@@ -17,8 +17,8 @@ import FinalStep from './app/cart/confirmed'
 import ResetPassword from './app/auth/components/resetForm'
 import ForgotPassword from './app/auth/components/forgotPassword'
 
-import URLS from './app/config/settings'
-import { ApiPost } from './app/config/axios'
+import URLS from './app/config/api'
+import { ApiPost } from './app/config/axios_legacy'
 
 import Loading from './app/common/functions/loaders'
 
@@ -44,8 +44,7 @@ class App extends Component {
   getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else { 
-      //  console.log("Geolocation is not supported by this browser.");
+    } else {
        this.showPosition(false)
     }
   }
@@ -61,7 +60,6 @@ class App extends Component {
   getBrowser = () =>{
     var parser = new UAParser();
     var r = parser.getResult(); 
-    // console.log(parser.getResult());
     this.setState({
       browser: `${r.browser.name}, ${r.browser.version}`,
       os: `${r.os.name}, ${r.os.version}`
@@ -103,7 +101,6 @@ class App extends Component {
                 <Route path="/resetpassword" component={ResetPassword} />
                 <Route path="/categories/:id" component={Category} />
                 <Route path="/my-account" component={User} />
-                {/* <div id="push"></div> */}
               </Router >
             </CartProvider>
           </UserProvider>
