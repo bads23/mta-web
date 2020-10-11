@@ -55,7 +55,7 @@ const ProductDetails = ({ item }) => {
           <h1 className="playfair-lg mg-v-10">Features</h1>
           <ul className="lato-m">{
               list.map(feature => (
-                <li>{feature}</li>
+                <li key={`${feature}`}>{feature}</li>
               ))}
           </ul>
         </>) : (<></>)

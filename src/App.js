@@ -39,7 +39,7 @@ class App extends Component {
       this.updateVisitors(this.state)
     })
     .catch(err => {
-      console.log(err.message)
+      // console.log(err.message)
     })
   }
 
@@ -72,7 +72,6 @@ class App extends Component {
     this.getLocation()
     this.getBrowser()
     this.getIp()
-    console.log(process.env.REACT_APP_API_URL)
   }
 
   updateVisitors = (payload) =>{

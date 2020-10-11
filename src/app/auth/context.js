@@ -10,8 +10,7 @@ const UserProvider = (props) => {
     if(localStorage.getItem("tokens")){
       var tokens = JSON.parse(localStorage.getItem("tokens"))
       try {
-        var token = jwt.verify(tokens.access, 'cbwx-i+4-)0&4sk2sa#thh5atz4-%3bu(9=i5l*r_st17nh0b-')
-        console.log(token)
+        jwt.verify(tokens.access, 'cbwx-i+4-)0&4sk2sa#thh5atz4-%3bu(9=i5l*r_st17nh0b-')
         return true
       } catch (err){
         console.log(err)
