@@ -1,21 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Api from '../../config/api'
 import formatter from '../../common/functions/formatter'
+
+const ImageComponent = ({src}) => {
+  const isloaded = () =>{ 
+    document.getElementById(`img-${src}`).style.display = 'none';
+  }
+  return(
+    <div className="pr-image">
+      <div className="loader" id={`img-`+src}>
+        <i className="fas fa-spinner fa-spin"></i>
+      </div>
+      <img onLoad={isloaded} src={`${process.env.REACT_APP_MEDIA_URL+src}`} alt="" />
+    </div>
+  )
+}
 
 export const Product = ({ item }) => {
   return (
-    <a href={`/product/`+item.id}>
+    <a href={`/product/`+item.id} className="mr-auto">
       <div className="item">
-        <div className="pr-image">
-        {
-        item.images.length >= 1 ? (
-          <img src={`${Api.images.get(item.images[0].path)}`} alt="" />
-        ): (
-          <></>
-        )
-      }
-        </div>
+        <ImageComponent src={item.images[0].path} />
         <div className="pr-info">
           <p className="lato-m b mg-0">{item.name}</p>
           <p className="playfair-sm mg-0">Ksh {formatter(item.price)}</p>
@@ -25,15 +30,15 @@ export const Product = ({ item }) => {
   )
 }
 
-const Categories = ({ category}) => {
+const Categories = ({category}) => {
   return (
     <>
       {
         category.items.length > 0 ? (
-          <div className="mg-b-50" >
+          <div className="mg-b-50">
             <Link to={"categories/" + category.id} className="categorySection" >
-              <h2 className="section-header">{category.name}</h2>
-              <div className="mg-b-10" className="sectionLink">
+              <h2 className="section-header gold">{category.name}</h2>
+              <div className="mg-b-10 sectionLink">
                   <p className="lato-m">
                     View all &nbsp;
                       <span>
@@ -42,7 +47,7 @@ const Categories = ({ category}) => {
                   </p>
               </div>
             </Link>
-            <div className="fl-even fl-wrap">
+            <div className="fl-wrap">
               {
                 category.items.slice(0,5).map(item => (
                   <Product item={item} key={item.id}  />

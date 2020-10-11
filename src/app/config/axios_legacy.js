@@ -1,27 +1,27 @@
 import axios from 'axios'
 import URLS from './api'
 
-var JWT = require('jsonwebtoken')
+// var JWT = require('jsonwebtoken')
 
 const ApiGet = url => {
 
-  var tokens = localStorage.getItem('tokens')
+  // var tokens = localStorage.getItem('tokens')
   var header = {}
 
-  const isTokenExpired = async (token) => {
-    var decoded = JWT.decode(token)
-    console.log(decoded)
-    // if (decoded.exp < Date.now() / 1000) { // Checking if token is expired
-    //   await ApiRefreshToken()
-    //   .then(res => {
-    //     var tokens = JSON.parse(localStorage.getItem('tokens'))
-    //     var new_token = {}
-    //     new_token.refresh = tokens.refresh
-    //     new_token.access = res.data.access
-    //     localStorage.setItem('tokens',JSON.stringify(new_token))
-    //   })
-    // }
-  }
+  // const isTokenExpired = async (token) => {
+  //   var decoded = JWT.decode(token)
+  //   console.log(decoded)
+  //   if (decoded.exp < Date.now() / 1000) { // Checking if token is expired
+  //     await ApiRefreshToken()
+  //     .then(res => {
+  //       var tokens = JSON.parse(localStorage.getItem('tokens'))
+  //       var new_token = {}
+  //       new_token.refresh = tokens.refresh
+  //       new_token.access = res.data.access
+  //       localStorage.setItem('tokens',JSON.stringify(new_token))
+  //     })
+  //   }
+  // }
 
   // if(tokens){
   //   tokens = JSON.parse(tokens)

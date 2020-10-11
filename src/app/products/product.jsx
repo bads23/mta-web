@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
-import ImageSlider from './components/imageslider'
 import ProductDetails from './components/productDetails'
 import Api from '../config/api'
 import Header from '../common/header/header'
 import Loader from '../common/loader'
 import Related from './components/relatedComponent'
 
+const ImageSlider = ({item}) => {
+  return (
+    <div className="image-container">
+      {
+        item.images.length >= 1 ? (
+          <img src={`${process.env.REACT_APP_MEDIA_URL+item.images[0].path}`} alt="" />
+        ): (
+          <></>
+        )
+      }
+    </div>
+  )
+}
 
 class Product extends Component {
 

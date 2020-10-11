@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Input1 from '../../common/inputs'
-import URLS from '../../config/api'
-import ApiGet, { ApiPost } from '../../config/axios_legacy'
-import { UserContext } from '../context';
-import axios from 'axios'
+import Api from '../../config/api'
+import { UserContext } from '../context'
 
 
 const LoginForm = () => {
@@ -61,32 +59,27 @@ const LoginForm = () => {
         "password": password
       }
 
-      ApiPost(`${URLS().AUTH}`, payload)
+      Api.auth.post(payload)
+      .then(res => {
+        errorMsg("Login Successful!")
+        localStorage.setItem("tokens", JSON.stringify(res.data))
+        Api.me.get()
         .then(res => {
-          errorMsg("Login Successful!")
-          var header = {
-            Authorization: `Bearer ${res.data.access}`
-          }
-          // get user credentials
-          axios.get(`${URLS().ME}`, { headers: header })
-          .then(res => {
-            window.history.back()
-            updateContext(res.data)
-          })
-          .catch(error => {
-
-          })
-
+          window.history.back()
+          updateContext(res.data)
         })
         .catch(error => {
-          if (!error.response) {
-            errorMsg("Network Error! Try again Later.")
-          } else {
-            errorMsg("Incorrect Email or password")
-          }
-          enableBtn("Login")
-          console.log(JSON.stringify(error))
         })
+      })
+      .catch(error => {
+        if (!error.response) {
+          errorMsg("Network Error! Try again Later.")
+        } else {
+          errorMsg("Incorrect Email or password")
+        }
+        enableBtn("Login")
+        console.log(JSON.stringify(error))
+      })
     }
   }
 

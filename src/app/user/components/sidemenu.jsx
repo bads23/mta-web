@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
 
 const Sidemenu = ({props}) =>{
     const [is_active, setActive] = useState('')
-
-    const updateSideBar = (v) =>{
-        console.log(v)
-    }
 
     useEffect(() => {
         setActive(props.location.pathname.split("/")[2])

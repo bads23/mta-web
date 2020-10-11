@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios'
 import UAParser from 'ua-parser-js'
-
 import Login from './app/auth/login'
 import Home from './app/home/index'
 import Product from './app/products/product'
@@ -39,6 +38,9 @@ class App extends Component {
       this.setState({ ip: res.data.ip})
       this.updateVisitors(this.state)
     })
+    .catch(err => {
+      console.log(err.message)
+    })
   }
 
   getLocation = () => {
@@ -70,6 +72,7 @@ class App extends Component {
     this.getLocation()
     this.getBrowser()
     this.getIp()
+    console.log(process.env.REACT_APP_API_URL)
   }
 
   updateVisitors = (payload) =>{

@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import URLS from '../../config/api'
-import ApiGet from '../../config/axios_legacy'
+import React, {useState, useEffect, useContext} from 'react'
+import Api from '../../config/api'
 import formatNumber, {FormatDate} from '../../common/functions/formatter'
+import { UserContext } from '../../auth/context'
 
 const OrderComponent = ({orders}) =>{
 
@@ -62,10 +62,9 @@ const OrderComponent = ({orders}) =>{
 
 const Orders = () =>{
     const [orders, setOrders] = useState([])
-    
+    var context = useContext(UserContext)
     const getOrders = () =>{
-
-        ApiGet(`${URLS().ORDERS}`)
+        Api.orders.get(`?user=${context.user.id}`)
         .then(res => {
             setOrders(res.data.reverse())
         })

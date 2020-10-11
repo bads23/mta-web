@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Select} from '../../common/inputs'
-import ApiGet from '../../config/axios_legacy'
-import URLS from '../../config/api'
+import Api from '../../config/api'
 
 const Shipping = () => {
     
@@ -20,7 +19,8 @@ const Shipping = () => {
     }
 
     const getPostas = () => {
-        ApiGet(`${URLS().POSTAS}`)
+        // ApiGet(`${URLS().POSTAS}`)
+        Api.postas.get()
         .then(res => {
             editPostas(res.data)
         })

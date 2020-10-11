@@ -35,7 +35,6 @@ const UpdateCart = ({ item }) => {
   )
 }
 
-
 const ProductDetails = ({ item }) => {
 
   let list;
