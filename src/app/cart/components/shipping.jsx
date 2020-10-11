@@ -19,7 +19,6 @@ const Shipping = () => {
     }
 
     const getPostas = () => {
-        // ApiGet(`${URLS().POSTAS}`)
         Api.postas.get()
         .then(res => {
             editPostas(res.data)

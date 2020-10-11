@@ -1,12 +1,8 @@
 import React, { useState, useContext } from 'react'
 import Input1 from '../../common/inputs'
-import URLS from '../../config/api'
-import { ApiPost } from '../../config/axios_legacy'
+import Api from '../../config/api'
 import { UserContext } from '../context';
 // import { hostname } from 'os';
-
-
-
 
 const RegisterForm = () => {
   const context = useContext(UserContext)
@@ -48,26 +44,6 @@ const RegisterForm = () => {
     setUserInfo(user)
   }
 
-  const sendEmail = () => {
-
-    var payload = {
-      email: "NEW USER",
-      data: {
-        first_name: userInfo.fname,
-        last_name: userInfo.lname,
-        email: userInfo.email
-      }
-    }
-    
-    ApiPost(`${URLS().IMAGES}`, payload)
-      .then(res => {
-        console.log(res)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -84,35 +60,29 @@ const RegisterForm = () => {
       payload['first_name'] = userInfo.fname
       payload['last_name'] = userInfo.lname
 
-      ApiPost(`${URLS().USERS}`, payload)
+      Api.users.post(payload)
+      .then(res => {
+        errorMsg("Registration Successful!")
+        updateContext(res.data)
+        
+        Api.auth.post({"email": userInfo.email,'password': userInfo.password})
         .then(res => {
-          errorMsg("Registration Successful!")
-          
-          updateContext(res.data)
-          // console.log(res.data.access)
-          // get user credentials
-          ApiPost(`${URLS().AUTH}`, {
-            "email": userInfo.email,
-            'password': userInfo.password
-          })
-            .then(res => {
-              sendEmail()
-              window.history.back()
-              localStorage.setItem("tokens", JSON.stringify(res.data))
-            })
-            .catch(error => {
-            })
-
+          window.location.href = '/'
+          localStorage.setItem("tokens", JSON.stringify(res.data))
         })
         .catch(error => {
-          if (!error.response) {
-            errorMsg("Network Error! Try again Later.")
-          } else {
-            errorMsg(JSON.stringify(error.response.data))
-          }
-          enableBtn("Register")
-          console.log(JSON.stringify(error))
         })
+
+      })
+      .catch(error => {
+        if (!error.response) {
+          errorMsg("Network Error! Try again Later.")
+        } else {
+          errorMsg(JSON.stringify(error.response.data))
+        }
+        enableBtn("Register")
+        console.log(JSON.stringify(error))
+      })
     }
   }
 

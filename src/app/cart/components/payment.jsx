@@ -1,6 +1,5 @@
 import React from 'react'
-import URLS from '../../config/api'
-import { ApiPost } from '../../config/axios_legacy'
+import Api from '../../config/api'
 
 const Payment = () => {
   const handlePayOrder = (e) => {
@@ -19,7 +18,7 @@ const Payment = () => {
       user: user.id,
     }
 
-    ApiPost(`${URLS().ORDERS}`,order)
+    Api.orders.post(order)
     .then(res=>{
       var data = res.data
       for(var i=0; i<cart.length; i++){
@@ -30,12 +29,11 @@ const Payment = () => {
           delivery_fee: cart[i].weight < 5 ? (cart[i].quantity*280) : ((((cart[i].weight - 5) * 30)*cart[i].quantity) + (cart[i].quantity*280)),
           buying_price: cart[i].price
         }
-        ApiPost(`${URLS().ORDERITEMS}`, item)
+        Api.orderitems.post(item)
         .then(res => {
           console.log(res.data)
         })
       }
-      ApiPost(`${URLS().SENDMAIL}`, {order: res.data.id})
     })
     
     document.getElementById('payBtn').innerText = 'Order Succesful!'

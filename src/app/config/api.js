@@ -15,6 +15,8 @@ const Api = () => {
       server_url: setUrl(),
       auth: setUrl('api/token/') ,
       refresh: setUrl('api/token/refresh/') ,
+      reset: setUrl('api/password_reset/'),
+      confirmreset: setUrl('api/password_reset/confirm/'),
       categories: setUrl('categories/') ,
       subcategories: setUrl('subcategories/') ,
       productclass: setUrl('productclass/') ,

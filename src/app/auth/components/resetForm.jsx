@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import Sidebar from './leftsidebar';
 import Input1 from '../../common/inputs'
-import {ApiPost} from '../../config/axios_legacy'
-import URLS from '../../config/api'
+import Api from '../../config/api'
 
 const index = (props) => {
 
@@ -54,7 +53,7 @@ const index = (props) => {
       enableBtn('Send')
     } else {
       
-      ApiPost(`${URLS().RESETPASS}confirm/`, {password: form.authPass2, token: tk})
+      Api.confirmreset.post({password: form.authPass2, token: tk})
       .then(res => {
         if(res.data.status === "OK"){
           var frm = {...form}

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Categories from './components/categoriesDetails'
 import Loader from '../common/loader'
 import Api from '../config/api'
-
 import Header from '../common/header/header'
 
 class Category extends Component {

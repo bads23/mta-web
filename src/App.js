@@ -16,8 +16,7 @@ import FinalStep from './app/cart/confirmed'
 import ResetPassword from './app/auth/components/resetForm'
 import ForgotPassword from './app/auth/components/forgotPassword'
 
-import URLS from './app/config/api'
-import { ApiPost } from './app/config/axios_legacy'
+import Api from './app/config/api'
 
 import Loading from './app/common/functions/loaders'
 
@@ -77,10 +76,12 @@ class App extends Component {
   updateVisitors = (payload) =>{
     var obj = localStorage.getItem('mta_visitor')
     if(obj === null){
-      ApiPost(`${URLS().VISITORS}`, payload)
-        .then(res => {
-          localStorage.setItem("mta_visitor", JSON.stringify(res.data))
-        })
+      Api.visitors.post(payload)
+      .then(res => {
+        localStorage.setItem("mta_visitor", JSON.stringify(res.data))
+      })
+      .catch(err => {
+      })
     }
   }
 

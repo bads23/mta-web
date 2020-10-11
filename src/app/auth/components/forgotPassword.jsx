@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import Sidebar from './leftsidebar';
 import Input1 from '../../common/inputs'
-import {ApiPost} from '../../config/axios_legacy'
-import URLS from '../../config/api'
+import Api from '../../config/api'
 
 const index = () => {
 
@@ -29,7 +28,7 @@ const index = () => {
     e.preventDefault();
     disableBtn('Sending...')
 
-    ApiPost(`${URLS().RESETPASS}`, {email: form.email})
+    Api.reset.post({email: form.email})
     .then(res => {
       if(res.data.status === "OK"){
         var frm = {...form}

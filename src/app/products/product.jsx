@@ -30,11 +30,11 @@ class Product extends Component {
 
   getItem = async id => {
     Api.catalog.get(`${id}`)
-      .then(res => {
-        this.setState({
-          item: { ...res.data }
-        })
+    .then(res => {
+      this.setState({
+        item: { ...res.data }
       })
+    })
   }
 
   render() {

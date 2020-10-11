@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {UserContext} from '../../auth/context'
-import URLS from '../../config/api'
-import {ApiPut} from '../../config/axios_legacy'
+import Api from '../../config/api'
 import Input1 from '../../common/inputs'
 
 
@@ -27,7 +26,7 @@ const Info = () =>{
 
         const data = {...myInfo}
         
-        ApiPut(`${URLS().USERS}${data.id}/`, data)
+        Api.users.post(data)
         .then(res =>{
             context.setUser(res.data)
             localStorage.setItem("user", JSON.stringify(res.data))

@@ -1,12 +1,5 @@
 import React, {useState} from 'react'
-
-// import URLS from '../../config/settings'
-// import {ApiPost, ApiPut} from '../../config/axios'
 import Input1 from '../../common/inputs'
-
-
-// import { UserContext } from '../../auth/context'
-
 
 const errorMsg = (msg) => {
     var errDiv = document.getElementById("errorDiv")
@@ -67,25 +60,6 @@ const ChangePass = () =>{
         } else if(pass.newPass !== pass.newPass2){
             errorMsg('Passwords do not match');
         } else {
-            
-            // const payload = {
-            //     email: context.user.email,
-            //     password: pass.oldPass
-            // }
-            
-            // const newPass = {
-            //     email: context.user.email,
-            //     password: pass.newPass
-            // }
-            
-            // ApiPost(`${URLS().AUTH}`, payload)
-            // .then(res =>{
-                    
-            //     ApiPut(`${URLS().USERS}${context.user.id}/`, newPass)
-            //     .then(res =>{
-            //         console.log(res.data)
-            //     })
-            // })
         }
     }
 
