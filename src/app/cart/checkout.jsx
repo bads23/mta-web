@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { CartContext } from './context'
 import format from '../common/functions/formatter'
 import Header from '../common/header/header'
@@ -6,6 +6,8 @@ import Payment from './components/payment'
 import Shipping from './components/shipping'
 
 const Checkout = () => {
+
+    const [posta, setPosta] = useState(0)
 
     const getTotals = () => {
         const context = useContext(CartContext)
@@ -33,7 +35,7 @@ const Checkout = () => {
         
             <div className="cart-container middle-section">
                 <h1 className="playfair-lg mg-v-20">Checkout</h1>
-                <Shipping />
+                <Shipping posta={posta} setPosta={setPosta} />
 
                 <div className="CartTotals">
                     <p className="align-right">
@@ -58,7 +60,7 @@ const Checkout = () => {
                     </p>
                 </div>
 
-                <Payment/>
+                <Payment posta={posta}/>
             </div>
         </>
     )

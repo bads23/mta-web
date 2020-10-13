@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react'
 import {Select} from '../../common/inputs'
 import Api from '../../config/api'
 
-const Shipping = () => {
+const Shipping = ({posta, setPosta}) => {
     
     const [postas, setPostas] = useState([])
-    const [posta, setPosta] = useState(0)
     
-    const handlePostas = (e) => setPosta(e.target.value)
-
+    const handlePostas = (e) => {
+        setPosta(e.target.value)
+    }
     const editPostas = (data) => {
         var new_postas = []
         for(var i=0; i<data.length; i++){

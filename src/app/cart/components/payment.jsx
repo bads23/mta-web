@@ -1,7 +1,7 @@
 import React from 'react'
 import Api from '../../config/api'
 
-const Payment = () => {
+const Payment = ({posta}) => {
   const handlePayOrder = (e) => {
     e.preventDefault()
     e.stopPropagation()
@@ -16,6 +16,7 @@ const Payment = () => {
 
     var order = {
       user: user.id,
+      delivery: posta
     }
 
     Api.orders.post(order)
