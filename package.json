@@ -36,7 +36,7 @@
     "@testing-library/react": "^11.0.4",
     "cra-build-watch": "^1.4.0",
     "jest-dom": "^4.0.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.14.1",
     "react-test-renderer": "^16.13.1",
     "ws": "3.3.2"
   }
