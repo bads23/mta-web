@@ -40,7 +40,7 @@ const index = (props) => {
     e.preventDefault();
     disableBtn('Sending...')
 
-    var tk = props.location.pathname.split('/')[2]
+    var tk = props.location.search.split('=')[1]
 
     if(!form.authPass & !form.authPass2){
       errorMsg('Fill the passwords!')
