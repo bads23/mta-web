@@ -1,6 +1,7 @@
 #auth-wrapper{
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  top: 0px;
 }
 
 #logo{
@@ -15,6 +16,9 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  .logo{
+    display: none;
+  }
 }
 
 #loginForm{
@@ -130,10 +134,7 @@
 
 @media screen and (max-width: 800px){
   #sidebar{
-    width: 100%;
-    height: 20vh;
-    top: 0px;
-    position: relative;
+    display: none;
   }
   .logowrap{
     width: 100%;
@@ -169,22 +170,18 @@
       }
     }
   }
-  #quote{
-    position: relative;
-    bottom: -76x  vh;
-    width: 100%;
-    margin: 0px auto;
-    background-color: $light-grey;
-    padding: 20px 0px;
-    font-size: 16px;
-    .quote-author{
-     padding-right: 50px;
-    }
-  }
 
   #loginFormDiv{
     width: 100%;
-    position: relative;
-    top: 30vh;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    .logo{
+      display: block;
+      text-align: center;
+    }
+    #loginForm{
+      width: 70%;
+    }
   }
 }
