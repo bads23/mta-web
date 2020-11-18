@@ -65,7 +65,7 @@ const LoginForm = () => {
         localStorage.setItem("tokens", JSON.stringify(res.data))
         Api.me.get()
         .then(res => {
-          window.history.back()
+          window.location.href = "/";
           updateContext(res.data)
         })
         .catch(error => {
